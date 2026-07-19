@@ -156,6 +156,17 @@ export const projects = [
     hasDemo: false,
     pdf: '/atcc/beacon-deck.pdf',
   },
+  // ============================================================
+  // TODO（賽後補完整 case study）：解決未來問題競賽
+  //   賽後要做：
+  //   1) title 換成正式作品名稱
+  //   2) event / award 換成正式名次（例如「🥇 冠軍 / 決賽第 N 名」）
+  //   3) summary 寫完整（問題→解法→我的角色→成果）
+  //   4) role 補「我負責什麼」；tags 補技能標籤
+  //   5) 移除 ongoing: true（作品卡才會變成可點擊）
+  //   6) 若要獨立作品頁：在 src/pages/ 新增頁面、src/App.jsx 加路由、放截圖到 public/
+  //   7) 若有簡報：壓縮後放 public/<slug>/xxx-deck.pdf，並在此加 pdf 欄位
+  // ============================================================
   {
     slug: 'fps-2026',
     ongoing: true,
