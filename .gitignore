@@ -1,0 +1,31 @@
+# dependencies & build output
+node_modules/
+dist/
+
+# vercel
+.vercel/
+
+# OS / editor
+.DS_Store
+Thumbs.db
+*.log
+
+# --- scratch / asset-generation helpers (not part of the app) ---
+*.bat
+*.py
+*_out.txt
+pdf_text.txt
+mkt_text.txt
+yao_plan.txt
+yao_ppt.txt
+rblx_plan.txt
+rblx_ppt.txt
+cv_thumb.jpg
+
+# original source decks (compressed copies live in public/**). Root-level only —
+# public/**/*.pdf (the deck downloads shown on the site) are intentionally kept.
+/*.pdf
+/CV2.png
+
+# stray source doc that got copied into the demo folder (not used by the site)
+public/ppa-demo/pets/*.docx
