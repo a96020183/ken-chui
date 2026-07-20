@@ -42,7 +42,7 @@ export const profile = {
       ],
     },
     {
-      role: '房務部經理',
+      role: '夜班房務部經理',
       org: '香港喜來登酒店',
       period: '香港 · 2023–2024（合約制）',
       points: [
