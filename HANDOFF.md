@@ -73,7 +73,25 @@
 - CV 開頭文案目前統一成「心理學＋商管雙背景的產品企劃」，若要調再改 `CV.jsx`。
 - 解決未來問題競賽賽後補完整內容、拿掉 `ongoing`。
 
-## 9. 想在新電腦「延續和 AI 的對話」
+## 9. test-version 分支（無 HKU SPACE 版本）
+
+- Branch 名稱：`test-version`（固定名稱，之後要用就說「test version」）。
+- 與 main 的唯一差別：**教育經歷沒有 HKU SPACE 那條**。其他內容（tagline 寫「心理學＋商管」、技能、作品）完全一樣。
+- Vercel 會自動為此 branch 產生 preview URL（在 Vercel dashboard → Deployments 找）。
+- 維護方式：在 main 改完 → `git checkout test-version && git rebase main && git push --force`，就能同步。
+- 用完若不再需要：刪 branch 即可（`git push origin --delete test-version`）。
+
+## 10. 最近一次更新摘要（2026-07-20）
+
+這次 session 做了以下改動：
+1. 喜來登職稱更正：夜班房務副經理 → **夜班房務部經理**
+2. 工作經歷加上年份：喜來登 2023–2024（合約制）、東華三院 2022–2023（合約制）、Compass 2019–2022
+3. 北科大教育加上年份：2024–2026 應屆畢業
+4. tagline 加入心理學：`心理學＋商管背景 × APM 實務經驗…`
+5. 技能加入 AI/LLM：首頁加 `Prompt Engineering`、`LLM 應用開發`；CV 加 `LLM 產品設計（RAG / Agent）`、`AI Prototyping`
+6. 建立 `test-version` branch（無 HKU SPACE 教育經歷）
+
+## 11. 想在新電腦「延續和 AI 的對話」
 
 本對話是透過 ACP 用戶端進行，session 檔不一定在 `~/.kiro/sessions`，因此不保證能直接複製對話。
 最可靠的接手方式＝把這份 `HANDOFF.md` 連同整個 repo clone 下來，讓新的對話讀這份文件即可掌握全部脈絡。
