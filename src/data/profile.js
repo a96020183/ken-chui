@@ -60,7 +60,7 @@ export const profile = {
     {
       role: '採購部文員（兼職）',
       org: 'Compass Group（英國富時 100 指數成分）',
-      period: '香港 · 2019–2022',
+      period: '香港 · 3 年',
       points: [
         '熟悉 SAP 系統，以 Excel（VBA）開發自動化數據處理工具，優化常規採購流程。',
         '將複雜採購數據轉化為視覺化報表，提升團隊決策效率。',
