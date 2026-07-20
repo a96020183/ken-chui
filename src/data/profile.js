@@ -73,11 +73,6 @@ export const profile = {
       dept: '經營管理系',
       period: '2024–2026 應屆畢業 · CGPA 3.7',
     },
-    {
-      school: '香港大學專業進修學院（HKU SPACE）',
-      dept: '心理學副學士',
-      period: 'CGPA 3.5',
-    },
   ],
 }
 
