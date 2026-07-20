@@ -20,7 +20,7 @@ export const profile = {
     { label: '產品設計', items: ['Figma', 'PRD 撰寫', '使用者路徑分析', '競品分析'] },
     { label: '數據分析', items: ['Firebase', 'Mixpanel', 'GA4', '埋點規劃', 'SQL', 'SAP'] },
     { label: '前端開發', items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python'] },
-    { label: 'AI 與雲端', items: ['Prompt Engineering', 'AWS Amplify / Bedrock'] },
+    { label: 'AI 與雲端', items: ['Prompt Engineering', 'LLM 產品設計（RAG / Agent）', 'AI Prototyping', 'AWS Amplify / Bedrock'] },
   ],
   intro: [
     '國立臺北科技大學經營管理系應屆畢業（2026）。商管訓練讓我習慣先從商業問題與使用者需求出發，再決定怎麼做。',
@@ -29,7 +29,7 @@ export const profile = {
   ],
   // 兩類技能：產品是本業，技術是差異化武器
   productSkills: ['產品規劃', '需求分析 / PRD', '埋點與數據分析', '使用者痛點研究', 'Figma / UI 設計', '競品分析'],
-  techSkills: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python', 'Firebase', 'AWS (Amplify / Bedrock)'],
+  techSkills: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python', 'Firebase', 'AWS (Amplify / Bedrock)', 'Prompt Engineering', 'LLM 應用開發'],
   experience: [
     {
       role: '產品企劃實習（APM）',
