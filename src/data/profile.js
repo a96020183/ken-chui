@@ -5,7 +5,7 @@ export const profile = {
   nameZh: '徐浩華',
   title: '產品企劃（APM）· 會自己動手做的產品人',
   titleEn: 'Associate Product Manager',
-  tagline: '商管背景 × APM 實務經驗：用產品與商業視角理解問題，也能親手把想法做成能跑的產品。',
+  tagline: '心理學＋商管背景 × APM 實務經驗：用產品與商業視角理解問題，也能親手把想法做成能跑的產品。',
   location: '台北 · 來自香港',
   email: 'a96020183@gmail.com',
   phone: '0901-404-044',
@@ -60,7 +60,7 @@ export const profile = {
     {
       role: '採購部文員（兼職）',
       org: 'Compass Group（英國富時 100 指數成分）',
-      period: '香港 · 3 年',
+      period: '香港 · 2019–2022',
       points: [
         '熟悉 SAP 系統，以 Excel（VBA）開發自動化數據處理工具，優化常規採購流程。',
         '將複雜採購數據轉化為視覺化報表，提升團隊決策效率。',
@@ -71,7 +71,7 @@ export const profile = {
     {
       school: '國立臺北科技大學',
       dept: '經營管理系',
-      period: '2026 應屆畢業 · CGPA 3.7',
+      period: '2024–2026 應屆畢業 · CGPA 3.7',
     },
     {
       school: '香港大學專業進修學院（HKU SPACE）',
