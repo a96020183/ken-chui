@@ -175,7 +175,7 @@ export const projects = [
     event: '晉級決賽',
     award: '🏆 決賽進行中',
     period: '2026 · 進行中',
-    summary: '目前正在決賽階段，內容依競賽規範暫不公開，賽後補上完整 case study。',
+    summary: '目前正在決賽階段，內容依競賽規範暫不公開，決賽 7/29，賽後補上完整 case study。',
     tags: [],
   },
   {
