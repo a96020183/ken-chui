@@ -178,4 +178,15 @@ export const projects = [
     summary: '目前正在決賽階段，內容依競賽規範暫不公開，賽後補上完整 case study。',
     tags: [],
   },
+  {
+    slug: 'yunus-2026',
+    ongoing: true,
+    host: '第六屆台灣尤努斯創新獎',
+    title: '（決賽進行中，詳情待賽後公開）',
+    event: '233 組團隊報名 · 晉級決賽',
+    award: '🏆 決賽進行中',
+    period: '2026 · 進行中',
+    summary: '自 233 組報名團隊中晉級決賽，內容依競賽規範暫不公開，決賽 9/12，賽後補上完整 case study。',
+    tags: [],
+  },
 ]
