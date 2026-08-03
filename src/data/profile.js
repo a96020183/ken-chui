@@ -152,25 +152,30 @@ export const projects = [
     pdf: '/atcc/beacon-deck.pdf',
   },
   // ============================================================
-  // TODO（賽後補完整 case study）：解決未來問題競賽
-  //   賽後要做：
-  //   1) title 換成正式作品名稱
-  //   2) event / award 換成正式名次（例如「🥇 冠軍 / 決賽第 N 名」）
-  //   3) summary 寫完整（問題→解法→我的角色→成果）
-  //   4) role 補「我負責什麼」；tags 補技能標籤
-  //   5) 移除 ongoing: true（作品卡才會變成可點擊）
-  //   6) 若要獨立作品頁：在 src/pages/ 新增頁面、src/App.jsx 加路由、放截圖到 public/
-  //   7) 若有簡報：壓縮後放 public/<slug>/xxx-deck.pdf，並在此加 pdf 欄位
+  // 解決未來問題能力競賽 — 佳作
   // ============================================================
   {
     slug: 'fps-2026',
-    ongoing: true,
     host: '2026 第四屆解決未來問題能力競賽',
+    title: '翻譯蒟蒻 · 親盈翻譯機',
+    event: '決賽主題：AI 協助高齡者數位溝通',
+    award: '🏅 佳作',
+    period: '2026 · 解決未來問題競賽',
+    role: '企劃撰寫 · 系統架構設計 · Prompt Engineering · 決賽簡報',
+    summary: '台灣邁入超高齡社會，長輩想傳達關心卻受限於打字能力，只能轉傳長輩圖，形成「已讀不回」的溝通斷層。我們設計「親盈翻譯機」——以 LINE 官方帳號為入口，結合 Google Gemini 多模態模型與雅婷語音辨識，讓長輩用照片＋語音就能產出有溫度的生活明信片，一鍵分享給家人。另提供流行語字典、防詐提醒、數位小幫手等功能，讓科技適應長輩，而非長輩適應科技。',
+    tags: ['生成式 AI', 'LINE Bot', 'Prompt Engineering', 'Google Gemini', '語音辨識', '高齡友善', 'LIFF', 'FastAPI'],
+    cover: 'gradient-f',
+    hasDemo: false,
+  },
+  {
+    slug: 'yunus-2026',
+    ongoing: true,
+    host: '第六屆台灣尤努斯創新獎',
     title: '（決賽進行中，詳情待賽後公開）',
-    event: '晉級決賽',
+    event: '233 組團隊報名 · 晉級決賽',
     award: '🏆 決賽進行中',
     period: '2026 · 進行中',
-    summary: '目前正在決賽階段，內容依競賽規範暫不公開，賽後補上完整 case study。',
+    summary: '自 233 組報名團隊中晉級決賽，內容依競賽規範暫不公開，決賽 9/12，賽後補上完整 case study。',
     tags: [],
   },
 ]
