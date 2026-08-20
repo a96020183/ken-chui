@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="瑤光深鯨 3S 無障礙空間資訊系統 Demo — RS × GNSS × GIS，含即時 Getis-Ord Gi* 熱點分析與無障礙路徑規劃。">
+<meta name="theme-color" content="#003c71">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="瑤光深鯨 3S">
+<link rel="apple-touch-icon" href="/icon.png">
+<title>瑤光深鯨 3S 無障礙空間資訊系統 (Demo)</title>
+<link rel="stylesheet" href="vendor/leaflet.css"/>
+<script src="vendor/leaflet.js"></script>
+<script src="vendor/leaflet-heat.js"></script>
+<style>
+  :root{--nav:#003c71;--ac:#0071c5;}
+  *{box-sizing:border-box;}
+  html{height:100%;}
+  body{
+    margin:0;height:100%;height:100dvh;
+    display:flex;flex-direction:column;overflow:hidden;overscroll-behavior:none;
+    -webkit-text-size-adjust:100%;text-size-adjust:100%;
+    font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Heiti TC","Microsoft JhengHei","Noto Sans TC",system-ui,sans-serif;
+    color:#1a2733;background:#f6f8fb;
+  }
+  #topbar{display:none;}
+  #app{flex:1 1 auto;min-height:0;display:flex;}
+  #mapwrap{flex:1;display:flex;flex-direction:column;min-width:0;}
+  .caption{background:var(--nav);color:#fff;font-size:12px;padding:6px 10px;line-height:1.45;}
+  #map{flex:1;min-height:0;background:#dfe6ee;}
+  #side{
+    width:400px;max-width:46vw;flex:0 0 auto;
+    overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;
+    background:#f6f8fb;border-left:1px solid #d7e0ea;
+    padding:12px 14px calc(18px + env(safe-area-inset-bottom));
+  }
+  h1{font-size:15px;color:var(--nav);margin:0 0 2px;}
+  .sub{font-size:11.5px;color:#5a6b7b;margin-bottom:8px;}
+  h2{font-size:12.5px;color:var(--ac);margin:14px 0 5px;border-bottom:1px solid #d7e0ea;padding-bottom:3px;}
+  .layerbtn{display:flex;align-items:center;gap:9px;font-size:12.5px;margin:2px 0;min-height:34px;cursor:pointer;}
+  input[type=checkbox]{width:20px;height:20px;flex:0 0 auto;accent-color:var(--ac);margin:0;}
+  button{
+    font-family:inherit;background:var(--ac);color:#fff;border:0;border-radius:8px;
+    padding:8px 12px;font-size:13px;min-height:40px;cursor:pointer;
+    touch-action:manipulation;-webkit-tap-highlight-color:transparent;
+  }
+  button:active{filter:brightness(.9);}
+  button:focus-visible{outline:3px solid #ffb703;outline-offset:2px;}
+  button.ghost{background:#e6eef7;color:var(--nav);}
+  select{font-family:inherit;font-size:13px;padding:6px 8px;border-radius:6px;border:1px solid #c4d1de;background:#fff;color:inherit;min-height:38px;}
+  .note{font-size:11px;color:#5a6b7b;line-height:1.6;}
+  .warn{background:#fff8e6;border-left:3px solid #e0a800;padding:7px 9px;font-size:11px;line-height:1.6;border-radius:4px;margin:6px 0;}
+  a{color:var(--ac);}
+  .legend{font-size:11px;line-height:1.9;}
+  .dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px;vertical-align:-1px;}
+  #readout{font-size:11px;background:#fff;border:1px solid #d7e0ea;border-radius:6px;padding:7px;margin-top:5px;min-height:30px;line-height:1.6;}
+  code{background:#eef1f4;padding:1px 4px;border-radius:3px;font-size:10.5px;}
+  .btnrow{display:flex;flex-wrap:wrap;gap:6px;}
+  /* phone */
+  .phonewrap{display:flex;flex-direction:column;align-items:center;background:#eaf1f8;border-radius:10px;padding:10px;margin-bottom:6px;}
+  .phone{width:230px;height:430px;background:#111;border-radius:28px;padding:12px 10px;box-shadow:0 6px 20px rgba(0,0,0,.25);position:relative;flex:0 0 auto;}
+  .notch{width:90px;height:16px;background:#111;border-radius:0 0 12px 12px;position:absolute;top:0;left:50%;transform:translateX(-50%);z-index:3;}
+  .screen{width:100%;height:100%;background:#fff;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:background .3s;}
+  .scr-top{background:var(--ac);color:#fff;font-size:12px;padding:8px 10px;font-weight:700;}
+  .scr-body{flex:1;padding:14px 12px;display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;text-align:center;}
+  .scr-title{font-size:15px;font-weight:700;color:#12324f;}
+  .scr-sub{font-size:12px;color:#5a6b7b;line-height:1.6;}
+  .big{font-size:40px;}
+  .screen.black{background:#000;}
+  .screen.black .scr-top{background:#000;color:#333;}
+  .screen.black .scr-title{color:#eee;}
+  .screen.black .scr-sub{color:#8a97a3;}
+  .bars{display:flex;gap:3px;height:26px;align-items:flex-end;}
+  .bars i{width:5px;background:var(--ac);border-radius:2px;animation:b .9s infinite ease-in-out;}
+  .bars i:nth-child(2){animation-delay:.1s}.bars i:nth-child(3){animation-delay:.2s}.bars i:nth-child(4){animation-delay:.3s}.bars i:nth-child(5){animation-delay:.15s}
+  @keyframes b{0%,100%{height:8px}50%{height:26px}}
+  .pctrl{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:10px;}
+  .step-ind{font-size:11px;color:#5a6b7b;margin-top:6px;}
+  .vibrate{animation:vib .4s linear 2;}
+  @keyframes vib{0%,100%{transform:translateX(0)}25%{transform:translateX(-3px)}75%{transform:translateX(3px)}}
+  #tabbar{display:none;}
+  /* ---------- 窄螢幕版面:iPad 直立 / 分割畫面 / 手機 ---------- */
+  @media (max-width:899px){
+    #topbar{
+      display:flex;align-items:center;gap:6px;flex:0 0 auto;
+      background:var(--nav);color:#fff;font-size:14px;font-weight:700;
+      padding:9px 12px;padding-top:calc(9px + env(safe-area-inset-top));
+    }
+    #topbar span{font-weight:400;font-size:11.5px;opacity:.8;}
+    #app{display:block;position:relative;}
+    #mapwrap,#side{position:absolute;inset:0;width:auto;max-width:none;border-left:0;}
+    #mapwrap{display:none;}
+    #side{display:none;padding-bottom:18px;}
+    body.tab-map #mapwrap{display:flex;}
+    body.tab-phone #side,body.tab-analysis #side{display:flex;flex-direction:column;}
+    body.tab-phone #sidehead,body.tab-phone #analysisblock{display:none;}
+    body.tab-analysis #phoneblock{display:none;}
+    #phoneblock{margin:auto 0;}
+    .phone{width:262px;height:470px;}
+    .scr-title{font-size:16px;} .scr-sub{font-size:13px;} .scr-top{font-size:13px;}
+    h1{font-size:16px;} h2{font-size:14px;margin:16px 0 6px;}
+    .note,.warn,.legend,#readout{font-size:12.5px;}
+    .layerbtn{font-size:14px;min-height:44px;}
+    button{font-size:15px;min-height:44px;padding:10px 14px;}
+    select{font-size:16px;min-height:44px;}
+    .step-ind{font-size:12.5px;}
+    #tabbar{
+      display:flex;flex:0 0 auto;background:#fff;border-top:1px solid #d7e0ea;
+      padding-bottom:env(safe-area-inset-bottom);
+    }
+    #tabbar button{
+      flex:1;background:none;color:#5a6b7b;border-radius:0;min-height:56px;
+      font-size:11.5px;padding:6px 2px;display:flex;flex-direction:column;
+      align-items:center;justify-content:center;gap:3px;
+    }
+    #tabbar button b{font-size:19px;font-weight:400;line-height:1;}
+    #tabbar button[aria-selected="true"]{color:var(--ac);box-shadow:inset 0 -3px 0 var(--ac);}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .bars i,.vibrate{animation:none!important;}
+  }
+</style>
+</head>
+<body class="tab-map">
+<header id="topbar">瑤光深鯨 · 3S WebGIS <span>Demo</span></header>
+<div id="app">
+  <div id="mapwrap">
+    <div class="caption">A · 3S 空間資訊系統（RS × GNSS × GIS）——找機台、規劃無障礙路徑、分析平權缺口</div>
+    <div id="map"></div>
+  </div>
+  <div id="side">
+    <div id="sidehead">
+      <h1>瑤光深鯨 — 3S 無障礙空間資訊系統</h1>
+      <div class="sub">藍芽與 NFC 無障礙機台 ｜ A 空間系統 + B 手機 App 一體展示</div>
+    </div>
+
+    <div id="phoneblock">
+      <div class="phonewrap">
+        <div class="caption" style="align-self:stretch;border-radius:6px;margin-bottom:8px;">B · 使用者端 App（瑤光深鯨）</div>
+        <div class="phone">
+          <div class="notch"></div>
+          <div class="screen" id="screen">
+            <div class="scr-top" id="scrtop">瑤光深鯨</div>
+            <div class="scr-body" id="scrbody"></div>
+          </div>
+        </div>
+        <div class="pctrl">
+          <button onclick="nextStep()">下一步 ▶</button>
+          <button class="ghost" onclick="resetStep()">重播</button>
+          <button class="ghost" id="sndbtn" onclick="toggleSound()">🔊 語音開</button>
+        </div>
+        <div class="step-ind" id="stepind"></div>
+      </div>
+    </div>
+
+    <div id="analysisblock">
+      <div class="warn">✅ <b>真實開放資料</b>：捷運 108 站座標、各區視障人口（2025/12）為真實資料；無障礙路徑與 RS 特徵仍為示範。來源見下方。</div>
+
+      <h2>地圖圖層 (GIS)</h2>
+      <label class="layerbtn"><input type="checkbox" id="l_mrt" checked> 捷運站點（真實，108 站）</label>
+      <label class="layerbtn"><input type="checkbox" id="l_heat" checked> 核密度（KDE）視覺化（真實視障人口）</label>
+      <label class="layerbtn"><input type="checkbox" id="l_gi"> Getis-Ord Gi* 統計熱點（即時計算）</label>
+      <label class="layerbtn"><input type="checkbox" id="l_dist" checked> 視障人口分區數（真實，可點）</label>
+      <label class="layerbtn"><input type="checkbox" id="l_route" checked> 無障礙路徑（即時計算）</label>
+      <label class="layerbtn"><input type="checkbox" id="l_rs"> RS-DL 特徵（導盲磚/斑馬線，示範）</label>
+      <div class="legend" style="margin-top:5px">
+        <span class="dot" style="background:#0071c5"></span>捷運站
+        <span class="dot" style="background:#d53e4f"></span>視障人口熱點（高）
+        <span class="dot" style="background:#8e44ad"></span>RS 特徵（示範）
+      </div>
+
+      <h2>平權缺口分析（即時 Getis-Ord Gi*）</h2>
+      <div class="note" style="margin-bottom:6px">分析變數：<br>
+        <select id="givar" onchange="runGi()" style="margin-top:4px;max-width:100%">
+          <option value="gap">缺口指數 = 視障人口 ÷ (服務觸點數+1)</option>
+          <option value="pop">視障人口（需求面）</option>
+        </select>
+      </div>
+      <button onclick="runGi()">▶ 計算 Gi* z-score</button>
+      <div id="giout" class="note" style="margin-top:5px">按上方按鈕即時計算（權重矩陣、z 值、p 值皆於瀏覽器端運算）。</div>
+      <div class="legend" style="margin-top:5px">
+        <span class="dot" style="background:#b2182b"></span>熱點 99%
+        <span class="dot" style="background:#ef8a62"></span>95%
+        <span class="dot" style="background:#fddbc7;border:1px solid #bbb"></span>90%
+        <span class="dot" style="background:#f7f7f7;border:1px solid #bbb"></span>不顯著
+        <span class="dot" style="background:#67a9cf"></span>冷點
+      </div>
+
+      <h2>路徑規劃（即時 Dijkstra）</h2>
+      <div class="note" style="margin-bottom:6px">同起訖（台北車站→台大醫院），比較兩種權重：</div>
+      <div class="btnrow">
+        <button onclick="calcRoute('normal')">一般最短</button>
+        <button onclick="calcRoute('access')">♿ 無障礙加權</button>
+      </div>
+      <div id="routeout" class="note" style="margin-top:5px">按上方按鈕即時計算。</div>
+
+      <h2>GNSS 定位</h2>
+      <button onclick="locate()">📍 定位我的位置（瀏覽器 GNSS）</button>
+      <div id="readout">尚未定位。</div>
+      <div class="note" style="margin-top:5px">戶外 ~5m、都市峽谷數十公尺、<b>室內幾乎收不到</b>→改用 <b>BLE/NFC</b>（室內 BLE+PDR ~1–2m）。iPad Wi-Fi 版無 GPS 模組，精度會明顯較差，正好說明為何需要 BLE/NFC 補位。</div>
+
+      <h2>座標系統</h2>
+      <div class="note">GNSS 輸出 <code>WGS84</code>（4326）；國測圖資 <code>TWD97/TM2</code>（3826）。基準近乎重合，重點在<b>投影轉換</b>。</div>
+
+      <h2>3S 對應</h2>
+      <div class="note"><b>GIS</b>：設施圖層 + 加權人行路徑（避樓梯/偏好導盲磚）+ 平權缺口分析（核密度 KDE 視覺化，以及 Getis-Ord Gi* 熱點統計——距離帶二元權重、含自身、輸出 z/p 值，皆於瀏覽器端即時運算）。<b>RS</b>：預訓練模型於街景/空拍樣本影像萃取導盲磚/斑馬線。<b>GNSS</b>：戶外定位 + 戶外→室內（BLE/NFC）交接。</div>
+
+      <h2>資料/文獻</h2>
+      <div class="note"><b>本圖真實資料</b>：視障人口=<a href="https://dosw.gov.taipei/cp.aspx?n=BA5B128CF7454DDC" target="_blank" rel="noopener">臺北市社會局</a>身心障礙統計（2025/12，12區加總 5,769 人）；捷運站點=<a href="https://data.gov.tw/dataset/61474" target="_blank" rel="noopener">政府開放資料</a>/OSM（108 站）。無障礙 ATM/設施可再接 <a href="https://atis.taipei.gov.tw/" target="_blank" rel="noopener">台北市 ATIS</a>。<br>其他：TDX、國測中心、衛福部。方法前例：AccessMap/OpenSidewalks、Project Sidewalk、RampNet、CrosswalkNet、GRFB-UNet（導盲磚）、OGC IndoorGML。</div>
+    </div>
+  </div>
+</div>
+<nav id="tabbar" role="tablist" aria-label="檢視切換">
+  <button id="tab-map" role="tab" aria-selected="true" onclick="setTab('map')"><b aria-hidden="true">🗺</b>地圖</button>
+  <button id="tab-phone" role="tab" aria-selected="false" onclick="setTab('phone')"><b aria-hidden="true">📱</b>App 演示</button>
+  <button id="tab-analysis" role="tab" aria-selected="false" onclick="setTab('analysis')"><b aria-hidden="true">📊</b>分析面板</button>
+</nav>
+
+<script>
+// ---------- MAP (A) ----------
+L.Icon.Default.imagePath='vendor/images/';
+var map = L.map('map',{zoomControl:true}).setView([25.045,121.535],13);
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:19,attribution:'© OpenStreetMap'}).addTo(map);
+L.control.scale({metric:true,imperial:false,position:'bottomleft'}).addTo(map);
+// 真實資料:台北捷運 108 站(政府開放資料/OSM)
+var mrtStations=[
+{name:"動物園",lat:24.998197,lng:121.579338},{name:"木柵",lat:24.998241,lng:121.573145},{name:"萬芳社區",lat:24.998585,lng:121.568102},{name:"萬芳醫院",lat:24.999386,lng:121.558152},{name:"辛亥",lat:25.005475,lng:121.557107},{name:"麟光",lat:25.018535,lng:121.558791},{name:"六張犁",lat:25.023777,lng:121.553115},{name:"科技大樓",lat:25.026125,lng:121.543437},{name:"大安",lat:25.032943,lng:121.543551},{name:"忠孝復興",lat:25.041629,lng:121.543767},{name:"南京復興",lat:25.052319,lng:121.544011},{name:"中山國中",lat:25.060849,lng:121.544227},{name:"松山機場",lat:25.063,lng:121.551996},{name:"大直",lat:25.079477,lng:121.546895},{name:"劍南路",lat:25.084853,lng:121.555592},{name:"西湖",lat:25.082133,lng:121.567213},{name:"港墘",lat:25.080028,lng:121.575081},{name:"文德",lat:25.078532,lng:121.584761},{name:"內湖",lat:25.083661,lng:121.594408},{name:"大湖公園",lat:25.083845,lng:121.602141},{name:"葫洲",lat:25.072701,lng:121.607158},{name:"東湖",lat:25.067147,lng:121.611445},{name:"南港軟體園區",lat:25.059905,lng:121.615953},{name:"南港展覽館",lat:25.055288,lng:121.6175},{name:"象山",lat:25.03283,lng:121.569576},{name:"台北101/世貿",lat:25.033102,lng:121.563292},{name:"信義安和",lat:25.033326,lng:121.553526},{name:"大安森林公園",lat:25.033396,lng:121.534882},{name:"東門",lat:25.033847,lng:121.528739},{name:"中正紀念堂",lat:25.032729,lng:121.51827},{name:"台大醫院",lat:25.041256,lng:121.51604},{name:"台北車站",lat:25.046255,lng:121.517532},{name:"中山",lat:25.052685,lng:121.520392},{name:"雙連",lat:25.057805,lng:121.520627},{name:"民權西路",lat:25.062905,lng:121.51932},{name:"圓山",lat:25.071353,lng:121.520118},{name:"劍潭",lat:25.084873,lng:121.525078},{name:"士林",lat:25.093535,lng:121.52623},{name:"芝山",lat:25.10306,lng:121.522514},{name:"明德",lat:25.109721,lng:121.518848},{name:"石牌",lat:25.114523,lng:121.515559},{name:"唭哩岸",lat:25.120872,lng:121.506252},{name:"奇岩",lat:25.125491,lng:121.501132},{name:"北投",lat:25.131841,lng:121.498633},{name:"新北投",lat:25.136933,lng:121.50253},{name:"復興崗",lat:25.137474,lng:121.485444},{name:"忠義",lat:25.130969,lng:121.47341},{name:"關渡",lat:25.125633,lng:121.467102},{name:"竹圍",lat:25.13694,lng:121.459479},{name:"紅樹林",lat:25.154042,lng:121.458872},{name:"淡水",lat:25.167818,lng:121.445561},{name:"新店",lat:24.957855,lng:121.537584},{name:"新店區公所",lat:24.967393,lng:121.54131},{name:"七張",lat:24.975169,lng:121.542942},{name:"小碧潭",lat:24.971907,lng:121.530339},{name:"大坪林",lat:24.982899,lng:121.541352},{name:"景美",lat:24.9921276,lng:121.5406037},{name:"萬隆",lat:25.001853,lng:121.539051},{name:"公館",lat:25.014908,lng:121.534216},{name:"台電大樓",lat:25.020725,lng:121.528168},{name:"古亭",lat:25.026357,lng:121.522873},{name:"小南門",lat:25.035547,lng:121.510857},{name:"西門",lat:25.04209,lng:121.508303},{name:"北門",lat:25.049554,lng:121.510184},{name:"松江南京",lat:25.052015,lng:121.533075},{name:"台北小巨蛋",lat:25.051836,lng:121.55153},{name:"南京三民",lat:25.051652,lng:121.564708},{name:"松山",lat:25.050118,lng:121.577706},{name:"南勢角",lat:24.990045,lng:121.509237},{name:"景安",lat:24.993905,lng:121.505113},{name:"永安市場",lat:25.002876,lng:121.511231},{name:"頂溪",lat:25.013821,lng:121.515485},{name:"忠孝新生",lat:25.042356,lng:121.532905},{name:"行天宮",lat:25.059718,lng:121.533185},{name:"中山國小",lat:25.062694,lng:121.526419},{name:"大橋頭",lat:25.063256,lng:121.51272},{name:"台北橋",lat:25.063274,lng:121.500762},{name:"菜寮",lat:25.060274,lng:121.492156},{name:"三重",lat:25.055791,lng:121.484725},{name:"先嗇宮",lat:25.046493,lng:121.471916},{name:"頭前庄",lat:25.039705,lng:121.461746},{name:"新莊",lat:25.036125,lng:121.452468},{name:"輔大",lat:25.032718,lng:121.43547},{name:"丹鳳",lat:25.0288671,lng:121.4227079},{name:"迴龍",lat:25.021862,lng:121.41127},{name:"三重國小",lat:25.070319,lng:121.496904},{name:"三和國中",lat:25.076859,lng:121.486347},{name:"徐匯中學",lat:25.080728,lng:121.479673},{name:"三民高中",lat:25.085456,lng:121.473389},{name:"蘆洲",lat:25.091554,lng:121.464471},{name:"頂埔",lat:24.96012,lng:121.4205},{name:"永寧",lat:24.966726,lng:121.436072},{name:"土城",lat:24.973094,lng:121.444362},{name:"海山",lat:24.985339,lng:121.448786},{name:"亞東醫院",lat:24.998037,lng:121.452514},{name:"府中",lat:25.008619,lng:121.459409},{name:"板橋",lat:25.013618,lng:121.462302},{name:"新埔",lat:25.023738,lng:121.468361},{name:"江子翠",lat:25.03001,lng:121.47239},{name:"龍山寺",lat:25.03528,lng:121.499826},{name:"善導寺",lat:25.044823,lng:121.523208},{name:"忠孝敦化",lat:25.041478,lng:121.551098},{name:"國父紀念館",lat:25.041349,lng:121.557802},{name:"市政府",lat:25.041171,lng:121.565228},{name:"永春",lat:25.040859,lng:121.576293},{name:"後山埤",lat:25.045055,lng:121.582522},{name:"昆陽",lat:25.050461,lng:121.593268},{name:"南港",lat:25.052116,lng:121.606686}
+];
+var facLayer=L.layerGroup();
+mrtStations.forEach(function(s){
+ L.circleMarker([s.lat,s.lng],{radius:5,color:'#fff',weight:1,fillColor:'#0071c5',fillOpacity:.9})
+  .bindPopup("<b>"+s.name+"</b>捷運站<br>公共服務觸點（含售票/加值機）").addTo(facLayer);});
+facLayer.addTo(map);
+
+// 真實資料:台北市各區視覺障礙人數(北市社會局,2025/12)
+var distData=[
+ {n:"中正區",lat:25.032,lng:121.518,v:291},{n:"大同區",lat:25.063,lng:121.513,v:363},
+ {n:"中山區",lat:25.064,lng:121.533,v:628},{n:"松山區",lat:25.050,lng:121.577,v:382},
+ {n:"大安區",lat:25.026,lng:121.543,v:612},{n:"萬華區",lat:25.032,lng:121.499,v:547},
+ {n:"信義區",lat:25.031,lng:121.571,v:468},{n:"士林區",lat:25.093,lng:121.526,v:619},
+ {n:"北投區",lat:25.132,lng:121.501,v:516},{n:"內湖區",lat:25.069,lng:121.588,v:467},
+ {n:"南港區",lat:25.055,lng:121.606,v:265},{n:"文山區",lat:24.989,lng:121.570,v:611}];
+var VMAX=628;
+var heat=L.heatLayer(distData.map(function(d){return [d.lat,d.lng,d.v/VMAX];}),
+ {radius:62,blur:45,maxZoom:14,gradient:{0.3:'#3288bd',0.6:'#fdae61',0.9:'#d53e4f'}});
+// leaflet.heat 在地圖容器尺寸為 0 時會於 getImageData 拋錯(窄螢幕版面「地圖」分頁未顯示時即為 0),
+// 故只在容器確實可見時掛上,否則稍後重試。
+function mapVisible(){var c=map.getContainer();return c.offsetWidth>0&&c.offsetHeight>0;}
+function safeInvalidate(){if(mapVisible())map.invalidateSize();}
+function addHeatSafely(){
+ var cb=document.getElementById('l_heat');
+ if(!cb||!cb.checked)return;
+ if(mapVisible()){if(!map.hasLayer(heat))heat.addTo(map);return;}
+ setTimeout(addHeatSafely,150);
+}
+addHeatSafely();
+var distLayer=L.layerGroup();
+distData.forEach(function(d){
+ L.circleMarker([d.lat,d.lng],{radius:6+d.v/60,color:'#7a1020',weight:1,fillColor:'#d53e4f',fillOpacity:.35})
+  .bindPopup("<b>"+d.n+"</b><br>視覺障礙者 <b>"+d.v+"</b> 人<br>（2025/12，臺北市社會局）").addTo(distLayer);});
+distLayer.addTo(map);
+
+// ---- 真實 Getis-Ord Gi* 熱點分析(空間統計) ----
+// 供給面代理變數:各區質心 2.5km 內的公共服務觸點(捷運站)數。質心法為粗略代理,現場會誠實說明。
+var SUPPLY_R=2500;
+function hav(a,b){var R=6371000,t=Math.PI/180;
+ var dla=(b.lat-a.lat)*t,dlo=(b.lng-a.lng)*t,la1=a.lat*t,la2=b.lat*t;
+ var h=Math.sin(dla/2)*Math.sin(dla/2)+Math.cos(la1)*Math.cos(la2)*Math.sin(dlo/2)*Math.sin(dlo/2);
+ return 2*R*Math.asin(Math.sqrt(h));}
+distData.forEach(function(d){
+ d.sup=mrtStations.filter(function(s){return hav(d,s)<=SUPPLY_R;}).length;
+ d.gap=d.v/(d.sup+1);});
+// 常態分配 CDF(Abramowitz-Stegun 7.1.26 erf 近似)
+function ncdf(z){var s=z<0?-1:1;z=Math.abs(z)/Math.SQRT2;
+ var t=1/(1+0.3275911*z),
+  y=1-(((((1.061405429*t-1.453152027)*t)+1.421413741)*t-0.284496736)*t+0.254829592)*t*Math.exp(-z*z);
+ return 0.5*(1+s*y);}
+// Gi* = (Σw_ij·x_j − X̄·Σw_ij) / (S·√[(n·Σw_ij² − (Σw_ij)²)/(n−1)])
+function giStar(vals){
+ var n=vals.length, mean=0, sq=0;
+ vals.forEach(function(x){mean+=x;sq+=x*x;});
+ mean/=n;
+ var S=Math.sqrt(sq/n-mean*mean);
+ // 距離帶門檻 d0:取「每個單元至少有一個鄰居」的最小距離(標準做法)
+ var d0=0;
+ for(var i=0;i<n;i++){var mn=Infinity;
+  for(var j=0;j<n;j++){if(i===j)continue;var d=hav(distData[i],distData[j]);if(d<mn)mn=d;}
+  if(mn>d0)d0=mn;}
+ var out=[];
+ for(var i2=0;i2<n;i2++){
+  var sw=0,swx=0,sw2=0;
+  for(var j2=0;j2<n;j2++){
+   var w=(i2===j2||hav(distData[i2],distData[j2])<=d0)?1:0; // Gi* 含自身
+   sw+=w; swx+=w*vals[j2]; sw2+=w*w;}
+  var den=S*Math.sqrt((n*sw2-sw*sw)/(n-1));
+  var z=den===0?0:(swx-mean*sw)/den;
+  var p=2*(1-ncdf(Math.abs(z)));
+  out.push({z:z,p:p,nb:sw});}
+ return {res:out,d0:d0,mean:mean,S:S};}
+function giClass(z){
+ if(z>=2.58)return{c:'#b2182b',t:'熱點 99%'}; if(z>=1.96)return{c:'#ef8a62',t:'熱點 95%'};
+ if(z>=1.65)return{c:'#fddbc7',t:'熱點 90%'}; if(z<=-2.58)return{c:'#2166ac',t:'冷點 99%'};
+ if(z<=-1.96)return{c:'#67a9cf',t:'冷點 95%'}; if(z<=-1.65)return{c:'#d1e5f0',t:'冷點 90%'};
+ return{c:'#f7f7f7',t:'不顯著'};}
+var giLayer=L.layerGroup();
+function runGi(){
+ var mode=document.getElementById('givar').value;
+ var vals=distData.map(function(d){return mode==='gap'?d.gap:d.v;});
+ var o=giStar(vals);
+ giLayer.clearLayers();
+ distData.forEach(function(d,i){
+  var r=o.res[i],cl=giClass(r.z);
+  L.circleMarker([d.lat,d.lng],{radius:12,color:'#33404d',weight:1.5,fillColor:cl.c,fillOpacity:.92})
+   .bindPopup("<b>"+d.n+"</b> — "+cl.t+
+     "<br>Gi* z = <b>"+r.z.toFixed(3)+"</b>　p = "+r.p.toFixed(4)+
+     "<br>視障人口 "+d.v+" 人｜2.5km 內服務觸點 "+d.sup+" 處"+
+     "<br>缺口指數 "+d.gap.toFixed(1)+"｜鄰居數（含自身） "+r.nb).addTo(giLayer);});
+ if(!map.hasLayer(giLayer)){giLayer.addTo(map);document.getElementById('l_gi').checked=true;}
+ var rank=distData.map(function(d,i){return{n:d.n,z:o.res[i].z};}).sort(function(a,b){return b.z-a.z;});
+ var sig=o.res.filter(function(r){return Math.abs(r.z)>=1.65;}).length;
+ document.getElementById('giout').innerHTML=
+  "<b>"+(mode==='gap'?"缺口指數":"視障人口")+"</b>｜n="+distData.length+
+  "　距離帶 d₀=<b>"+(o.d0/1000).toFixed(2)+" km</b>（確保每單元至少 1 鄰居）"+
+  "<br>X̄="+o.mean.toFixed(1)+"　S="+o.S.toFixed(1)+"　顯著單元（|z|≥1.65）：<b>"+sig+"</b>/"+distData.length+
+  "<br>z 值前三："+rank.slice(0,3).map(function(x){return x.n+" "+x.z.toFixed(2);}).join("、")+
+  "<br>z 值末三："+rank.slice(-3).map(function(x){return x.n+" "+x.z.toFixed(2);}).join("、")+
+  "<div class='warn' style='margin-top:5px'>⚠️ n=12 樣本數小，統計檢定力有限；正式分析應下降至村里或格網尺度。此處誠實呈現方法與限制。</div>";}
+
+// ---- 真實 Dijkstra 無障礙路徑規劃 ----
+var gnodes={
+ S:{lat:25.0462,lng:121.5175,name:"台北車站"},A:{lat:25.0455,lng:121.5172,name:"路口A"},
+ B:{lat:25.0446,lng:121.5168,name:"天橋口B"},C:{lat:25.0432,lng:121.5164,name:"路口C"},
+ G:{lat:25.0413,lng:121.5160,name:"台大醫院"},D:{lat:25.0452,lng:121.5188,name:"路口D"},
+ E:{lat:25.0435,lng:121.5185,name:"騎樓E"},F:{lat:25.0420,lng:121.5176,name:"路口F"}};
+var gedges=[
+ {a:"S",b:"A"},{a:"A",b:"B"},{a:"B",b:"C",stairs:true},{a:"C",b:"G"},
+ {a:"A",b:"D"},{a:"D",b:"E",tactile:true},{a:"E",b:"F",tactile:true},{a:"F",b:"G",tactile:true}];
+function dm(a,b){var dx=gnodes[a].lat-gnodes[b].lat,dy=gnodes[a].lng-gnodes[b].lng;return Math.sqrt(dx*dx+dy*dy)*100000;}
+function wgt(e,mode){var w=dm(e.a,e.b);if(mode==='access'){if(e.stairs)w*=6;if(e.tactile)w*=0.6;}return w;}
+function dijkstra(mode){
+ var dist={},prev={},Q=Object.keys(gnodes),adj={};
+ Q.forEach(function(n){dist[n]=Infinity;adj[n]=[];});dist.S=0;
+ gedges.forEach(function(e){adj[e.a].push({to:e.b,e:e});adj[e.b].push({to:e.a,e:e});});
+ var vis={},pool=Q.slice();
+ while(pool.length){pool.sort(function(x,y){return dist[x]-dist[y];});var u=pool.shift();if(dist[u]===Infinity)break;vis[u]=1;
+  adj[u].forEach(function(nb){if(vis[nb.to])return;var nd=dist[u]+wgt(nb.e,mode);if(nd<dist[nb.to]){dist[nb.to]=nd;prev[nb.to]=u;}});}
+ var path=[],cur="G";while(cur!==undefined){path.unshift(cur);cur=prev[cur];}
+ var stairs=false;for(var i=0;i<path.length-1;i++){gedges.forEach(function(e){if(((e.a===path[i]&&e.b===path[i+1])||(e.b===path[i]&&e.a===path[i+1]))&&e.stairs)stairs=true;});}
+ return {path:path,cost:dist.G,stairs:stairs};}
+var routeLayer=L.layerGroup().addTo(map);
+var nodeLayer=L.layerGroup().addTo(map);
+Object.keys(gnodes).forEach(function(n){L.circleMarker([gnodes[n].lat,gnodes[n].lng],{radius:4,color:'#555',weight:1,fillColor:'#fff',fillOpacity:1}).bindTooltip(gnodes[n].name).bindPopup(gnodes[n].name).addTo(nodeLayer);});
+function calcRoute(mode){var r=dijkstra(mode);routeLayer.clearLayers();
+ var ll=r.path.map(function(n){return [gnodes[n].lat,gnodes[n].lng];});
+ L.polyline(ll,{color:mode==='access'?'#00b050':'#e0a800',weight:6,opacity:.9}).addTo(routeLayer);
+ var names=r.path.map(function(n){return gnodes[n].name;}).join(" → ");
+ document.getElementById('routeout').innerHTML="<b>"+(mode==='access'?"♿ 無障礙加權":"一般最短")+"</b><br>路徑："+names+"<br>加權成本："+Math.round(r.cost)+" ｜ "+(r.stairs?"⚠️ 經過樓梯":"✅ 全程無樓梯、走導盲磚");}
+calcRoute('access');
+var rsFeat=[[25.0455,121.5170,"導盲磚"],[25.0448,121.5167,"斑馬線"],[25.0432,121.5162,"緣石斜坡"],[25.0417,121.5440,"導盲磚"],[25.0421,121.5083,"斑馬線"]];
+var rsLayer=L.layerGroup();
+rsFeat.forEach(function(r){rsLayer.addLayer(L.circleMarker([r[0],r[1]],{radius:7,color:'#8e44ad',weight:2,fillColor:'#c39bd3',fillOpacity:.9}).bindPopup("RS-DL 偵測（示範）："+r[2]));});
+function bind(id,layer){var cb=document.getElementById(id);cb.addEventListener('change',function(){
+ if(!cb.checked){if(map.hasLayer(layer))map.removeLayer(layer);return;}
+ if(layer===heat){addHeatSafely();return;}   // heat 需等容器有尺寸才能掛
+ layer.addTo(map);
+});}
+bind('l_mrt',facLayer);bind('l_heat',heat);bind('l_gi',giLayer);bind('l_dist',distLayer);bind('l_route',routeLayer);bind('l_rs',rsLayer);
+runGi();map.removeLayer(giLayer);document.getElementById('l_gi').checked=false;
+
+// ---- GNSS 定位(單一標記,不重複堆疊) ----
+var meMarker=null,meCircle=null;
+function locate(){var ro=document.getElementById('readout');
+ if(!navigator.geolocation){ro.textContent="此瀏覽器不支援 geolocation。";return;}
+ ro.textContent="定位中…（iPad 首次使用請允許「位置」權限）";
+ navigator.geolocation.getCurrentPosition(function(p){
+  var la=p.coords.latitude,lo=p.coords.longitude,acc=p.coords.accuracy;
+  ro.innerHTML="WGS84：<b>"+la.toFixed(6)+", "+lo.toFixed(6)+"</b><br>精度 ≈ "+Math.round(acc)+" m"+(acc>30?"<br>⚠️ 精度差（可能為 Wi-Fi 定位）→應切 BLE/NFC 室內定位":"");
+  if(meMarker){map.removeLayer(meMarker);}
+  if(meCircle){map.removeLayer(meCircle);}
+  meCircle=L.circle([la,lo],{radius:acc,color:'#0071c5',weight:1,fillColor:'#0071c5',fillOpacity:.12}).addTo(map);
+  meMarker=L.marker([la,lo]).addTo(map).bindPopup("我的位置（GNSS）<br>精度 ≈ "+Math.round(acc)+" m");
+  map.setView([la,lo],17);
+  meMarker.openPopup();
+  if(isNarrow())setTab('map');
+ },function(e){
+  var msg={
+   1:"權限被拒。iPad 請點網址列左側的「ᴀA」→「網站設定」→ 位置 → 允許；或到「設定 → 隱私權與安全性 → 定位服務 → Safari 網站」開啟。",
+   2:"取得位置失敗（室內或無訊號）。這正是需要 BLE/NFC 室內定位的原因。",
+   3:"定位逾時。請到窗邊或戶外再試一次。"
+  }[e.code]||e.message;
+  ro.innerHTML="定位失敗："+msg;
+ },{enableHighAccuracy:true,timeout:12000,maximumAge:0});}
+
+// ---------- PHONE (B) ----------
+var steps=[
+ {top:"瑤光深鯨 · 待機",title:"📶 靠卡機台",sub:"請將手機靠卡 ATM 上的<br>NFC 標籤（貼紙有凸紋+點字）",voice:"請將手機靠卡機台的 N F C 標籤"},
+ {top:"瑤光深鯨 · 已連線",vib:true,title:"📳 已進入無障礙提款",sub:"「已連線，進入無障礙提款模式。<br>雙擊螢幕開始。」",voice:"已連線,進入無障礙提款模式,請雙擊螢幕開始"},
+ {top:"瑤光深鯨 · 聆聽中",bars:true,title:"🎤 請說出需求",sub:"使用者：<b>「我要領一千元」</b>",voice:"請說出您的需求"},
+ {top:"瑤光深鯨 · 覆誦確認",title:"🔁 語音覆誦",sub:"「將提領新臺幣 <b>1,000 元</b>，<br>請雙擊確認。」",voice:"將提領新臺幣一千元,請雙擊確認"},
+ {top:"瑤光深鯨 · 隱私輸入",title:"🤫 無聲輸入密碼",sub:"偵測到高敏感意圖 → 鎖麥克風。<br>請以<b>無聲手勢</b>輸入密碼（不出聲）。",voice:"為保護您的安全,請以無聲手勢輸入密碼,不需出聲"},
+ {top:"瑤光深鯨 · 安全連線",black:true,title:"🔒 防窺黑屏",sub:"螢幕全黑防後方窺視<br>端對端加密連線銀行雲端驗證中…",voice:"連線銀行雲端驗證中,螢幕已切換為防窺黑屏"},
+ {top:"瑤光深鯨 · 完成",title:"✅ 交易完成",sub:"「請取鈔。交易完成。」<br>（記錄任務完成事件 → ESG 數據）",voice:"請取鈔,交易完成"}
+];
+var si=0, soundOn=true, zhVoice=null, primed=false;
+var canSpeak=('speechSynthesis' in window)&&('SpeechSynthesisUtterance' in window);
+function pickVoice(){ if(!canSpeak)return;
+ var vs=speechSynthesis.getVoices()||[];
+ zhVoice=null;
+ for(var i=0;i<vs.length;i++){if(/^zh[-_]TW/i.test(vs[i].lang)){zhVoice=vs[i];return;}}
+ for(var j=0;j<vs.length;j++){if(/^zh/i.test(vs[j].lang)){zhVoice=vs[j];return;}}
+}
+if(canSpeak){pickVoice();speechSynthesis.onvoiceschanged=pickVoice;}
+// iPadOS/iOS 要求語音合成必須先由使用者手勢「解鎖」一次
+function primeSpeech(){ if(primed||!canSpeak)return; primed=true;
+ try{var u=new SpeechSynthesisUtterance(' ');u.volume=0;u.lang='zh-TW';speechSynthesis.speak(u);}catch(e){} }
+document.addEventListener('touchstart',primeSpeech,{once:true,passive:true});
+document.addEventListener('pointerdown',primeSpeech,{once:true});
+function speak(txt){ if(!soundOn||!canSpeak)return;
+ try{
+  speechSynthesis.cancel();
+  // iOS 在 cancel() 之後立即 speak() 會被吞掉,故延遲一小段時間
+  setTimeout(function(){
+   var u=new SpeechSynthesisUtterance(txt);
+   u.lang='zh-TW'; u.rate=1; if(zhVoice)u.voice=zhVoice;
+   try{speechSynthesis.speak(u);}catch(e){}
+  },80);
+ }catch(e){} }
+function render(){
+ var s=steps[si],scr=document.getElementById('screen');
+ scr.classList.toggle('black',!!s.black);
+ document.getElementById('scrtop').textContent=s.top;
+ document.getElementById('scrbody').innerHTML='<div class="scr-title">'+s.title+'</div><div class="scr-sub">'+s.sub+'</div>'+(s.bars?'<div class="bars"><i></i><i></i><i></i><i></i><i></i></div>':'');
+ document.getElementById('stepind').textContent='步驟 '+(si+1)+' / '+steps.length;
+ if(s.vib){scr.classList.remove('vibrate');void scr.offsetWidth;scr.classList.add('vibrate');
+  if(navigator.vibrate){try{navigator.vibrate(120);}catch(e){}}}
+}
+function nextStep(){primeSpeech();si=(si+1)%steps.length;render();speak(steps[si].voice);}
+function resetStep(){primeSpeech();si=0;render();speak(steps[si].voice);}
+function toggleSound(){primeSpeech();soundOn=!soundOn;document.getElementById('sndbtn').textContent=soundOn?'🔊 語音開':'🔇 語音關';
+ if(!soundOn){ if(canSpeak) speechSynthesis.cancel(); } else { speak(steps[si].voice); } }
+render();
+if(!canSpeak){var sb=document.getElementById('sndbtn');sb.textContent='🔇 不支援語音';sb.disabled=true;sb.style.opacity=.5;}
+
+// ---------- 分頁切換(窄螢幕:iPad 直立 / 分割畫面 / 手機) ----------
+var TABS=['map','phone','analysis'];
+function isNarrow(){return window.matchMedia('(max-width:899px)').matches;}
+function setTab(t){
+ TABS.forEach(function(k){
+  document.body.classList.toggle('tab-'+k,k===t);
+  var b=document.getElementById('tab-'+k);
+  if(b)b.setAttribute('aria-selected',k===t?'true':'false');
+ });
+ if(t==='map')setTimeout(function(){safeInvalidate();addHeatSafely();},60);
+}
+setTab('map');
+window.addEventListener('resize',safeInvalidate);
+window.addEventListener('orientationchange',function(){setTimeout(function(){safeInvalidate();addHeatSafely();},350);});
+setTimeout(function(){safeInvalidate();addHeatSafely();},200);
+</script>
+</body>
+</html>
