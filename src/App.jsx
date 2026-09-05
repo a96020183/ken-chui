@@ -7,6 +7,7 @@ import ProjectYao from './pages/ProjectYao.jsx'
 import ProjectJinYun from './pages/ProjectJinYun.jsx'
 import ProjectBeacon from './pages/ProjectBeacon.jsx'
 import CV from './pages/CV.jsx'
+import PrintSheet from './pages/PrintSheet.jsx'
 import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
 
@@ -17,10 +18,12 @@ function ScrollTop() {
 }
 
 export default function App() {
+  const { pathname } = useLocation()
+  const bare = pathname === '/print' // 列印頁不套全站導覽/頁尾
   return (
     <div className="min-h-screen">
       <ScrollTop />
-      <Nav />
+      {!bare && <Nav />}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects/ppa-hackathon" element={<ProjectPPA />} />
@@ -29,8 +32,9 @@ export default function App() {
         <Route path="/projects/jinyun-branding" element={<ProjectJinYun />} />
         <Route path="/projects/atcc-beacon" element={<ProjectBeacon />} />
         <Route path="/cv" element={<CV />} />
+        <Route path="/print" element={<PrintSheet />} />
       </Routes>
-      <Footer />
+      {!bare && <Footer />}
     </div>
   )
 }
