@@ -48,6 +48,7 @@ export default function ProjectTapAble() {
         <div className="mx-auto max-w-4xl px-5 py-14">
           <div className="mb-3 flex flex-wrap items-center gap-2">
             <span className="rounded-full bg-brand/15 px-3 py-1 text-[13px] font-bold text-brand">{p.award}</span>
+            {p.startup && <span className="rounded-full bg-mint/15 px-3 py-1 text-[13px] font-bold text-mint">🚀 創業進行中</span>}
             <span className="text-[13px] text-mute">{p.period}</span>
           </div>
           <h1 className="text-3xl font-black leading-tight md:text-5xl">{p.title}</h1>
