@@ -82,7 +82,7 @@ export default function CV() {
             <h2 className="mb-3 border-b border-line pb-2 text-xl font-black">工作經驗</h2>
             <div className="space-y-4">
               {profile.experience.map((e) => (
-                <div key={e.org} className="rounded-xl border border-line bg-white/5 p-4">
+                <div key={`${e.org}-${e.role}`} className="rounded-xl border border-line bg-white/5 p-4">
                   <div className="flex flex-wrap items-baseline justify-between gap-1">
                     <div className="font-bold text-white">{e.role}<span className="ml-2 text-cyan">{e.org}</span></div>
                     <div className="text-[12px] text-mute">{e.period}</div>
