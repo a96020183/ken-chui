@@ -85,7 +85,9 @@
 ## 8. 待辦 / 未定
 
 - 尤努斯決賽（9/12）結果出來後：`profile.js` 的 `yunus-2026` 填 award、拿掉 `ongoing`；`CV.jsx` awards 同步。
-- ~~瑤光深鯨簡報 PDF 下架~~ 2026-09-08 已下架（見更新紀錄）。**注意 git 歷史仍有該檔**；若要徹底清除需改寫歷史（`git filter-repo`）並 force push，尚未做。
+- 瑤光深鯨簡報 PDF：2026-09-08 已從網站下架，**並已用 `git filter-repo` 從全部分支歷史移除、force push**（main / test-version / wip-backup-0905）。
+  舊 commit 物件在 GitHub 伺服器端仍可能短期以 SHA 直連取得，需等 GitHub GC 或寫信請 support 清除。Vercel 舊 deployment 需使用者自行到 dashboard 刪除。
+  備份 mirror 在本機 scratchpad（改寫前的完整歷史），確認無誤後可刪。
 - `public/cv.png` 已無引用，可刪。
 
 ## 9. test-version 分支（無 HKU SPACE 版本）
