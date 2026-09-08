@@ -36,8 +36,8 @@ export const profile = {
       org: 'CMoney',
       period: '2025/06 – 至今（2025 實習加入 · 2026 轉正）',
       points: [
-        '2025/06 以產品企劃實習（APM）加入：前期參與多項股票類產品，後期加入「權證小哥」產品協助資深 PM 進行功能規劃與落地；2026 年畢業後轉為正職產品經理。',
-        '現負責 VIP 作者事業產品線（長線聚寶盆 等 App／Web 多平台），從需求規劃、埋點與數據分析、介面設計、開發協作、測試到上架送審端到端負責。',
+        '2025/06 以產品企劃實習（APM）加入：前期參與多項股票類產品，後期加入「權證小哥」作者產品線協助資深 PM 進行功能規劃與落地；2026 年畢業後轉為正職產品經理。',
+        '現負責 VIP 作者事業「林恩如」作者產品線（iOS／Android／PC／Web 多平台並行），從需求規劃、埋點與數據分析、介面設計、開發協作、測試到上架送審端到端負責。',
         '以 Mixpanel／Firebase 分析流失節點，協助產品下半年 YoY 由負轉正，最高單月成長 +70.7%。',
       ],
     },
@@ -98,7 +98,7 @@ export const projects = [
     event: 'BUILDMODE GEN-AI HACKATHON 2026（SITCON 協辦）· Track 05 AI for Taiwan / Social Impact',
     award: '🥈 第二名 · 160 隊',
     period: '2026/09 · 3 天黑客松',
-    role: '隊長 · 原創題目 · 產品定義 · 系統開發 · 田野驗證統籌',
+    role: '隊長 · 原創題目 · 產品定義 · 95% 程式開發 · 田野驗證統籌',
     summary: '觸控螢幕對視障者是一面摸不到按鍵的玻璃：ATM 是唯一有主管機關盯著的機台，視障語音機型花了八年仍不足全台四分之一，校園列印機、醫院批價機、點餐機連這條慢車道都沒有。TapAble 讓視障者用自己的手機接管機台——鏡頭端側辨識走完最後十公尺、碰一下 NFC 貼紙即知面前是哪台機器、大型語言模型聽懂口語並轉成機台選項、語音逐步引導，全程螢幕全黑防窺，機台零硬體改造。3 天內做出可玩的開源雛形，在真實機台完成戴眼罩實測、訪談三位視障者驗證需求，自 160 隊中拿下第二名。',
     tags: ['生成式 AI', 'Edge AI（TensorFlow.js）', 'NFC', 'Web Speech API', '無障礙 a11y', 'PWA / 離線', '社會創新'],
     cover: 'gradient-g',
@@ -154,7 +154,7 @@ export const projects = [
     cover: 'gradient-c',
     hasDemo: false,
     figma: 'https://www.figma.com/proto/UNB6G7wMXIzs8sDZh799IP/ALL?node-id=2103-4468&t=6OJriSNleSLe47ZQ-0&scaling=scale-down&content-scaling=fixed&page-id=2103%3A4467&starting-point-node-id=2103%3A4468',
-    pdf: '/yao/yaoguang-whale-deck.pdf',
+    // 原始競賽簡報 PDF 已於 2026-09-08 下架（含定價結構、介接方式、地域佈局），只留功能層次的截圖
   },
   {
     slug: 'jinyun-branding',
@@ -212,8 +212,10 @@ export const projects = [
     event: '大專生組 · 國立政治大學 · 決賽 2026/08/21',
     award: '🏅 入圍獎',
     period: '2026 · 3S 創客競賽',
-    summary: '同一無障礙核心概念延伸至 3S（RS / GNSS / GIS）空間資訊領域：結合定位與空間分析技術，讓視障者在公共場域中更精準地辨識與操作周邊設備。晉級決賽並獲入圍獎。技術實施細節因專利申請準備中不公開。',
-    tags: ['無障礙 a11y', 'GIS', 'GNSS', '空間資訊', 'TapAble 系列'],
+    summary: '同一無障礙核心概念延伸至 3S（RS / GNSS / GIS）空間資訊領域：以 GIS 圖層做「平權缺口」熱點分析（視障人口 ÷ 服務觸點）、以 GNSS 定位與路徑規劃把視障者帶到可用機台前，並串接手機端操作流程。晉級決賽並獲入圍獎。互動 WebGIS Demo 可直接開啟（iPad 亦可用）；技術實施細節不公開。',
+    tags: ['無障礙 a11y', 'GIS', 'GNSS', '空間資訊', 'WebGIS Demo', 'TapAble 系列'],
+    hasDemo: true,
+    demoPath: '/yao-3s-demo/index.html',
   },
   {
     slug: 'yunus-2026',

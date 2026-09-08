@@ -14,8 +14,6 @@ const shots = [
   { src: '/yao/problem.png', cap: '問題：現有無障礙解法跟不上全觸控化速度' },
   { src: '/yao/concept.png', cap: '解法：不是 App，而是「無障礙操作中介層」SDK' },
   { src: '/yao/system.png', cap: '系統設計：NFC/BLE 低侵入式轉譯，零硬體改造' },
-  { src: '/yao/steps.png', cap: '四步驟完成無障礙操作（定位 → 語音 → 黑屏 → 滑動）' },
-  { src: '/yao/value.png', cap: '以軟體弭平實體世界的數位落差' },
 ]
 
 function Stat({ big, label }) {
@@ -64,8 +62,6 @@ export default function ProjectYao() {
               <a href={p.figma} target="_blank" rel="noreferrer"
                 className="rounded-xl bg-brand px-5 py-2.5 font-bold text-[#231600] shadow-glow transition hover:brightness-110">▶ 開啟 Figma 互動原型</a>
             )}
-            <a href={p.pdf} target="_blank" rel="noreferrer"
-              className="rounded-xl border border-line px-5 py-2.5 font-semibold text-white/90 transition hover:bg-white/5">下載提案簡報 PDF</a>
           </div>
           <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
             <Stat big="🥉 第三名" label="競賽成績" />
@@ -172,7 +168,7 @@ export default function ProjectYao() {
       </Section>
 
       {/* 截圖 */}
-      <Section kicker="DECK" title="提案畫面精選">
+      <Section kicker="DECK" title="提案畫面精選（功能層次；完整簡報因專利申請不公開）">
         <div id="shots" className="grid gap-5 md:grid-cols-2">
           {shots.map((s) => (
             <a key={s.src} href={s.src} target="_blank" rel="noreferrer" className="group block overflow-hidden rounded-2xl border border-line bg-ink2">
@@ -183,7 +179,6 @@ export default function ProjectYao() {
         </div>
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           {p.figma && <a href={p.figma} target="_blank" rel="noreferrer" className="rounded-xl bg-brand px-6 py-3 font-bold text-[#231600] transition hover:brightness-110">▶ 開啟 Figma 互動原型</a>}
-          <a href={p.pdf} target="_blank" rel="noreferrer" className="rounded-xl border border-line px-6 py-3 font-semibold text-white/90 transition hover:bg-white/5">下載提案簡報 PDF</a>
         </div>
       </Section>
 

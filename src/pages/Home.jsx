@@ -100,6 +100,11 @@ export default function Home() {
                     </div>
                   )}
                   {p.ongoing && <div className="mt-5 text-[13px] font-semibold text-mute">賽後公開完整內容</div>}
+                  {p.noPage && p.demoPath && (
+                    <div className="mt-5 text-[13px] font-semibold">
+                      <a href={p.demoPath} target="_blank" rel="noreferrer" className="text-cyan hover:underline">▶ 開啟互動 Demo（新分頁）</a>
+                    </div>
+                  )}
                 </div>
               </>
             )

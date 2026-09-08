@@ -79,12 +79,13 @@ export default function ProjectTapAble() {
         </p>
         <div className="grid gap-4 md:grid-cols-2">
           <Card title="我負責的部分" tone="brand">
-            隊長與統籌。產品定義與操作流程設計、系統主要開發（與一位組員以 AI agent 協作完成全部程式）、
-            田野驗證與視障者訪談的方法設計、對外文件與繳交。
+            隊長與統籌。產品定義與操作流程設計、<b className="text-white">約 95% 的程式開發</b>（以 AI agent 協作）、
+            田野驗證的方法設計、對外文件與繳交。
           </Card>
           <Card title="團隊分工" tone="cyan">
-            5 人團隊 ChatKTV（北科大 × 銘傳）。其餘組員負責研究素材與數據查證、簡報製作、QA 測試回報，以及上台報告。
-            <span className="text-mute"> 人數多但只有兩人寫 code，是刻意的流程設計——三天內整合看不懂 diff 的人的程式，期望值是負的。</span>
+            5 人團隊 ChatKTV（北科大 × 銘傳）。一位組員負責其餘約 5% 程式、簡報製作與上台報告；
+            另三位負責研究素材、影片腳本與拍攝——其中一位在賽前完成了三位視障者的訪談。
+            <span className="text-mute"> 只有兩人碰 code 是刻意的流程設計：三天內整合看不懂 diff 的人的程式，期望值是負的。</span>
           </Card>
         </div>
       </Section>
