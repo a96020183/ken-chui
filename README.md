@@ -1,6 +1,6 @@
 # 徐浩華 Ken Chui — 作品集網站
 
-產品企劃（APM）求職作品集。深色主題、中文、面向招募方。
+產品經理（PM）作品集。深色主題、中文、面向招募方與合作方。
 技術：Vite + React + Tailwind CSS + React Router。
 
 線上網址：部署於 Vercel（見下方「部署」）。
@@ -40,6 +40,7 @@ src/
   pages/
     Home.jsx             ← 首頁（Hero / 能力光譜 / 作品列表 / 關於）
     CV.jsx               ← /cv 履歷頁（可列印成 PDF）
+    ProjectTapAble.jsx   ← TapAble · BUILDMODE 黑客松（內嵌線上 Demo + YouTube）
     ProjectPPA.jsx       ← AWS PressPlay AI（含內嵌可互動 Demo）
     ProjectBNP.jsx       ← 法巴 Cardif 保包巴士
     ProjectYao.jsx       ← 瑤光深鯨 無障礙（含內嵌 Figma 互動原型）
@@ -49,6 +50,7 @@ public/
   icon.png, cv.png       ← 頭像 / 圖片版履歷
   ppa-demo/              ← AWS 黑客松作品的靜態可互動 Demo（內嵌於作品頁）
   bnp/ yao/ jinyun/ atcc/← 各作品的截圖 + 壓縮版簡報 PDF
+  tapable/               ← TapAble 畫面（只放與公開 README 同層次的圖，不放完整簡報）
 ```
 
 ### 要改內容時

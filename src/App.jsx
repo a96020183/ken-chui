@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Home from './pages/Home.jsx'
+import ProjectTapAble from './pages/ProjectTapAble.jsx'
 import ProjectPPA from './pages/ProjectPPA.jsx'
 import ProjectBNP from './pages/ProjectBNP.jsx'
 import ProjectYao from './pages/ProjectYao.jsx'
@@ -23,6 +24,7 @@ export default function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/projects/tapable-buildmode" element={<ProjectTapAble />} />
         <Route path="/projects/ppa-hackathon" element={<ProjectPPA />} />
         <Route path="/projects/bnp-insurhack" element={<ProjectBNP />} />
         <Route path="/projects/yaoguang-whale" element={<ProjectYao />} />

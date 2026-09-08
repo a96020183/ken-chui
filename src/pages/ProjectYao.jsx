@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { projects, profile } from '../data/profile.js'
 
 const p = projects.find((x) => x.slug === 'yaoguang-whale')
@@ -69,7 +70,7 @@ export default function ProjectYao() {
           <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
             <Stat big="🥉 第三名" label="競賽成績" />
             <Stat big="原創題目" label="不限題目・我發想" />
-            <Stat big="5.4 萬" label="全台重度視障者" />
+            <Stat big="5.4 萬" label="全台視障者（重度以上約 2.25 萬）" />
             <Stat big="零硬體" label="核心創新：軟體中介層" />
           </div>
         </div>
@@ -92,7 +93,7 @@ export default function ProjectYao() {
       {/* 問題 */}
       <Section kicker="THE PROBLEM" title="要解決的問題：數位玻璃牆">
         <p className="mb-4 text-[15px] leading-relaxed text-white/85">
-          ATM、醫院批價機、自助點餐機全面觸控化，效率提升了，卻把<b className="text-white">全台約 5.4 萬名全盲與重度視障者</b>擋在數位服務之外。
+          ATM、醫院批價機、自助點餐機全面觸控化，效率提升了，卻把<b className="text-white">全台約 5.4 萬名視障者（其中重度以上約 2.25 萬人）</b>擋在數位服務之外。
         </p>
         <div className="grid gap-4 md:grid-cols-3">
           <Card title="介面斷層" tone="red">摸得到密碼鍵盤，卻在平滑螢幕上找不到「提款／確認」——操作流程被觸控切斷。</Card>
@@ -116,8 +117,9 @@ export default function ProjectYao() {
             靠近定位 → 手機震動＋語音 → 黑屏防窺 → 單指滑動切換、雙擊確認。
           </Card>
           <Card title="隱私與資安" tone="brand">
-            黑屏／高對比遮罩、語音只進使用者自己的藍牙耳機；沿用銀行「無卡提款」後端 +
-            NFC 動態 Token 確認人就在機台前，防中間人攻擊與誤觸吐鈔。
+            黑屏／高對比遮罩、語音只進使用者自己的藍牙耳機；交易確認沿用銀行既有的無卡提款安全機制，
+            並確認使用者確實站在機台前，防誤觸吐鈔與中間人攻擊。
+            <span className="text-mute">（實施細節因專利申請不公開）</span>
           </Card>
         </div>
       </Section>
@@ -148,15 +150,15 @@ export default function ProjectYao() {
             視障者（C 端）<b className="text-white">完全免費</b>；由銀行、醫學中心、大眾運輸（B 端）付費——
             把動輒上億的硬體改裝資本支出（CAPEX），轉成每年可控的軟體訂閱（OPEX）。
           </Card>
-          <Card title="雙軌變現" tone="cyan">
-            金融場域：SDK 年度授權＋合規維護費（沿用既有無卡提款 API，導入成本低）；
-            醫療／零售：LINE LIFF 免下載，收系統串接費＋雲端 API 維護費。
+          <Card title="依場域交付" tone="cyan">
+            金融場域以 SDK 嵌入銀行既有 App；醫療／零售場域以免下載的輕量網頁承接。
+            B 端依場域採授權或串接＋維護的訂閱形式，條件依合作方而定。
           </Card>
         </div>
         <div className="mt-4">
-          <Card title="擴張三部曲 → 香港市場" tone="mint">
-            落地損益兩平 → SaaS 規模化（合規法規壓力驅動）→ 跨國。
-            下一站鎖定機台密集的<b className="text-white">香港</b>，憑團隊繁中／粵語原生優勢低成本在地化。
+          <Card title="擴張三部曲" tone="mint">
+            單一場域落地驗證 → 隨無障礙法規壓力在同類機台規模化 → 跨場域、跨市場。
+            核心是同一套引導層可以複用到任何觸控機台，改變的只是機台端的選項定義。
           </Card>
         </div>
       </Section>
@@ -182,6 +184,18 @@ export default function ProjectYao() {
         <div className="mt-6 flex flex-wrap justify-center gap-3">
           {p.figma && <a href={p.figma} target="_blank" rel="noreferrer" className="rounded-xl bg-brand px-6 py-3 font-bold text-[#231600] transition hover:brightness-110">▶ 開啟 Figma 互動原型</a>}
           <a href={p.pdf} target="_blank" rel="noreferrer" className="rounded-xl border border-line px-6 py-3 font-semibold text-white/90 transition hover:bg-white/5">下載提案簡報 PDF</a>
+        </div>
+      </Section>
+
+      {/* 延續 */}
+      <Section kicker="WHAT HAPPENED NEXT" title="這個題目後來怎麼了">
+        <p className="mb-4 text-[15px] leading-relaxed text-white/85">
+          瑤光深鯨是起點。同一個題目後來正式取了英文名 <b className="text-white">TapAble</b>（Tap 一下，就 Able），
+          在 3S 創客競賽獲入圍獎、晉級台灣尤努斯創新獎決賽，並在 BUILDMODE GEN-AI HACKATHON 2026 第一次變成能跑的程式——
+          <b className="text-white">160 隊中拿下第二名</b>，雛形以 MIT 開源、線上可玩。
+        </p>
+        <div className="flex flex-wrap gap-3">
+          <Link to="/projects/tapable-buildmode" className="rounded-xl bg-brand px-5 py-2.5 font-bold text-[#231600] transition hover:brightness-110">看 TapAble 黑客松版 →</Link>
         </div>
       </Section>
 

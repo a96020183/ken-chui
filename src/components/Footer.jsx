@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { profile } from '../data/profile.js'
 
 export default function Footer() {
@@ -9,7 +10,7 @@ export default function Footer() {
         <div className="flex items-center gap-4">
           <a href={profile.github} target="_blank" rel="noreferrer" className="transition hover:text-white">GitHub</a>
           <a href={`mailto:${profile.email}`} className="transition hover:text-white">Email</a>
-          <a href={profile.cv} target="_blank" rel="noreferrer" className="transition hover:text-white">履歷</a>
+          <Link to={profile.cv} className="transition hover:text-white">履歷</Link>
         </div>
       </div>
     </footer>

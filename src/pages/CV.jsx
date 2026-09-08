@@ -4,12 +4,15 @@ import { profile } from '../data/profile.js'
 
 // 比賽獎項（履歷專用措辭；有 case study 的會連到作品頁）
 const awards = [
+  { comp: 'BUILDMODE GEN-AI HACKATHON 2026（FUTUREMODE 台灣未來祭 · SITCON 協辦）', result: '🥈 第二名 · 160 隊', note: 'TapAble — 隊長・產品定義・系統開發・田野驗證統籌', slug: 'tapable-buildmode' },
   { comp: '百工百業瘋 AI Hackathon（AWS 主辦）', result: '🥈 第二名', note: 'PressPlay AI 學習助教 — 全端開發 + AWS 雲端部署', slug: 'ppa-hackathon' },
   { comp: 'Cardif InsurHack 第三屆法國巴黎人壽校園黑客松', result: '🥈 第二名', note: '保包巴士 — 商業模式・財務模型・技術可行性', slug: 'bnp-insurhack' },
   { comp: '2024 全球品牌策劃與設計大賽', result: '🥈 銀質獎', note: '金孕獎推廣策略 — 受眾分析・遊戲化・口碑行銷 5T', slug: 'jinyun-branding' },
-  { comp: '2026 全國商管暨跨域創新實務專題競賽', result: '🥉 第三名', note: '瑤光深鯨 — 零硬體改造無障礙操作系統', slug: 'yaoguang-whale' },
+  { comp: '2026 全國商管暨跨域創新實務專題競賽', result: '🥉 第三名', note: '瑤光深鯨 — 零硬體改造無障礙操作系統（TapAble 前身）', slug: 'yaoguang-whale' },
+  { comp: '第 44 屆測量及空間資訊研討會 · 3S 創客競賽', result: '🏅 入圍獎', note: '瑤光深鯨 空間資訊應用版 — 大專生組決賽', slug: null },
+  { comp: '2026 第四屆解決未來問題能力競賽', result: '🏅 佳作', note: '翻譯蒟蒻・親盈翻譯機 — 企劃・系統架構・Prompt Engineering', slug: null },
   { comp: '第 23 屆 ATCC 全國大專院校商業個案大賽', result: '全國 26 強', note: 'BEACON — 兒少主動式心理支持系統', slug: 'atcc-beacon' },
-  { comp: '2026 第四屆解決未來問題能力競賽', result: '決賽進行中', note: '賽後公開完整內容', slug: null },
+  { comp: '第六屆台灣尤努斯創新獎', result: '決賽進行中（9/12）', note: '瑤光深鯨（TapAble）— 233 組晉級決賽', slug: null },
 ]
 
 function SideBlock({ title, children }) {
@@ -58,7 +61,7 @@ export default function CV() {
           </h1>
           <p className="mt-1 text-[15px] font-semibold text-cyan">{profile.title}</p>
           <p className="mt-2 max-w-2xl text-[13.5px] leading-relaxed text-white/80">
-            心理學＋商管雙背景的產品企劃（APM）：擅長把使用者痛點與行為數據轉化為 PRD 與產品迭代方案，
+            心理學＋商管雙背景的產品經理（PM）：擅長把使用者痛點與行為數據轉化為 PRD 與產品迭代方案，
             也能親手用 React 把想法做成能跑的產品與 Demo。
           </p>
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[12.5px] text-white/85">

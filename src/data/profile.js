@@ -3,9 +3,9 @@
 export const profile = {
   name: 'Ken Chui',
   nameZh: '徐浩華',
-  title: '產品企劃（APM）· 會自己動手做的產品人',
-  titleEn: 'Associate Product Manager',
-  tagline: '心理學＋商管背景 × APM 實務經驗：用產品與商業視角理解問題，也能親手把想法做成能跑的產品。',
+  title: '產品經理（PM）· 會自己動手做的產品人',
+  titleEn: 'Product Manager',
+  tagline: '心理學＋商管背景 × PM 實務經驗：用產品與商業視角理解問題，也能親手把想法做成能跑的產品。',
   location: '台北 · 來自香港',
   email: 'a96020183@gmail.com',
   phone: '0901-404-044',
@@ -17,27 +17,27 @@ export const profile = {
   certs: ['GA4 數據分析', 'Google Ads（App）', 'Google Ads（AI）', 'Google Ads（評估）'],
   // CV 頁專用的技能分組（Home 仍用 productSkills / techSkills）
   cvSkillGroups: [
-    { label: '產品設計', items: ['Figma', 'PRD 撰寫', '使用者路徑分析', '競品分析'] },
+    { label: '產品設計', items: ['Figma', 'PRD 撰寫', '使用者路徑分析', '競品分析', '田野驗證設計'] },
     { label: '數據分析', items: ['Firebase', 'Mixpanel', 'GA4', '埋點規劃', 'SQL', 'SAP'] },
     { label: '前端開發', items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python'] },
-    { label: 'AI 與雲端', items: ['Prompt Engineering', 'LLM 產品設計（RAG / Agent）', 'AI Prototyping', 'AWS Amplify / Bedrock'] },
+    { label: 'AI 與雲端', items: ['Prompt Engineering', 'LLM 產品設計（RAG / Agent）', 'Edge AI（TensorFlow.js）', 'AI Prototyping', 'AWS Amplify / Bedrock'] },
   ],
   intro: [
-    '國立臺北科技大學經營管理系應屆畢業（2026）。商管訓練讓我習慣先從商業問題與使用者需求出發，再決定怎麼做。',
-    '在 CMoney 擔任產品企劃（APM）實習——從痛點研究、埋點與數據分析、Figma 介面設計，到功能發想、實作、測試與上架送審都實際做過，是那種「什麼都碰、把產品推上線」的產品人。',
-    '我的差異化：不只做規劃，也能自己寫程式把原型做出來。這讓我更快驗證想法，也更懂得和工程團隊溝通。',
+    '國立臺北科技大學經營管理系畢業（2026）。商管訓練讓我習慣先從商業問題與使用者需求出發，再決定怎麼做。',
+    '現任 CMoney 產品經理——2025 年以產品企劃實習生加入，2026 年轉正。從痛點研究、埋點與數據分析、Figma 介面設計，到功能發想、實作、測試與上架送審都實際做過，是那種「什麼都碰、把產品推上線」的產品人。',
+    '我的差異化：不只做規劃，也能自己寫程式把原型做出來。最近一次是在 3 天黑客松裡帶隊做出 TapAble，160 隊中拿下第二名，現正把它推向創業。',
   ],
   // 兩類技能：產品是本業，技術是差異化武器
-  productSkills: ['產品規劃', '需求分析 / PRD', '埋點與數據分析', '使用者痛點研究', 'Figma / UI 設計', '競品分析'],
-  techSkills: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python', 'Firebase', 'AWS (Amplify / Bedrock)', 'Prompt Engineering', 'LLM 應用開發'],
+  productSkills: ['產品規劃', '需求分析 / PRD', '埋點與數據分析', '使用者痛點研究', '田野驗證與訪談', 'Figma / UI 設計', '競品分析'],
+  techSkills: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python', 'Firebase', 'AWS (Amplify / Bedrock)', 'Prompt Engineering', 'LLM 應用開發', 'TensorFlow.js（Edge AI）', 'Web Speech API'],
   experience: [
     {
-      role: '產品企劃實習（APM）',
+      role: '產品經理（PM）',
       org: 'CMoney',
-      period: '2025/06 – 至今',
+      period: '2025/06 – 至今（2025 實習加入 · 2026 轉正）',
       points: [
-        '前期參與多項股票類產品；後期加入「權證小哥」產品，協助資深 PM 進行功能規劃與落地。',
-        '實際參與功能的完整流程：使用者痛點研究 → 埋點與 Firebase 數據分析 → Figma 介面設計 → 功能發想與實作 → 功能測試 → 上架送審。',
+        '2025/06 以產品企劃實習（APM）加入：前期參與多項股票類產品，後期加入「權證小哥」產品協助資深 PM 進行功能規劃與落地；2026 年畢業後轉為正職產品經理。',
+        '現負責 VIP 作者事業產品線（長線聚寶盆 等 App／Web 多平台），從需求規劃、埋點與數據分析、介面設計、開發協作、測試到上架送審端到端負責。',
         '以 Mixpanel／Firebase 分析流失節點，協助產品下半年 YoY 由負轉正，最高單月成長 +70.7%。',
       ],
     },
@@ -71,7 +71,7 @@ export const profile = {
     {
       school: '國立臺北科技大學',
       dept: '經營管理系',
-      period: '2024–2026 應屆畢業 · CGPA 3.7',
+      period: '2024–2026 畢業 · CGPA 3.7',
     },
     {
       school: '香港大學專業進修學院（HKU SPACE）',
@@ -81,7 +81,35 @@ export const profile = {
   ],
 }
 
+// 作品卡的可點擊規則（Home / CV 共用）：
+//   ongoing: true  → 比賽進行中，卡片不可點、顯示「賽後公開完整內容」
+//   noPage:  true  → 已結束但沒有獨立 case study 頁，卡片不可點
+//   其他           → 連到 /projects/:slug（App.jsx 必須有對應 route）
 export const projects = [
+  // ============================================================
+  // TapAble — BUILDMODE GEN-AI HACKATHON 2026（FUTUREMODE 台灣未來祭）
+  // 對外一律只講「做到什麼」，不講實施細節；demo 網址固定用 tapable-demo 主機
+  // ============================================================
+  {
+    slug: 'tapable-buildmode',
+    featured: true,
+    host: 'FUTUREMODE 台灣未來祭 2026',
+    title: 'TapAble · 讓視障者用自己的手機接管公共觸控機台',
+    event: 'BUILDMODE GEN-AI HACKATHON 2026（SITCON 協辦）· Track 05 AI for Taiwan / Social Impact',
+    award: '🥈 第二名 · 160 隊',
+    period: '2026/09 · 3 天黑客松',
+    role: '隊長 · 原創題目 · 產品定義 · 系統開發 · 田野驗證統籌',
+    summary: '觸控螢幕對視障者是一面摸不到按鍵的玻璃：ATM 是唯一有主管機關盯著的機台，視障語音機型花了八年仍不足全台四分之一，校園列印機、醫院批價機、點餐機連這條慢車道都沒有。TapAble 讓視障者用自己的手機接管機台——鏡頭端側辨識走完最後十公尺、碰一下 NFC 貼紙即知面前是哪台機器、大型語言模型聽懂口語並轉成機台選項、語音逐步引導，全程螢幕全黑防窺，機台零硬體改造。3 天內做出可玩的開源雛形，在真實機台完成戴眼罩實測、訪談三位視障者驗證需求，自 160 隊中拿下第二名。',
+    tags: ['生成式 AI', 'Edge AI（TensorFlow.js）', 'NFC', 'Web Speech API', '無障礙 a11y', 'PWA / 離線', '社會創新'],
+    cover: 'gradient-g',
+    hasDemo: true,
+    demoUrl: 'https://a96020183.github.io/tapable-demo/start/',
+    demoOpUrl: 'https://a96020183.github.io/tapable-demo/?machine=campus-document-kiosk&demo=1',
+    demoVisionUrl: 'https://a96020183.github.io/tapable-demo/vision/',
+    repo: 'https://github.com/a96020183/tapable_sep',
+    video: 'https://youtu.be/AtMjXhrwr38',
+    videoEmbed: 'https://www.youtube.com/embed/AtMjXhrwr38',
+  },
   {
     slug: 'ppa-hackathon',
     featured: true,
@@ -121,8 +149,8 @@ export const projects = [
     award: '🥉 第三名',
     period: '2026 · 跨域創新競賽',
     role: '原創發想 · 系統設計 · 商業模式 · 財務規劃 · Figma 原型',
-    summary: '全觸控化的公共機台（ATM、醫院批價機、自助點餐機）把視障者擋在數位服務門外，形成「數位玻璃牆」。這個由我原創發想的專題，提出一套不需更換現有硬體設備的無障礙解決方案，讓視障者透過自己的手機即可操作公共觸控機台。目前正進行專利申請與創業籌備中，技術細節暫不公開。',
-    tags: ['社會創新', '無障礙 a11y', '系統設計', 'B2B SaaS', 'Figma', '專利申請準備中'],
+    summary: '全觸控化的公共機台（ATM、醫院批價機、自助點餐機）把視障者擋在數位服務門外，形成「數位玻璃牆」。這個由我原創發想的專題，提出一套不需更換現有硬體設備的無障礙解決方案，讓視障者透過自己的手機即可操作公共觸控機台。這是 TapAble 的前身——同一題目後續在 3S 創客競賽獲入圍獎、晉級台灣尤努斯創新獎決賽，並在 BUILDMODE 黑客松以開源雛形拿下 160 隊第二名。目前正進行專利申請與創業籌備，技術實施細節不公開。',
+    tags: ['社會創新', '無障礙 a11y', '系統設計', 'B2B SaaS', 'Figma', 'TapAble 前身'],
     cover: 'gradient-c',
     hasDemo: false,
     figma: 'https://www.figma.com/proto/UNB6G7wMXIzs8sDZh799IP/ALL?node-id=2103-4468&t=6OJriSNleSLe47ZQ-0&scaling=scale-down&content-scaling=fixed&page-id=2103%3A4467&starting-point-node-id=2103%3A4468',
@@ -157,10 +185,11 @@ export const projects = [
     pdf: '/atcc/beacon-deck.pdf',
   },
   // ============================================================
-  // 解決未來問題能力競賽 — 佳作
+  // 解決未來問題能力競賽 — 佳作（無獨立頁）
   // ============================================================
   {
     slug: 'fps-2026',
+    noPage: true,
     host: '2026 第四屆解決未來問題能力競賽',
     title: '翻譯蒟蒻 · 親盈翻譯機',
     event: '決賽主題：AI 協助高齡者數位溝通',
@@ -172,26 +201,29 @@ export const projects = [
     cover: 'gradient-f',
     hasDemo: false,
   },
+  // ============================================================
+  // 3S 創客競賽 — 入圍獎（無獨立頁）
+  // ============================================================
   {
     slug: '3s-2026',
-    ongoing: true,
+    noPage: true,
     host: '第 44 屆測量及空間資訊研討會 · 3S 創客競賽',
-    title: '瑤光深鯨 · 空間資訊應用版（決賽中）',
+    title: '瑤光深鯨 · 空間資訊應用版',
     event: '大專生組 · 國立政治大學 · 決賽 2026/08/21',
-    award: '🏆 決賽進行中',
-    period: '2026 · 進行中',
-    summary: '同一無障礙核心概念延伸至 3S（RS / GNSS / GIS）空間資訊領域：結合定位與空間分析技術，讓視障者在公共場域中更精準地辨識與操作周邊設備。技術細節因專利申請準備中暫不公開。',
-    tags: ['無障礙 a11y', 'GIS', 'GNSS', '空間資訊', '專利申請準備中'],
+    award: '🏅 入圍獎',
+    period: '2026 · 3S 創客競賽',
+    summary: '同一無障礙核心概念延伸至 3S（RS / GNSS / GIS）空間資訊領域：結合定位與空間分析技術，讓視障者在公共場域中更精準地辨識與操作周邊設備。晉級決賽並獲入圍獎。技術實施細節因專利申請準備中不公開。',
+    tags: ['無障礙 a11y', 'GIS', 'GNSS', '空間資訊', 'TapAble 系列'],
   },
   {
     slug: 'yunus-2026',
     ongoing: true,
     host: '第六屆台灣尤努斯創新獎',
-    title: '瑤光深鯨 · AI 輔助迭代（決賽中）',
+    title: '瑤光深鯨（TapAble）· AI 輔助迭代（決賽中）',
     event: '233 組團隊報名 · 晉級決賽 · 決賽 2026/09/12',
     award: '🏆 決賽進行中',
     period: '2026 · 進行中',
-    summary: '以原始無障礙系統為基礎的進化版本，導入 AI 能力強化使用體驗與適用場景。此版本為後續所有競賽與創業的主力迭代方向。自 233 組團隊中晉級決賽，技術細節因專利申請準備中暫不公開。',
-    tags: ['無障礙 a11y', 'AI', '社會企業', '專利申請準備中'],
+    summary: '以原始無障礙系統為基礎的進化版本，導入生成式 AI 意圖理解與鏡頭端側導引——首版已於 BUILDMODE 黑客松實作並開源。此版本為後續所有競賽與創業的主力迭代方向。自 233 組團隊中晉級決賽，技術實施細節不公開。',
+    tags: ['無障礙 a11y', '生成式 AI', '社會企業', 'TapAble 系列'],
   },
 ]

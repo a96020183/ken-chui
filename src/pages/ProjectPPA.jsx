@@ -64,7 +64,7 @@ export default function ProjectPPA() {
       {/* 我的角色 */}
       <Section kicker="MY ROLE" title="我的角色">
         <p className="mb-5 text-[15px] leading-relaxed text-white/85">
-          我是產品背景（APM）的人，這個專案正好證明了我最想展現的能力：
+          我是產品背景（PM）的人，這個專案正好證明了我最想展現的能力：
           <b className="text-white">既能從商業與使用者角度定義問題，也能親手把產品做出來、推上線。</b>
         </p>
         <div className="grid gap-4 md:grid-cols-2">

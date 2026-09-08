@@ -10,7 +10,7 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-5 py-16 md:grid-cols-[1.4fr_1fr] md:py-24">
           <div>
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-line bg-white/5 px-3 py-1 text-[12px] text-cyan">
-              <span className="h-1.5 w-1.5 rounded-full bg-mint" /> 開放全職機會
+              <span className="h-1.5 w-1.5 rounded-full bg-mint" /> 現任 CMoney 產品經理 · 歡迎交流合作
             </div>
             <h1 className="text-4xl font-black leading-tight md:text-6xl">
               嗨，我是 <span className="pp-grad-text">{profile.name}</span>
@@ -40,9 +40,9 @@ export default function Home() {
           <p className="mt-1 text-sm text-mute">從發現問題、算清商業帳、做出產品到推廣成長——產品的每一段我都走過一遍。</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {[
-              { k: '能發現真問題', d: '從 0 洞察社會痛點並設計解法', tag: '瑤光深鯨 · 無障礙系統', color: 'text-mint' },
+              { k: '能發現真問題', d: '從 0 洞察社會痛點並設計解法', tag: 'TapAble / 瑤光深鯨 · 無障礙系統', color: 'text-mint' },
               { k: '能算商業帳', d: '商業模式與財務模型論證', tag: '法巴 Cardif · 保包巴士', color: 'text-cyan' },
-              { k: '能親手做', d: '全端打造可互動產品並上雲', tag: 'AWS · PressPlay AI', color: 'text-brand' },
+              { k: '能親手做', d: '全端打造可互動產品並上線', tag: 'TapAble · AWS PressPlay AI', color: 'text-brand' },
               { k: '能推廣成長', d: '品牌行銷與聲量成長策略', tag: '金孕獎 · 推廣策略', color: 'text-cyan' },
             ].map((s) => (
               <div key={s.k} className="rounded-2xl border border-line bg-card p-5 transition hover:border-brand/40">
@@ -65,6 +65,8 @@ export default function Home() {
         </div>
         <div className="grid gap-6 md:grid-cols-2">
           {projects.map((p) => {
+            // ongoing＝比賽中不公開；noPage＝已結束但沒有獨立頁。兩者都不可點。
+            const clickable = !p.ongoing && !p.noPage
             const inner = (
               <>
                 <div className={`absolute right-0 top-0 h-32 w-32 rounded-full bg-gradient-to-br blur-2xl transition ${p.featured ? 'from-brand/40 to-cyan/20' : 'from-brand/20 to-cyan/10 group-hover:from-brand/40'}`} />
@@ -89,10 +91,11 @@ export default function Home() {
                       ))}
                     </div>
                   )}
-                  {!p.ongoing && (
-                    <div className="mt-5 flex items-center gap-4 text-[13px] font-semibold">
+                  {clickable && (
+                    <div className="mt-5 flex flex-wrap items-center gap-4 text-[13px] font-semibold">
                       <span className="text-brand transition group-hover:gap-2">查看 case study →</span>
                       {p.hasDemo && <span className="text-cyan">含可互動 Demo</span>}
+                      {p.video && <span className="text-cyan">含 2 分鐘影片</span>}
                       {p.figma && <span className="text-cyan">含 Figma 原型</span>}
                     </div>
                   )}
@@ -100,10 +103,10 @@ export default function Home() {
                 </div>
               </>
             )
-            const base = `group relative overflow-hidden rounded-2xl bg-card p-6 transition ${p.featured ? 'border-2 border-brand/70 shadow-glow' : 'border border-line'} ${p.ongoing ? 'opacity-80' : 'hover:border-brand/50 hover:shadow-card'}`
-            return p.ongoing
-              ? <div key={p.slug} className={base}>{inner}</div>
-              : <Link key={p.slug} to={`/projects/${p.slug}`} className={base}>{inner}</Link>
+            const base = `group relative overflow-hidden rounded-2xl bg-card p-6 transition ${p.featured ? 'border-2 border-brand/70 shadow-glow' : 'border border-line'} ${clickable ? 'hover:border-brand/50 hover:shadow-card' : p.ongoing ? 'opacity-80' : ''}`
+            return clickable
+              ? <Link key={p.slug} to={`/projects/${p.slug}`} className={base}>{inner}</Link>
+              : <div key={p.slug} className={base}>{inner}</div>
           })}
         </div>
       </section>
