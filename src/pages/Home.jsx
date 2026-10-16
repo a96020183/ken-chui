@@ -193,23 +193,29 @@ function AwardWork({ a }) {
   return <span>{label}</span>
 }
 
-// 重點獎項：表格上方用大字呈現
-function Highlights() {
+// 重點獎項：開場下方的黑底橫條，一進站就看得到
+function AwardsBand() {
   const t = useT()
   const items = awards.filter((a) => a.major)
   return (
-    <div className="mb-14 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2">
-      {items.map((a) => (
-        <div key={a.date} className="flex flex-col bg-paper p-6 sm:p-8">
-          <div className="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-ink sm:text-[34px]">{t(a.headline)}</div>
-          <div className="mt-3 text-[15px] leading-snug text-ink2">{t(a.comp)} · {t(a.result)}</div>
-          <div className="mt-auto flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 pt-6 text-[14px]">
-            <AwardWork a={a} />
-            <span className="tnum text-mute">{a.date}</span>
-          </div>
+    <section aria-label={t('重點獎項', 'Key awards')} className="bg-ink text-white">
+      <Container className="py-10 sm:py-12">
+        <div className="grid gap-px overflow-hidden bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
+          {items.map((a) => (
+            <div key={a.date + a.headline.en} className="flex flex-col bg-ink py-6 sm:px-6 sm:py-4 lg:first:pl-0">
+              <div className="text-[22px] font-semibold leading-snug tracking-[-0.015em] text-white sm:text-[24px]">{t(a.headline)}</div>
+              <div className="mt-2 text-[14px] leading-relaxed text-white/70">{t(a.comp)}{a.note ? ` · ${t(a.note)}` : ''}</div>
+              <div className="mt-auto flex items-baseline justify-between gap-4 pt-5 text-[13.5px]">
+                {a.to ? (
+                  <LLink to={a.to} className="text-white underline decoration-white/40 underline-offset-[3px] transition duration-150 ease-out hover:decoration-white">{t(a.work)}</LLink>
+                ) : <span className="text-white/80">{t(a.work)}</span>}
+                <span className="tnum text-white/60">{a.date}</span>
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      </Container>
+    </section>
   )
 }
 
@@ -222,7 +228,6 @@ function Awards() {
           title={t('得獎紀錄', 'Awards')}
           aside={t(`${awards.length} 項，日期以獎狀為準。`, `${awards.length} awards, dated as on the certificates.`)}
         />
-        <Highlights />
         {/* 桌機：表格 */}
         <table className="hidden w-full border-collapse text-left md:table">
           <thead>
@@ -317,6 +322,7 @@ export default function Home() {
   return (
     <main>
       <Intro />
+      <AwardsBand />
       <Work />
       <Experience />
       <Awards />
