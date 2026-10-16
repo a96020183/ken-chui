@@ -5,9 +5,21 @@
 
 ---
 
+## 0. 2026-10-16 改版（先讀這段，下面舊段落有些已過時）
+
+- **目標讀者改成大公司招募者（BCG、Google 這類）**。設計改成淺色、乾淨的文件風（Stripe／Linear 等級），舊的深色霓虹風已全部移除。
+  設計依據與設計系統紀錄（PRODUCT.md、DESIGN.md、.impeccable/）只放在本機，不進 repo。
+- **中英雙語**：中文在 `/`，英文在 `/en`（`/en/cv`、`/en/projects/...`）。寄英文就給 `ken-chui.vercel.app/en`。
+  文字都在 `src/data/profile.js`（`{ zh, en }`）與各作品頁的 `t('中文', 'English')`。工具在 `src/i18n.jsx`，共用版面元件在 `src/components/ui.jsx`。
+- **學歷與香港經歷不寫年份**（使用者要求）。之後加內容也照這個規則。
+- 職稱：**CMoney AI 產品經理**；TapAble 寫「共同創辦人、產品負責人」，2026/04 起。
+- `tapable_sep` repo 已請使用者刪除，全站不再連到它，也不再寫 MIT 開源。
+- 獎項 13 項集中在 `profile.js` 的 `awards[]`（首頁表格與 `/cv` 共用，不用再兩邊改）。日期以獎狀為準。
+- `test-version` 分支（無 HKU SPACE）未同步這次改版。
+
 ## 1. 這是什麼
 
-徐浩華 Ken Chui 的作品集網站。深色主題、繁中、面向招募方與合作方。
+徐浩華 Ken Chui 的作品集網站。淺色、中英雙語、面向大公司招募者與合作方。
 單頁式 React 網站（Vite + Tailwind + React Router），部署在 Vercel。
 
 ## 2. 個人定位（很重要，別跑掉）

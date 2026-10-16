@@ -1,6 +1,7 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { projects, profile } from '../data/profile.js'
+import { useT, useTitle } from '../i18n.jsx'
+import { projects } from '../data/profile.js'
+import { Button, CaseHeader, Section, Prose, Roles, Items, Frame, Gallery, CaseFooter } from '../components/ui.jsx'
 
 const p = projects.find((x) => x.slug === 'yaoguang-whale')
 
@@ -9,201 +10,185 @@ const figmaEmbed = p.figma
   ? p.figma.replace('www.figma.com', 'embed.figma.com') + '&embed-host=share'
   : null
 
-const shots = [
-  { src: '/yao/cover.png', cap: '瑤光深鯨：零硬體改造之跨場域無障礙操作系統' },
-  { src: '/yao/problem.png', cap: '問題：現有無障礙解法跟不上全觸控化速度' },
-  { src: '/yao/concept.png', cap: '解法：不是 App，而是「無障礙操作中介層」SDK' },
-  { src: '/yao/system.png', cap: '系統設計：NFC/BLE 低侵入式轉譯，零硬體改造' },
-]
-
-function Stat({ big, label }) {
-  return (
-    <div className="rounded-2xl border border-line bg-card p-4 text-center">
-      <div className="text-2xl font-black text-brand md:text-3xl">{big}</div>
-      <div className="mt-1 text-[12px] text-mute">{label}</div>
-    </div>
-  )
-}
-function Section({ kicker, title, children }) {
-  return (
-    <section className="mx-auto max-w-4xl px-5 py-10">
-      {kicker && <div className="mb-1 text-[13px] font-bold text-cyan">{kicker}</div>}
-      <h2 className="text-2xl font-black md:text-3xl">{title}</h2>
-      <div className="mt-5">{children}</div>
-    </section>
-  )
-}
-function Card({ title, children, tone = 'brand' }) {
-  const c = tone === 'cyan' ? 'text-cyan' : tone === 'mint' ? 'text-mint' : tone === 'red' ? 'text-[#F26D6D]' : 'text-brand'
-  return (
-    <div className="rounded-2xl border border-line bg-card p-5">
-      <div className={`mb-2 font-bold ${c}`}>{title}</div>
-      <div className="text-[14px] leading-relaxed text-white/85">{children}</div>
-    </div>
-  )
-}
-
 export default function ProjectYao() {
+  const t = useT()
+  useTitle('瑤光深鯨 · 徐浩華', 'Yaoguang · Ken Chui')
+
+  const shots = [
+    { src: '/yao/cover.png', caption: t('封面：不改硬體、跨場域的無障礙操作系統。', 'Cover: an accessibility layer that works across kiosks without hardware changes.') },
+    { src: '/yao/problem.png', caption: t('問題：現有的無障礙做法，跟不上觸控化的速度。', 'Problem: existing accessibility fixes can\'t keep up with the move to touchscreens.') },
+    { src: '/yao/concept.png', caption: t('解法：不是一個 App，而是夾在手機和機台之間的無障礙操作層。', 'Solution: not another app, but an accessibility layer between the phone and the kiosk.') },
+    { src: '/yao/system.png', caption: t('系統設計：用 NFC 和 BLE 把機台操作轉到手機上，機台不用改硬體。', 'System design: NFC and BLE move kiosk operation onto the phone, with no hardware change.') },
+  ]
+
   return (
     <main>
-      {/* HERO */}
-      <section className="pp-ring border-b border-line/60">
-        <div className="mx-auto max-w-4xl px-5 py-14">
-          <div className="mb-3 flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-brand/15 px-3 py-1 text-[13px] font-bold text-brand">{p.award}</span>
-            <span className="text-[13px] text-mute">{p.period}</span>
-          </div>
-          <h1 className="text-3xl font-black leading-tight md:text-5xl">{p.title}</h1>
-          <p className="mt-3 text-[15px] font-semibold text-cyan">{p.host}</p>
-          <p className="mt-0.5 text-[13px] text-mute">{p.event}</p>
-          <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-white/85">{p.summary}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            {p.figma && (
-              <a href={p.figma} target="_blank" rel="noreferrer"
-                className="rounded-xl bg-brand px-5 py-2.5 font-bold text-[#231600] shadow-glow transition hover:brightness-110">▶ 開啟 Figma 互動原型</a>
+      <CaseHeader
+        result={t(p.result)}
+        period={t(p.period)}
+        title={t(p.title)}
+        org={t(p.org)}
+        event={t('2 人團隊', 'Team of 2')}
+        summary={t(
+          '觸控機台越來越多，視障者卻越來越難用。這場競賽不限題目，我提出的方向是不換機台硬體，讓視障者用自己的手機操作。這是 TapAble 最早的版本，當時只有簡報和可以點的 Figma 原型。',
+          'Touchscreen kiosks keep spreading, and blind people are left further behind. The competition had an open brief. My idea was to let blind users operate kiosks from their own phones without replacing any hardware. This is the earliest version of TapAble: a pitch and a clickable Figma prototype.'
+        )}
+        actions={p.figma && <Button primary href={p.figma}>{t('開啟 Figma 原型', 'Open Figma prototype')}</Button>}
+        facts={[
+          { label: t('題目', 'Idea'), value: t('我原創', 'My own') },
+          { label: t('團隊', 'Team'), value: t('2 人', '2 people') },
+          { label: t('成品', 'Output'), value: t('簡報與 Figma 原型', 'Pitch + Figma prototype') },
+          { label: t('機台硬體改動', 'Kiosk hardware changes'), value: t('零', 'None') },
+        ]}
+      />
+
+      <Section title={t('我的角色', 'My role')}>
+        <Roles
+          mine={t(
+            <>題目由我原創。我負責<b>系統設計、商業模式、財務規劃、技術可行性</b>，以及 Figma 互動原型。</>,
+            <>The idea was mine. I owned the <b>system design, business model, financial plan and technical feasibility</b>, and built the Figma prototype.</>
+          )}
+          team={t('隊友林亭汝負責簡報製作和現場報告。', 'My teammate built the slides and gave the presentation.')}
+        />
+      </Section>
+
+      <Section title={t('要解決的問題', 'The problem')}>
+        <Prose className="mb-10">
+          <p>
+            {t(
+              <>ATM、醫院批價機、自助點餐機都改成觸控。效率提高了，卻把<b>全台約 5.4 萬名視障者</b>擋在外面，其中重度以上約 2.25 萬人。</>,
+              <>ATMs, hospital payment kiosks and self-order machines have all gone touchscreen. They got faster, and shut out <b>about 54,000 blind and low-vision people</b> in Taiwan, about 22,500 of them severe.</>
             )}
-          </div>
-          <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-            <Stat big="🥉 第三名" label="競賽成績" />
-            <Stat big="原創題目" label="不限題目・我發想" />
-            <Stat big="5.4 萬" label="全台視障者（重度以上約 2.25 萬）" />
-            <Stat big="零硬體" label="核心創新：軟體中介層" />
-          </div>
-        </div>
-      </section>
-
-      {/* 我的角色 */}
-      <Section kicker="MY ROLE" title="我的角色">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="我負責的部分" tone="brand">
-            這場競賽<b className="text-white">不限題目，主題由我原創發想</b>。
-            我負責系統設計、商業模式、財務規劃、技術可行性，以及 Figma 互動原型。
-          </Card>
-          <Card title="團隊分工" tone="cyan">
-            2 人團隊（我與林亭汝）；組員負責簡報製作與現場報告。
-            <span className="text-mute"> 從問題洞察、產品設計到商業論證的核心由我完成。</span>
-          </Card>
-        </div>
-      </Section>
-
-      {/* 問題 */}
-      <Section kicker="THE PROBLEM" title="要解決的問題：數位玻璃牆">
-        <p className="mb-4 text-[15px] leading-relaxed text-white/85">
-          ATM、醫院批價機、自助點餐機全面觸控化，效率提升了，卻把<b className="text-white">全台約 5.4 萬名視障者（其中重度以上約 2.25 萬人）</b>擋在數位服務之外。
-        </p>
-        <div className="grid gap-4 md:grid-cols-3">
-          <Card title="介面斷層" tone="red">摸得到密碼鍵盤，卻在平滑螢幕上找不到「提款／確認」——操作流程被觸控切斷。</Card>
-          <Card title="隱私被剝奪" tone="brand">被迫把金融卡交給旁人、在公開場合口述密碼或聽私密病歷，喪失資訊自主權。</Card>
-          <Card title="舊解法過時" tone="cyan">耳機孔、點字鍵盤跟不上觸控化；手機早已取消 3.5mm 孔，要合規改硬體動輒上億。</Card>
-        </div>
-      </Section>
-
-      {/* 解法 */}
-      <Section kicker="THE SOLUTION" title="瑤光深鯨 SDK：零硬體改造的無障礙中介層">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="不換機台，讓手機成為操作入口" tone="brand">
-            不動主機板、螢幕與核心設備，只加裝成本數十~數百元的 NFC 貼紙與 BLE Beacon，
-            把機台操作「轉譯」成手機語音與滑動流程。
-          </Card>
-          <Card title="雙軌觸發，零學習成本" tone="cyan">
-            NFC 貼紙（一摸即定位，沿用找耳機孔的習慣）＋ BLE Beacon（靠近自動感應）；
-            直接沿用手機原生 VoiceOver / TalkBack 的滑動習慣，視障者不需學新設備。
-          </Card>
-          <Card title="四步驟操作" tone="mint">
-            靠近定位 → 手機震動＋語音 → 黑屏防窺 → 單指滑動切換、雙擊確認。
-          </Card>
-          <Card title="隱私與資安" tone="brand">
-            黑屏／高對比遮罩、語音只進使用者自己的藍牙耳機；交易確認沿用銀行既有的無卡提款安全機制，
-            並確認使用者確實站在機台前，防誤觸吐鈔與中間人攻擊。
-            <span className="text-mute">（實施細節因專利申請不公開）</span>
-          </Card>
-        </div>
-      </Section>
-
-      {/* 互動原型 */}
-      {figmaEmbed && (
-        <Section kicker="LIVE PROTOTYPE" title="互動原型（可直接操作）">
-          <p className="mb-4 text-[14px] leading-relaxed text-white/70">
-            這是實際的 Figma 互動原型，可<b className="text-white">直接在頁面上點擊操作</b>；
-            也可 <a href={p.figma} target="_blank" rel="noreferrer" className="text-brand underline underline-offset-2">在 Figma 全螢幕開啟</a>。
           </p>
-          <div className="overflow-hidden rounded-2xl border border-line bg-ink2">
-            <iframe
-              title="瑤光深鯨 Figma 互動原型"
-              src={figmaEmbed}
-              className="h-[70vh] min-h-[520px] w-full"
-              allowFullScreen
-              loading="lazy"
-            />
-          </div>
+        </Prose>
+        <Items
+          cols={3}
+          items={[
+            {
+              title: t('操作被切斷', 'The flow breaks'),
+              body: t('摸得到密碼鍵盤，卻在平滑的螢幕上找不到「提款」和「確認」。', 'You can feel the PIN pad, but can\'t find "withdraw" or "confirm" on a flat screen.'),
+            },
+            {
+              title: t('隱私被拿走', 'Privacy is lost'),
+              body: t('只好把金融卡交給旁人、在公開場合唸出密碼，或讓別人聽到自己的病歷。', 'People end up handing their bank card to a stranger, saying their PIN out loud, or having others hear their medical details.'),
+            },
+            {
+              title: t('舊方法過時', 'Old fixes are outdated'),
+              body: t('耳機孔和點字鍵盤跟不上觸控化。手機早就沒有 3.5mm 耳機孔，改硬體合規動輒上億。', 'Headphone jacks and braille keypads can\'t keep up. Phones dropped the 3.5mm jack long ago, and hardware retrofits for compliance can run past NT$100 million.'),
+            },
+          ]}
+        />
+      </Section>
+
+      <Section title={t('提出的解法', 'The proposal')} aside={t('不換機台，讓手機成為操作入口。', 'Keep the kiosk. Make the phone the way in.')}>
+        <Items
+          items={[
+            {
+              title: t('不動機台本身', 'Leave the kiosk alone'),
+              body: t(
+                '不動主機板、螢幕和核心設備。只加上幾十到幾百元的 NFC 貼紙和 BLE Beacon，把機台操作轉到手機上，變成語音和滑動。',
+                'No change to the board, screen or core hardware. Add an NFC sticker and a BLE beacon costing tens to hundreds of NT dollars, and the kiosk\'s steps move onto the phone as voice and swipes.'
+              ),
+            },
+            {
+              title: t('不用學新東西', 'Nothing new to learn'),
+              body: t(
+                '摸到 NFC 貼紙就定位，和找耳機孔的習慣一樣。靠近 BLE Beacon 會自動感應。操作沿用手機內建 VoiceOver 和 TalkBack 的滑動方式。',
+                'Touching the NFC sticker locates the kiosk, just like feeling for a headphone jack. A BLE beacon senses you as you approach. Gestures are the same VoiceOver and TalkBack swipes users already know.'
+              ),
+            },
+            {
+              title: t('四個步驟', 'Four steps'),
+              body: t(
+                '靠近定位，手機震動並出聲，螢幕變黑防偷看，再用單指滑動切換、點兩下確認。',
+                'Approach to locate. The phone vibrates and speaks. The screen goes dark against prying eyes. Swipe with one finger to move, double-tap to confirm.'
+              ),
+            },
+            {
+              title: t('隱私與安全', 'Privacy and security'),
+              body: t(
+                '螢幕變黑或加上高對比遮罩，語音只進使用者自己的藍牙耳機。交易確認沿用銀行既有的無卡提款機制，也會確認使用者真的站在機台前。實施細節不公開。',
+                'The screen goes dark or uses a high-contrast mask, and audio goes only to the user\'s own Bluetooth earphones. Transactions reuse the bank\'s existing cardless-withdrawal checks and confirm the user is really at the kiosk. Implementation details are not public.'
+              ),
+            },
+          ]}
+        />
+      </Section>
+
+      {figmaEmbed && (
+        <Section
+          title={t('互動原型', 'Interactive prototype')}
+          aside={t('這是當時的 Figma 原型，可以直接在頁面上點。', 'The Figma prototype from the competition. You can click through it right here.')}
+        >
+          <Frame
+            src={figmaEmbed}
+            title={t('瑤光深鯨 · Figma 互動原型', 'Yaoguang · Figma prototype')}
+            height="h-[70vh] min-h-[520px]"
+            openHref={p.figma}
+            openLabel={t('在 Figma 全螢幕開啟', 'Open full screen in Figma')}
+          />
         </Section>
       )}
 
-      {/* 商業模式 */}
-      <Section kicker="BUSINESS MODEL" title="商業模式：社會型企業 × B2B SaaS">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="誰付費" tone="brand">
-            視障者（C 端）<b className="text-white">完全免費</b>；由銀行、醫學中心、大眾運輸（B 端）付費——
-            把動輒上億的硬體改裝資本支出（CAPEX），轉成每年可控的軟體訂閱（OPEX）。
-          </Card>
-          <Card title="依場域交付" tone="cyan">
-            金融場域以 SDK 嵌入銀行既有 App；醫療／零售場域以免下載的輕量網頁承接。
-            B 端依場域採授權或串接＋維護的訂閱形式，條件依合作方而定。
-          </Card>
-        </div>
-        <div className="mt-4">
-          <Card title="擴張三部曲" tone="mint">
-            單一場域落地驗證 → 隨無障礙法規壓力在同類機台規模化 → 跨場域、跨市場。
-            核心是同一套引導層可以複用到任何觸控機台，改變的只是機台端的選項定義。
-          </Card>
+      <Section title={t('誰付費，誰受益', 'Who pays, who benefits')}>
+        <Items
+          items={[
+            {
+              title: t('視障者免費', 'Free for blind users'),
+              body: t(
+                '由銀行、醫學中心和大眾運輸付費。動輒上億的硬體改裝，換成每年可控的軟體訂閱。',
+                'Banks, medical centres and transit operators pay. A hardware retrofit that can cost over NT$100 million becomes a predictable yearly software subscription.'
+              ),
+            },
+            {
+              title: t('依場域交付', 'Delivered to fit the setting'),
+              body: t(
+                '金融場域做成 SDK，放進銀行原本的 App。醫療和零售場域用免下載的輕量網頁。',
+                'For banks, an SDK inside the bank\'s existing app. For hospitals and retail, a lightweight web page with nothing to download.'
+              ),
+            },
+            {
+              title: t('對使用者', 'For users'),
+              body: t('把財務、醫療和公共服務的自主和隱私拿回來，自己完成日常交易。', 'Independence and privacy back for banking, healthcare and public services, so daily tasks can be done alone.'),
+            },
+            {
+              title: t('對企業', 'For businesses'),
+              body: t(
+                '用去識別化的任務完成率，產出可追蹤的 ESG 和普惠金融成果，對應金管會的友善服務評鑑。',
+                'De-identified task completion rates give trackable ESG and financial-inclusion results that map to the regulator\'s accessible-service review.'
+              ),
+            },
+          ]}
+        />
+      </Section>
+
+      <Section title={t('提案畫面', 'From the pitch')} aside={t('只放功能層次的頁面，完整簡報不公開。', 'Feature-level slides only. The full deck is not public.')}>
+        <Gallery shots={shots} />
+      </Section>
+
+      <Section title={t('後來怎麼了', 'What happened next')}>
+        <Prose>
+          <p>
+            {t(
+              <>瑤光深鯨是起點。題目後來改名 <b>TapAble</b>，Tap 一下，就 Able。</>,
+              <>Yaoguang was the start. The idea was later renamed <b>TapAble</b>: tap once, and you're able.</>
+            )}
+          </p>
+          <p>
+            {t(
+              <>同年 9 月，它在 BUILDMODE GEN-AI 黑客松第一次寫成能跑的程式，<b>160 隊拿下第二名</b>。同一個題目也拿到 3S 創客競賽入圍獎、台灣尤努斯創新獎入圍決賽（233 組取 10）、LINE AI 創新創業競賽第三名，也進了 AIDA 決賽。</>,
+              <>That September it became working code for the first time at the BUILDMODE GEN-AI Hackathon and <b>placed 2nd of 160 teams</b>. It also won a finalist award at the 3S Maker Competition, reached the Taiwan Yunus Innovation Award final (top 10 of 233), took 3rd at the LINE AI Innovation & Entrepreneurship Competition, and reached the AIDA final.</>
+            )}
+          </p>
+        </Prose>
+        <div className="no-print mt-8">
+          <Button to="/projects/tapable-buildmode">{t('看 TapAble 黑客松版', 'See the TapAble hackathon build')}</Button>
         </div>
       </Section>
 
-      {/* 社會影響 */}
-      <Section kicker="IMPACT" title="社會影響力">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="對使用者" tone="brand">恢復財務、醫療與公共服務的自主權與隱私，能有尊嚴地獨立完成日常交易。</Card>
-          <Card title="對企業" tone="cyan">以「真實任務完成率」等去識別化數據，產出可追蹤的 ESG／普惠金融量化實績，滿足金管會友善服務評鑑。</Card>
-        </div>
-      </Section>
-
-      {/* 截圖 */}
-      <Section kicker="DECK" title="提案畫面精選（功能層次；完整簡報因專利申請不公開）">
-        <div id="shots" className="grid gap-5 md:grid-cols-2">
-          {shots.map((s) => (
-            <a key={s.src} href={s.src} target="_blank" rel="noreferrer" className="group block overflow-hidden rounded-2xl border border-line bg-ink2">
-              <img src={s.src} alt={s.cap} loading="lazy" className="w-full transition group-hover:opacity-90" />
-              <div className="px-4 py-3 text-[13px] text-white/80">{s.cap}</div>
-            </a>
-          ))}
-        </div>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          {p.figma && <a href={p.figma} target="_blank" rel="noreferrer" className="rounded-xl bg-brand px-6 py-3 font-bold text-[#231600] transition hover:brightness-110">▶ 開啟 Figma 互動原型</a>}
-        </div>
-      </Section>
-
-      {/* 延續 */}
-      <Section kicker="WHAT HAPPENED NEXT" title="這個題目後來怎麼了">
-        <p className="mb-4 text-[15px] leading-relaxed text-white/85">
-          瑤光深鯨是起點。同一個題目後來正式取了英文名 <b className="text-white">TapAble</b>（Tap 一下，就 Able），
-          在 3S 創客競賽獲入圍獎、晉級台灣尤努斯創新獎決賽，並在 BUILDMODE GEN-AI HACKATHON 2026 第一次變成能跑的程式——
-          <b className="text-white">160 隊中拿下第二名</b>，雛形以 MIT 開源、線上可玩。
-        </p>
-        <div className="flex flex-wrap gap-3">
-          <Link to="/projects/tapable-buildmode" className="rounded-xl bg-brand px-5 py-2.5 font-bold text-[#231600] transition hover:brightness-110">看 TapAble 黑客松版 →</Link>
-        </div>
-      </Section>
-
-      {/* CTA */}
-      <section className="mx-auto max-w-4xl px-5 pb-16">
-        <div className="rounded-2xl border border-line bg-gradient-to-br from-card to-ink2 p-8 text-center">
-          <div className="text-lg font-bold">想聊聊產品或合作？</div>
-          <div className="mt-4 flex flex-wrap justify-center gap-3">
-            <a href={`mailto:${profile.email}`} className="rounded-xl bg-brand px-5 py-2.5 font-bold text-[#231600] transition hover:brightness-110">聯絡我</a>
-            {p.figma && <a href={p.figma} target="_blank" rel="noreferrer" className="rounded-xl border border-line px-5 py-2.5 font-semibold text-white/90 transition hover:bg-white/5">Figma 原型</a>}
-          </div>
-        </div>
-      </section>
+      <CaseFooter>
+        {p.figma && <Button href={p.figma}>{t('Figma 原型', 'Figma prototype')}</Button>}
+      </CaseFooter>
     </main>
   )
 }

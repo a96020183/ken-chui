@@ -1,26 +1,53 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { profile } from '../data/profile.js'
+import { LLink, useLang, useT, switchPath } from '../i18n.jsx'
+
+// 語言切換：換到另一種語言的同一頁，停在原本的捲動位置
+function LangSwitch() {
+  const lang = useLang()
+  const { pathname, hash } = useLocation()
+  const navigate = useNavigate()
+  const go = (to) => {
+    if (to === lang) return
+    navigate(switchPath(pathname, to) + hash, { state: { keepScroll: window.scrollY } })
+  }
+  const item = (code, label, aria) => (
+    <button
+      type="button"
+      onClick={() => go(code)}
+      aria-pressed={lang === code}
+      aria-label={aria}
+      className={`rounded-md px-2 py-1 text-[13px] font-medium transition duration-150 ease-out ${
+        lang === code ? 'bg-ink text-white' : 'text-mute hover:text-ink'
+      }`}
+    >
+      {label}
+    </button>
+  )
+  return (
+    <div className="flex items-center rounded-lg border border-line p-0.5" role="group" aria-label="Language">
+      {item('zh', '中', '切換到中文')}
+      {item('en', 'EN', 'Switch to English')}
+    </div>
+  )
+}
 
 export default function Nav() {
-  const { pathname } = useLocation()
-  const home = pathname === '/'
+  const t = useT()
+  const link = 'rounded-md px-2.5 py-1.5 text-[14px] text-ink2 transition duration-150 ease-out hover:text-ink'
   return (
-    <header className="sticky top-0 z-40 border-b border-line/60 bg-ink/80 backdrop-blur">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
-        <Link to="/" className="flex items-center gap-2.5">
-          <img src={profile.photo} alt={profile.name} className="h-9 w-9 rounded-full object-cover ring-1 ring-line" />
-          <div className="leading-tight">
-            <div className="text-sm font-bold">{profile.name}</div>
-            <div className="text-[11px] text-mute">{profile.nameZh}・作品集</div>
-          </div>
-        </Link>
-        <nav className="flex items-center gap-1 text-sm">
-          {!home && <Link to="/" className="rounded-lg px-3 py-1.5 text-mute transition hover:text-white hover:bg-white/5">← 首頁</Link>}
-          {home && <a href="#projects" className="rounded-lg px-3 py-1.5 text-mute transition hover:text-white hover:bg-white/5">作品</a>}
-          {home && <a href="#about" className="rounded-lg px-3 py-1.5 text-mute transition hover:text-white hover:bg-white/5">關於</a>}
-          <a href={profile.github} target="_blank" rel="noreferrer" className="rounded-lg px-3 py-1.5 text-mute transition hover:text-white hover:bg-white/5">GitHub</a>
-          <Link to="/cv" className="rounded-lg bg-brand px-3 py-1.5 font-semibold text-[#231600] transition hover:brightness-110">履歷</Link>
+    <header className="no-print sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur-md">
+      <div className="mx-auto flex h-14 w-full max-w-page items-center justify-between gap-4 px-5 sm:px-8">
+        <LLink to="/" className="flex items-baseline gap-2">
+          <span className="text-[15px] font-semibold tracking-[-0.01em] text-ink">{profile.name}</span>
+          <span className="hidden text-[13px] text-mute sm:inline">{profile.nameZh}</span>
+        </LLink>
+        <nav className="flex items-center gap-1 sm:gap-2">
+          <LLink to="/#work" className={`${link} hidden sm:inline-block`}>{t('作品', 'Work')}</LLink>
+          <LLink to="/#experience" className={`${link} hidden sm:inline-block`}>{t('經歷', 'Experience')}</LLink>
+          <LLink to="/cv" className={link}>{t('履歷', 'CV')}</LLink>
+          <LangSwitch />
         </nav>
       </div>
     </header>

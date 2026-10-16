@@ -1,270 +1,358 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
-import { projects, profile } from '../data/profile.js'
+import { LLink, useT, useTitle } from '../i18n.jsx'
+import { projects } from '../data/profile.js'
+import { Button, CaseHeader, Section, Prose, Roles, Items, List, Note, Frame, Gallery, CaseFooter } from '../components/ui.jsx'
 
 const p = projects.find((x) => x.slug === 'tapable-buildmode')
 
-// 只放跟公開 README 同層次的畫面：講它做到什麼，不講怎麼做到
-const shots = [
-  { src: '/tapable/deck-problem.jpg', cap: '為什麼要做 TapAble：視障友善 ATM 花了八年仍不足全台 1/4；列印機、批價機、點餐機連這條慢車道都沒有' },
-  { src: '/tapable/deck-solution.jpg', cap: '三段接力：Edge AI 看 → NFC 確認 → LLM 理解。安全判斷交給端側模型與規則引擎，不交給 LLM' },
-  { src: '/tapable/phone-connected.png', cap: 'Demo · 手機端：碰到 NFC 貼紙後確認機台，進入黑屏語音模式' },
-  { src: '/tapable/stage-completed.png', cap: 'Demo · 機台投影模式：流程走完，文件已印出' },
-  { src: '/tapable/field-vision-warning.jpg', cap: '實地測試：鏡頭端側辨識在校園走廊即時給出方向與障礙提示（畫面已去識別）' },
-]
+// 揭露原則：只講它做到什麼，不講怎麼做到；不寫定價、合作方、專利、路線圖、香港。
 
-function Stat({ big, label }) {
+// 同一個題目的歷程：日期在左，競賽與版本在右
+function Timeline({ rows }) {
   return (
-    <div className="rounded-2xl border border-line bg-card p-4 text-center">
-      <div className="text-2xl font-black text-brand md:text-3xl">{big}</div>
-      <div className="mt-1 text-[12px] text-mute">{label}</div>
-    </div>
-  )
-}
-function Section({ id, kicker, title, children }) {
-  return (
-    <section id={id} className="mx-auto max-w-4xl px-5 py-10">
-      {kicker && <div className="mb-1 text-[13px] font-bold text-cyan">{kicker}</div>}
-      <h2 className="text-2xl font-black md:text-3xl">{title}</h2>
-      <div className="mt-5">{children}</div>
-    </section>
-  )
-}
-function Card({ title, children, tone = 'brand' }) {
-  const c = tone === 'cyan' ? 'text-cyan' : tone === 'mint' ? 'text-mint' : tone === 'red' ? 'text-[#F26D6D]' : 'text-brand'
-  return (
-    <div className="rounded-2xl border border-line bg-card p-5">
-      <div className={`mb-2 font-bold ${c}`}>{title}</div>
-      <div className="text-[14px] leading-relaxed text-white/85">{children}</div>
-    </div>
+    <ol className="divide-y divide-line border-y border-line">
+      {rows.map((r, i) => (
+        <li key={i} className="grid gap-1 py-4 sm:grid-cols-[88px_1fr] sm:gap-6">
+          <span className="tnum text-[14px] text-mute">{r.date}</span>
+          <div className="min-w-0">
+            <div className="text-[15px] font-semibold text-ink">
+              {r.comp}
+              <span className="font-normal text-ink2"> · {r.result}</span>
+            </div>
+            {r.what && <div className="mt-1 text-[14.5px] leading-[1.7] text-ink2">{r.what}</div>}
+          </div>
+        </li>
+      ))}
+    </ol>
   )
 }
 
 export default function ProjectTapAble() {
+  const t = useT()
+  useTitle('TapAble · 徐浩華', 'TapAble · Ken Chui')
+
+  const shots = [
+    {
+      src: '/tapable/deck-problem.jpg',
+      caption: t(
+        '為什麼要做：視障友善 ATM 花了八年，仍不到全台的 1/4。列印機、批價機、點餐機連這條路都沒有。',
+        'Why it matters: accessible ATMs took eight years and still cover less than a quarter of Taiwan\'s machines. Printers, hospital payment kiosks and food kiosks have no such path at all.'
+      ),
+    },
+    {
+      src: '/tapable/deck-solution.jpg',
+      caption: t(
+        '三步接力：鏡頭看、NFC 確認、語言模型聽懂。安全判斷不交給語言模型。',
+        'Three steps in relay: the camera sees, NFC confirms, a language model understands. Safety calls never go to the language model.'
+      ),
+    },
+    {
+      src: '/tapable/phone-connected.png',
+      caption: t(
+        'Demo 手機畫面：碰到 NFC 貼紙、確認機台後，螢幕變黑，改用語音操作。',
+        'Demo, phone: after the NFC tap confirms the kiosk, the screen goes dark and voice takes over.'
+      ),
+    },
+    {
+      src: '/tapable/stage-completed.png',
+      caption: t('Demo 機台畫面：流程走完，文件已印出。', 'Demo, kiosk view: the flow is done and the document has printed.'),
+    },
+    {
+      src: '/tapable/field-vision-warning.jpg',
+      caption: t(
+        '實地測試：鏡頭在校園走廊即時提示方向和障礙物。畫面已去識別。',
+        'Field test: the camera gives live direction and obstacle cues in a campus corridor. Image de-identified.'
+      ),
+    },
+  ]
+
+  const lineage = [
+    {
+      date: '2026/06',
+      comp: t('全國商管暨跨域創新實務專題競賽', 'National Business & Cross-disciplinary Project Competition'),
+      result: t('跨域組第三名', '3rd place, cross-disciplinary'),
+      what: (
+        <>
+          <LLink to="/projects/yaoguang-whale" className="link">{t('瑤光深鯨', 'Yaoguang')}</LLink>
+          {t('，第一版。只有簡報和可以點的 Figma 原型。', ', the first version. Slides and a clickable Figma prototype.')}
+        </>
+      ),
+    },
+    {
+      date: '2026/08',
+      comp: t('第十屆 3S 創客競賽', '10th 3S Maker Competition'),
+      result: t('入圍獎', 'Finalist award'),
+      what: (
+        <>
+          {t('導航版。用 GIS 找出最缺無障礙服務的地方，再把人帶到可用的機台前。', 'Navigation version. Uses GIS to find where accessible service is most lacking, then guides people to a kiosk they can use. ')}
+          <a href="/yao-3s-demo/index.html" target="_blank" rel="noreferrer" className="link">{t('互動地圖', 'Map demo')}</a>
+        </>
+      ),
+    },
+    {
+      date: '2026/09',
+      comp: t('BUILDMODE 2026 GEN-AI 黑客松', 'BUILDMODE 2026 GEN-AI Hackathon'),
+      result: t('160 隊第二名', '2nd of 160 teams'),
+      what: t('第一次寫成能跑的程式，也就是這一頁的版本。', 'The first working code. This is the version on this page.'),
+    },
+    {
+      date: '2026/09',
+      comp: t('第六屆台灣尤努斯創新獎', '6th Taiwan Yunus Innovation Award'),
+      result: t('入圍決賽（233 組取 10）', 'Finalist, top 10 of 233'),
+    },
+    {
+      date: '2026/10',
+      comp: t('LINE AI 創新創業競賽', 'LINE AI Innovation & Entrepreneurship Competition'),
+      result: t('第三名', '3rd place'),
+      what: t(
+        'LINE 官方帳號版。碰一下 NFC 貼紙就有語音引導，餐點好了，號碼直接推到手機。',
+        'LINE Official Account version. Tap an NFC sticker for voice guidance, and the order number is pushed to your phone when the food is ready.'
+      ),
+    },
+    {
+      date: '2026/10',
+      comp: t('2026 AI 創意設計大賽 AIDA', 'AIDA 2026 AI Creative Design Award'),
+      result: t('決賽', 'Finalist'),
+    },
+  ]
+
   return (
     <main>
-      {/* HERO */}
-      <section className="pp-ring border-b border-line/60">
-        <div className="mx-auto max-w-4xl px-5 py-14">
-          <div className="mb-3 flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-brand/15 px-3 py-1 text-[13px] font-bold text-brand">{p.award}</span>
-            {p.startup && <span className="rounded-full bg-mint/15 px-3 py-1 text-[13px] font-bold text-mint">🚀 創業進行中</span>}
-            <span className="text-[13px] text-mute">{p.period}</span>
-          </div>
-          <h1 className="text-3xl font-black leading-tight md:text-5xl">{p.title}</h1>
-          <p className="mt-3 text-[15px] font-semibold text-cyan">{p.host}</p>
-          <p className="mt-0.5 text-[13px] text-mute">{p.event}</p>
-          <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-white/85">{p.summary}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a href={p.demoUrl} target="_blank" rel="noreferrer"
-              className="rounded-xl bg-brand px-5 py-2.5 font-bold text-[#231600] shadow-glow transition hover:brightness-110">▶ 開啟線上 Demo</a>
-            <a href={p.video} target="_blank" rel="noreferrer"
-              className="rounded-xl border border-line px-5 py-2.5 font-semibold text-white/90 transition hover:bg-white/5">看 2 分鐘影片</a>
-            <a href={p.repo} target="_blank" rel="noreferrer"
-              className="rounded-xl border border-line px-5 py-2.5 font-semibold text-white/90 transition hover:bg-white/5">GitHub 原始碼（MIT）</a>
-          </div>
-          <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-            <Stat big="🥈 第二名" label="160 隊 · 全場排名" />
-            <Stat big="3 天" label="從題目到可玩的開源雛形" />
-            <Stat big="0 改造" label="機台零硬體改動" />
-            <Stat big="0 違規" label="axe · WCAG 2.1 A/AA · 18 畫面" />
-          </div>
-        </div>
-      </section>
+      <CaseHeader
+        result={t(p.result)}
+        period={t(p.period)}
+        title={t(p.title)}
+        org={t(p.org)}
+        event={t('隊名 ChatKTV', 'Team ChatKTV')}
+        summary={t(
+          '點餐機、批價機、列印機大多沒有語音。TapAble 讓視障者碰一下貼紙，就能用自己的手機一步一步完成操作，機台不用換硬體。這個題目是我想的。在 BUILDMODE 黑客松，它第一次變成能跑的程式。',
+          'Most food kiosks, hospital payment machines and printers have no voice output. With TapAble, a blind user taps a sticker and finishes the task step by step on their own phone, with no hardware change to the kiosk. The idea is mine. At the BUILDMODE hackathon it became working software for the first time.'
+        )}
+        actions={
+          <>
+            <Button primary href={p.demoUrl}>{t('開啟 Demo', 'Open demo')}</Button>
+            <Button href={p.video}>{t('看影片（1 分 47 秒）', 'Watch video (1:47)')}</Button>
+          </>
+        }
+        facts={[
+          { label: t('團隊', 'Team'), value: t('5 人', '5 people') },
+          { label: t('黑客松開發', 'Hackathon build'), value: t('3 天', '3 days') },
+          { label: t('機台硬體改動', 'Kiosk hardware changes'), value: t('零', 'None') },
+          { label: t('無障礙掃描（18 個畫面）', 'Accessibility scan (18 screens)'), value: t('0 項違規', '0 violations') },
+        ]}
+      />
 
-      {/* 我的角色 */}
-      <Section kicker="MY ROLE" title="我的角色">
-        <p className="mb-5 text-[15px] leading-relaxed text-white/85">
-          這個題目是我在校內競賽<Link to="/projects/yaoguang-whale" className="text-brand underline underline-offset-2">瑤光深鯨</Link>原創發想的，
-          黑客松是它第一次<b className="text-white">從簡報變成能跑的程式</b>。
-        </p>
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="我負責的部分" tone="brand">
-            隊長與統籌。產品定義與操作流程設計、<b className="text-white">約 95% 的程式開發</b>（以 AI agent 協作）、
-            田野驗證的方法設計、對外文件與繳交。
-          </Card>
-          <Card title="團隊分工" tone="cyan">
-            5 人團隊 ChatKTV（北科大 × 銘傳）。一位組員負責其餘約 5% 程式、簡報製作與上台報告；
-            另三位負責研究素材、影片腳本與拍攝——其中一位在賽前完成了三位視障者的訪談。
-            <span className="text-mute"> 只有兩人碰 code 是刻意的流程設計：三天內整合看不懂 diff 的人的程式，期望值是負的。</span>
-          </Card>
+      <Section title={t('我的角色', 'My role')}>
+        <Prose className="mb-10">
+          <p>
+            {t('這個題目我最早做成', 'The idea started as ')}
+            <LLink to="/projects/yaoguang-whale" className="link">{t('瑤光深鯨', 'Yaoguang')}</LLink>
+            {t(
+              '，參加全國商管跨域競賽。黑客松是它第一次從簡報變成能跑的程式。',
+              ', my entry to a national business competition. The hackathon was the first time it went from slides to working code.'
+            )}
+          </p>
+        </Prose>
+        <Roles
+          mine={t(
+            <>我是隊長。題目由我原創，我定義產品和操作流程，並和 AI agent 協作寫了<b>約 95% 的程式</b>。田野驗證的方法也由我設計，對外文件和繳交由我負責。</>,
+            <>I led the team. The idea was mine. I defined the product and the interaction flow, and wrote <b>about 95% of the code</b> working with AI agents. I also designed the field-testing method and handled the written submission.</>
+          )}
+          team={t(
+            <>5 人團隊 ChatKTV，成員來自北科大和銘傳。一位隊友寫其餘約 5% 的程式，做簡報並上台報告。另外三位負責研究素材、影片腳本和拍攝，其中一位在賽前訪談了三位視障者。只讓兩個人碰程式是刻意的：三天內要整合看不懂 diff 的人寫的程式，得不償失。</>,
+            <>Team ChatKTV, five people from Taipei Tech and Ming Chuan University. One teammate wrote the remaining 5% or so of the code, built the slides and presented. The other three handled research material, the video script and filming. One of them interviewed three blind users before the event. Keeping code to two people was deliberate: in three days, merging code from someone who can't read the diff costs more than it saves.</>
+          )}
+        />
+      </Section>
+
+      <Section title={t('要解決的問題', 'The problem')}>
+        <Prose className="mb-10">
+          <p>{t('全台視障者約 5.4 萬人，重度以上約 2.25 萬人。', 'Taiwan has about 54,000 blind and low-vision people, about 22,500 of them severe.')}</p>
+          <p>
+            {t(
+              <>公共服務全面改成觸控之後，問題不只是看不到螢幕。<b>從找到機台、確認機台到操作，每一步都可能卡住。</b></>,
+              <>Now that public services run on touchscreens, the problem is bigger than not seeing a screen. <b>Finding the kiosk, confirming it and operating it can each break down.</b></>
+            )}
+          </p>
+        </Prose>
+        <Items
+          cols={3}
+          items={[
+            { title: t('找到機台難', 'Finding it'), body: t('室內定位不穩。使用者很難知道哪台機器能用、在哪個方向。', 'Indoor positioning is unreliable. It is hard to know which machine works and which way to go.') },
+            { title: t('確認機台難', 'Confirming it'), body: t('NFC 感應區很小，貼紙位置也不一樣。走到面前了，還得摸索。', 'NFC zones are small and stickers sit in different places. Even standing in front of it, you still have to search.') },
+            { title: t('操作機台難', 'Operating it'), body: t('螢幕是平的，沒有實體回饋。操作時很容易失去自主和隱私。', 'A flat screen gives no physical feedback. Users lose independence and privacy while operating it.') },
+          ]}
+        />
+        <div className="mt-10">
+          <Note title={t('法規有用，但很慢，而且只管到金融', 'Regulation works, but slowly, and only for banking')}>
+            <p>
+              {t(
+                <>ATM 是唯一有主管機關盯著的機台。到 2025 年 8 月，視障可用的 ATM 有 <b>7,881 台</b>，還不到全台約 3.35 萬台的 <b>1/4</b>。這是花了八年一台一台改出來的。</>,
+                <>ATMs are the only kiosks a regulator watches. By August 2025, <b>7,881</b> ATMs were usable by blind people, less than <b>a quarter</b> of Taiwan's roughly 33,500. That took eight years, one machine at a time.</>
+              )}
+            </p>
+            <p className="mt-2">
+              {t(
+                '校園列印機、醫院批價機、點餐機和售票機，連這條慢路都沒有。所以我們不改機器，改成讓使用者用自己的手機接手。',
+                'Campus printers, hospital payment kiosks, food kiosks and ticket machines don\'t even have that slow path. So instead of changing the machines, we let users take over with their own phones.'
+              )}
+            </p>
+          </Note>
         </div>
       </Section>
 
-      {/* 問題 */}
-      <Section kicker="THE PROBLEM" title="要解決的問題：摸不到按鍵的玻璃">
-        <p className="mb-4 text-[15px] leading-relaxed text-white/85">
-          全台視障者約 5.4 萬人（重度以上約 2.25 萬）。公共服務全面觸控化之後，
-          <b className="text-white">問題不是看不到一個螢幕，而是從找到、確認到操作，整條流程都可能中斷。</b>
-        </p>
-        <div className="grid gap-4 md:grid-cols-3">
-          <Card title="找到機台難" tone="red">室內定位不穩，使用者很難快速確認哪一台設備可用、在哪個方向。</Card>
-          <Card title="確認機台難" tone="brand">NFC 感應區小、貼紙位置不一，靠近之後仍需要摸索。</Card>
-          <Card title="操作機台難" tone="cyan">螢幕平面化、缺乏實體回饋，操作過程容易失去自主與隱私。</Card>
-        </div>
-        <div className="mt-4 rounded-2xl border border-line bg-card p-5">
-          <div className="mb-2 font-bold text-cyan">監理有效，但太慢、而且只發生在金融場域</div>
-          <ul className="space-y-1.5 text-[14px] text-white/85">
-            <li>• ATM 是唯一有主管機關盯著的機台。到 2025 年 8 月，視障可用 ATM <b className="text-white">7,881 台</b>，仍不足全台約 3.35 萬台的 <b className="text-white">1/4</b>——花了八年逐台派工。</li>
-            <li>• 校園列印機、醫院批價機、點餐機、售票機，連這條慢車道都沒有。</li>
-            <li>• 與其一台一台改造機器，我們選擇<b className="text-white">讓使用者用自己的手機接管它</b>。</li>
-          </ul>
-        </div>
-      </Section>
-
-      {/* 解法 */}
-      <Section kicker="THE SOLUTION" title="TapAble：讓手機成為視障者的無障礙操作層">
-        <div className="grid gap-4 md:grid-cols-3">
-          <Card title="① Edge AI 看" tone="brand">走完最後十公尺。手機鏡頭在端側辨識機台、門、樓梯與障礙物，轉成「兩點鐘方向」這類語音提示；影像不上傳、辨識完即丟棄。</Card>
-          <Card title="② NFC 確認" tone="cyan">靠近後碰一下貼紙，手機立刻知道面前是哪一台機器、有哪些選項；鏡頭關閉，切換黑屏防窺模式，語音只進使用者自己的耳機。</Card>
-          <Card title="③ LLM 理解" tone="mint">「我要證明我還在念書的那張紙」——大型語言模型聽懂口語，轉成機台的結構化選項（服務：在學證明・份數：2），再由語音逐步引導完成。</Card>
-        </div>
-        <div className="mt-4 grid gap-4 md:grid-cols-2">
-          <Card title="安全不交給 LLM" tone="brand">
-            LLM 只負責「聽懂」，不負責即時安全判斷。意圖解析採雙層設計：端側規則引擎先接，LLM 超時自動退回規則；
-            使用者說完後系統會<b className="text-white">複述一次、等確認</b>才執行——語音永遠不會直接觸發付款或送出。
-          </Card>
-          <Card title="離線也能用" tone="cyan">
-            PWA 預快取端側視覺模型，除了 LLM 這一步之外全程不需網路；
-            瀏覽器原生語音合成與辨識，不綁任何一家硬體或 App 商店。
-          </Card>
-        </div>
-      </Section>
-
-      {/* Demo */}
-      <Section id="demo" kicker="LIVE DEMO" title="線上可玩的 Demo">
-        <p className="mb-4 text-[15px] leading-relaxed text-white/85">
-          以「校園文件列印機」為場景的完整操作動線。<span className="text-mute">內嵌版本可以直接點；語音輸入與鏡頭需要瀏覽器權限，建議在新分頁開啟、用手機體驗最完整。</span>
-        </p>
-        <div className="overflow-hidden rounded-2xl border border-line bg-ink2 shadow-card">
-          <div className="flex items-center gap-1.5 border-b border-line/60 px-4 py-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-[#F26D6D]" />
-            <span className="h-2.5 w-2.5 rounded-full bg-brand" />
-            <span className="h-2.5 w-2.5 rounded-full bg-mint" />
-            <span className="ml-3 text-[12px] text-mute">TapAble · 校園列印機 Demo</span>
-            <a href={p.demoOpUrl} target="_blank" rel="noreferrer" className="ml-auto text-[12px] text-cyan hover:underline">在新分頁全螢幕開啟 ↗</a>
-          </div>
-          <iframe
-            src={p.demoOpUrl}
-            title="TapAble Demo"
-            className="h-[720px] w-full"
-            loading="lazy"
-            allow="camera; microphone; autoplay"
+      <Section title={t('怎麼運作', 'How it works')} aside={t('手機變成視障者自己的操作介面。', 'The phone becomes the user\'s own interface to the kiosk.')}>
+        <Items
+          cols={3}
+          items={[
+            {
+              title: t('1. 鏡頭看', '1. See'),
+              body: t(
+                '走完最後十公尺。鏡頭在手機上辨識機台、門、樓梯和障礙物，轉成「兩點鐘方向」這樣的語音提示。影像不上傳，辨識完就丟掉。',
+                'Covers the last ten metres. The camera recognises the kiosk, doors, stairs and obstacles on the phone and turns them into cues like "two o\'clock". Images never leave the phone and are discarded after use.'
+              ),
+            },
+            {
+              title: t('2. NFC 確認', '2. Confirm'),
+              body: t(
+                '碰一下貼紙，手機就知道面前是哪台機器、有哪些選項。鏡頭關掉，螢幕變黑防偷看，語音只進使用者自己的耳機。',
+                'One tap on the sticker tells the phone which machine this is and what it offers. The camera turns off, the screen goes dark against prying eyes, and audio goes only to the user\'s own earphones.'
+              ),
+            },
+            {
+              title: t('3. 語言模型聽懂', '3. Understand'),
+              body: t(
+                '使用者說「我要證明我還在念書的那張紙」。語言模型把它換成機台的選項，例如在學證明、2 份，再用語音一步一步帶著做完。',
+                'The user says "the paper that proves I\'m still a student". A language model maps it to the kiosk\'s options, such as an enrolment certificate, two copies, and voice guides each step.'
+              ),
+            },
+          ]}
+        />
+        <div className="mt-10">
+          <Items
+            items={[
+              {
+                title: t('安全不交給語言模型', 'Safety never goes to the language model'),
+                body: t(
+                  <>語言模型只負責聽懂，不做即時的安全判斷。它回應太慢時，手機上的規則會接手。使用者說完，系統先<b>複述一次、等確認</b>才執行。光靠語音，不會直接付款或送出。</>,
+                  <>The language model only interprets. It never makes real-time safety calls, and on-device rules take over if it is slow. The system <b>repeats the request and waits for a yes</b> before acting, so voice alone never triggers a payment or submission.</>
+                ),
+              },
+              {
+                title: t('沒網路也能用', 'Works offline'),
+                body: t(
+                  '除了聽懂口語這一步，整個流程都不需要網路。語音用瀏覽器內建的功能，不綁特定硬體或 App 商店。',
+                  'Apart from the language step, the whole flow works offline. Speech uses the browser\'s built-in features, so it isn\'t tied to any hardware or app store.'
+                ),
+              },
+            ]}
           />
         </div>
-        <div className="mt-4 flex flex-wrap gap-3">
-          <a href={p.demoUrl} target="_blank" rel="noreferrer" className="rounded-xl border border-line px-4 py-2 text-[13px] font-semibold text-white/90 transition hover:bg-white/5">入口導覽頁（有語音介紹）</a>
-          <a href={p.demoOpUrl} target="_blank" rel="noreferrer" className="rounded-xl border border-line px-4 py-2 text-[13px] font-semibold text-white/90 transition hover:bg-white/5">完整操作 Demo</a>
-          <a href={p.demoVisionUrl} target="_blank" rel="noreferrer" className="rounded-xl border border-line px-4 py-2 text-[13px] font-semibold text-white/90 transition hover:bg-white/5">鏡頭導引（需相機）</a>
+      </Section>
+
+      <Section
+        id="demo"
+        title={t('線上 Demo', 'Live demo')}
+        aside={t(
+          '場景是校園文件列印機。可以直接在這裡點。語音和鏡頭需要瀏覽器權限，用手機在新分頁開最完整。',
+          'The scenario is a campus document printer. You can click through it here. Voice and camera need browser permission, so it works best in a new tab on a phone.'
+        )}
+      >
+        <Frame
+          src={p.demoOpUrl}
+          title={t('TapAble · 校園列印機 Demo', 'TapAble · campus printer demo')}
+          height="h-[720px]"
+          openHref={p.demoOpUrl}
+          allow="camera; microphone; autoplay"
+        />
+        <div className="no-print mt-6 flex flex-wrap gap-3">
+          <Button href={p.demoUrl}>{t('入口導覽（有語音介紹）', 'Start page (with voice intro)')}</Button>
+          <Button href={p.demoOpUrl}>{t('完整操作 Demo', 'Full walkthrough')}</Button>
+          <Button href={p.demoVisionUrl}>{t('鏡頭導引（需要相機）', 'Camera guidance (needs camera)')}</Button>
         </div>
       </Section>
 
-      {/* 影片 */}
-      <Section kicker="VIDEO" title="評選影片（1 分 47 秒）">
-        <p className="mb-4 text-[14px] leading-relaxed text-white/70">
-          在真實的校園文件列印機前、戴眼罩實測的最終產出。
-        </p>
-        <div className="overflow-hidden rounded-2xl border border-line bg-ink2 shadow-card">
-          <iframe
-            src={p.videoEmbed}
-            title="TapAble 評選影片"
-            className="aspect-video w-full"
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowFullScreen
+      <Section
+        title={t('評選影片', 'Judging video')}
+        aside={t('1 分 47 秒。在真實的校園文件列印機前，戴眼罩實測。', '1 minute 47 seconds. Filmed blindfolded at a real campus document printer.')}
+      >
+        <Frame
+          video
+          src={p.videoEmbed}
+          title={t('TapAble 評選影片', 'TapAble judging video')}
+          openHref={p.video}
+          openLabel={t('在 YouTube 開啟', 'Open on YouTube')}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        />
+      </Section>
+
+      <Section title={t('驗證了什麼、還沒驗證什麼', 'What we tested, and what we haven\'t')}>
+        <h3 className="text-[15px] font-semibold text-ink">{t('做過的驗證', 'What we tested')}</h3>
+        <div className="mt-3">
+          <List
+            items={[
+              t('在真實的校園文件列印機前戴眼罩實測，完整跑通取件流程。', 'Ran the full pick-up flow blindfolded at a real campus document printer.'),
+              t('賽前訪談 3 位視障者確認需求。概念滿意度 4.67 / 5，只有 3 人，屬於探索性質。', 'Interviewed 3 blind users before the event to confirm the need. Concept satisfaction was 4.67 / 5, from only three people, so it is exploratory.'),
+              t('意圖解析有 85 個單元測試，另有 80 個以上的回歸案例。', 'Intent parsing has 85 unit tests plus more than 80 regression cases.'),
+              t('axe-core 掃描 18 個畫面，WCAG 2.1 A/AA 違規 0 項。', 'axe-core scan of 18 screens: 0 WCAG 2.1 A/AA violations.'),
+              t(
+                <>黑客松之後，<b>2 位視障按摩師</b>實際試用了 LINE 版的點餐流程。</>,
+                <>After the hackathon, <b>2 visually impaired massage therapists</b> tried the ordering flow in the LINE version.</>
+              ),
+            ]}
+          />
+        </div>
+        <h3 className="mt-10 text-[15px] font-semibold text-ink">{t('限制', 'Limits')}</h3>
+        <div className="mt-3">
+          <List
+            tone="mute"
+            items={[
+              t('黑客松提交時，還沒有視障者試用過。戴眼罩實測的都是明眼人。', 'At the hackathon submission, no blind user had tried it yet. Everyone in the blindfold tests was sighted.'),
+              t('兩位按摩師的試用是第一次真人回饋，還不能據此說他們能獨立完成。', 'The two therapists\' trial was our first real-user feedback. It does not yet show that they can finish on their own.'),
+              t('Demo 裡的 Web NFC 用按鈕模擬。真實機台要能代按按鍵，需要機台營運方配合。', 'Web NFC is simulated with a button in the demo. Pressing buttons on a real kiosk needs the kiosk operator\'s cooperation.'),
+              t('早期原型曾用公分報距離。因為沒有實測完成，就拿掉了，不編數字。', 'An early prototype gave distances in centimetres. We hadn\'t finished testing it, so we removed it rather than make up numbers.'),
+            ]}
           />
         </div>
       </Section>
 
-      {/* 驗證 */}
-      <Section kicker="VALIDATION" title="驗證了什麼、沒驗證什麼">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="做了的驗證" tone="mint">
-            <ul className="space-y-1.5">
-              <li>• 真實機台（校園文件列印機）戴眼罩實測，完整跑通取件流程。</li>
-              <li>• 訪談 3 位視障者驗證需求；概念滿意度 4.67 / 5（n=3，探索性質）。</li>
-              <li>• 意圖解析 85 個單元測試＋80 個以上回歸案例；八句口語實測表公開在 repo。</li>
-              <li>• axe-core 無障礙掃描 18 個畫面，WCAG 2.1 A/AA 違規 0 項。</li>
-            </ul>
-          </Card>
-          <Card title="誠實揭露的限制" tone="red">
-            <ul className="space-y-1.5">
-              <li>• 戴眼罩的測試者是明眼人，<b className="text-white">截至提交尚無視障者實際操作過本作品</b>。</li>
-              <li>• Web NFC 在 demo 中以按鈕模擬；真實機台的履約層需要銀行／機台營運方合作。</li>
-              <li>• 早期原型曾給出以公分計的距離提示，因實測未完成而移除——不編造數據。</li>
-            </ul>
-          </Card>
-        </div>
-        <p className="mt-4 text-[13px] leading-relaxed text-mute">
-          這套「誠實揭露限制的驗證型團隊」姿態是策略不是妥協：三天做得到的是引導層，做不到的就寫清楚做不到。
-        </p>
-      </Section>
-
-      {/* 商業模式 */}
-      <Section kicker="BUSINESS MODEL" title="誰付費、量什麼">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="視障者永遠免費" tone="brand">
-            付費的是機台擁有者——銀行、醫院、機台營運方。第一批客戶最可能是已經在花錢做語音無障礙的 ATM 業者；
-            交付形式可以是銀行 App SDK，或 LINE 輕量網頁免下載。
-          </Card>
-          <Card title="North Star：獨立完成率" tone="cyan">
-            我們要衡量的不是 AI 多準，而是<b className="text-white">人能不能在不依賴他人的情況下真正完成一件事</b>。
-            這個數字同時就是企業可追蹤的普惠金融／ESG 實績。
-          </Card>
-        </div>
-        <div className="mt-4 rounded-2xl border border-line bg-card p-5 text-[13.5px] leading-relaxed text-mute">
-          「零介接」只對<b className="text-white/85">語音引導層</b>成立；真正代替使用者按下機台按鍵的<b className="text-white/85">履約層</b>需要機台端 API，這是下一階段要與合作方一起做的事。
-          黑客松版本以 MIT 開源作為歷史證明；商業化開發於私有倉進行，實施細節不公開。
+      <Section title={t('誰付費、量什麼', 'Who pays, and what we measure')}>
+        <Items
+          items={[
+            {
+              title: t('視障者永遠免費', 'Always free for blind users'),
+              body: t('付費的是機台擁有者，像銀行、醫院和機台營運方。', 'Kiosk owners pay: banks, hospitals and kiosk operators.'),
+            },
+            {
+              title: t('北極星指標：獨立完成率', 'North star: independent completion rate'),
+              body: t(
+                <>我們要量的不是 AI 多準，而是<b>使用者能不能不靠別人，真的把事情做完</b>。這個數字也是企業能追蹤的普惠金融和 ESG 成果。</>,
+                <>We don't measure how accurate the AI is. We measure <b>whether people finish the task without help</b>. Kiosk owners can track that same number as financial inclusion and ESG progress.</>
+              ),
+            },
+          ]}
+        />
+        <div className="mt-10">
+          <Note>
+            {t(
+              '「機台不用改」只對語音引導這一層成立。要真的替使用者按下機台按鍵，需要機台端配合。實施細節不公開。',
+              '"No change to the kiosk" holds for the voice guidance layer only. Actually pressing the kiosk\'s buttons for the user needs the kiosk side to cooperate. Implementation details are not public.'
+            )}
+          </Note>
         </div>
       </Section>
 
-      {/* 脈絡 */}
-      <Section kicker="LINEAGE" title="同一個題目，走了一年">
-        <div className="grid gap-3 md:grid-cols-4">
-          {[
-            { t: '瑤光深鯨', s: '全國商管跨域競賽 · 🥉 第三名', d: '原創發想；簡報＋Figma 原型', to: '/projects/yaoguang-whale' },
-            { t: '空間資訊版', s: '3S 創客競賽 · 🏅 入圍獎', d: '延伸到 GIS / GNSS 場域' },
-            { t: 'TapAble', s: 'BUILDMODE 黑客松 · 🥈 160 隊第二', d: '第一次變成能跑的程式並開源' },
-            { t: 'AI 輔助迭代', s: '台灣尤努斯創新獎 · 決賽 9/12', d: '233 組晉級決賽，創業主力版本' },
-          ].map((x) => {
-            const inner = (
-              <>
-                <div className="font-black text-white">{x.t}</div>
-                <div className="mt-1 text-[12.5px] font-semibold text-cyan">{x.s}</div>
-                <div className="mt-1.5 text-[12.5px] text-mute">{x.d}</div>
-              </>
-            )
-            const base = 'rounded-2xl border border-line bg-card p-4'
-            return x.to
-              ? <Link key={x.t} to={x.to} className={`${base} transition hover:border-brand/50`}>{inner}</Link>
-              : <div key={x.t} className={base}>{inner}</div>
-          })}
-        </div>
+      <Section title={t('同一個題目，一路做下來', 'One idea, six competitions')} aside={t('從第一版的簡報，到 LINE 上可以點餐的版本。', 'From first-version slides to a LINE version you can order food with.')}>
+        <Timeline rows={lineage} />
       </Section>
 
-      {/* 畫面 */}
-      <Section kicker="GALLERY" title="畫面精選">
-        <div className="grid gap-5 md:grid-cols-2">
-          {shots.map((s) => (
-            <a key={s.src} href={s.src} target="_blank" rel="noreferrer" className="group block overflow-hidden rounded-2xl border border-line bg-ink2">
-              <img src={s.src} alt={s.cap} loading="lazy" className="w-full transition group-hover:opacity-90" />
-              <div className="px-4 py-3 text-[13px] text-white/80">{s.cap}</div>
-            </a>
-          ))}
-        </div>
+      <Section title={t('畫面', 'Screens')}>
+        <Gallery shots={shots} />
       </Section>
 
-      {/* CTA */}
-      <section className="mx-auto max-w-4xl px-5 pb-16">
-        <div className="rounded-2xl border border-line bg-gradient-to-br from-card to-ink2 p-8 text-center">
-          <div className="text-lg font-bold">對無障礙、機台場域或這個題目有興趣？</div>
-          <div className="mt-4 flex flex-wrap justify-center gap-3">
-            <a href={`mailto:${profile.email}`} className="rounded-xl bg-brand px-5 py-2.5 font-bold text-[#231600] transition hover:brightness-110">聯絡我</a>
-            <a href={p.demoUrl} target="_blank" rel="noreferrer" className="rounded-xl border border-line px-5 py-2.5 font-semibold text-white/90 transition hover:bg-white/5">▶ 開啟 Demo</a>
-            <a href={p.repo} target="_blank" rel="noreferrer" className="rounded-xl border border-line px-5 py-2.5 font-semibold text-white/90 transition hover:bg-white/5">GitHub</a>
-          </div>
-        </div>
-      </section>
+      <CaseFooter>
+        <Button href={p.demoUrl}>{t('開啟 Demo', 'Open demo')}</Button>
+      </CaseFooter>
     </main>
   )
 }

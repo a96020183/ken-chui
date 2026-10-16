@@ -1,259 +1,234 @@
-// 個人資料與作品集內容（集中管理，之後加比賽只改這裡）
+// 個人資料與作品集內容（集中管理，中英文都在這裡）
+// 欄位可以是字串，或 { zh, en }，畫面用 useT() 取對應語言。
+// 學歷與香港經歷不寫年份（使用者要求）。
 
 export const profile = {
   name: 'Ken Chui',
   nameZh: '徐浩華',
-  title: '產品經理（PM）· 會自己動手做的產品人',
-  titleEn: 'Product Manager',
-  tagline: '心理學＋商管背景 × PM 實務經驗：用產品與商業視角理解問題，也能親手把想法做成能跑的產品。',
-  location: '台北 · 來自香港',
+  role: { zh: 'AI 產品經理', en: 'AI Product Manager' },
+  headline: {
+    zh: ['寫得出規格，', '也做得出產品。'],
+    en: ['I write the spec.', 'Then I build it.'],
+  },
+  lede: {
+    zh: 'CMoney 的 AI 產品經理。下班後和四位隊友做 TapAble，讓視障者用自己的手機操作公共觸控機台。',
+    en: 'AI Product Manager at CMoney. Outside work I co-founded TapAble with four teammates. It lets blind people use public touchscreen kiosks from their own phones.',
+  },
+  location: { zh: '台北', en: 'Taipei' },
   email: 'a96020183@gmail.com',
   phone: '0901-404-044',
   github: 'https://github.com/a96020183',
-  cv: '/cv',
-  cvImage: '/cv.png',
   photo: '/icon.png',
-  languages: ['粵語（母語）', '國語（精通）', '英語（精通）'],
-  certs: ['GA4 數據分析', 'Google Ads（App）', 'Google Ads（AI）', 'Google Ads（評估）'],
-  // CV 頁專用的技能分組（Home 仍用 productSkills / techSkills）
-  cvSkillGroups: [
-    { label: '產品設計', items: ['Figma', 'PRD 撰寫', '使用者路徑分析', '競品分析', '田野驗證設計'] },
-    { label: '數據分析', items: ['Firebase', 'Mixpanel', 'GA4', '埋點規劃', 'SQL', 'SAP'] },
-    { label: '前端開發', items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python'] },
-    { label: 'AI 與雲端', items: ['Prompt Engineering', 'LLM 產品設計（RAG / Agent）', 'Edge AI（TensorFlow.js）', 'AI Prototyping', 'AWS Amplify / Bedrock'] },
+
+  now: [
+    { label: { zh: '現在', en: 'Now' }, text: { zh: 'CMoney AI 產品經理', en: 'AI Product Manager, CMoney' }, to: '/#experience' },
+    { label: { zh: '在做', en: 'Building' }, text: { zh: 'TapAble 共同創辦人', en: 'Co-founder, TapAble' }, to: '/projects/tapable-buildmode' },
+    { label: { zh: '最近', en: 'Latest' }, text: { zh: 'LINE AI 創新創業競賽第三名', en: '3rd place, LINE AI Innovation & Entrepreneurship Competition' }, to: '/#awards' },
   ],
-  intro: [
-    '國立臺北科技大學經營管理系畢業（2026）。商管訓練讓我習慣先從商業問題與使用者需求出發，再決定怎麼做。',
-    '現任 CMoney 產品經理——2025 年 6 月以產品企劃實習生加入，2026 年 9 月轉正。從痛點研究、埋點與數據分析、Figma 介面設計，到功能發想、實作、測試與上架送審都實際做過，是那種「什麼都碰、把產品推上線」的產品人。',
-    '我的差異化：不只做規劃，也能自己寫程式把原型做出來。最近一次是在 3 天黑客松裡帶隊做出 TapAble，160 隊中拿下第二名，現正把它推向創業。',
-  ],
-  // 兩類技能：產品是本業，技術是差異化武器
-  productSkills: ['產品規劃', '需求分析 / PRD', '埋點與數據分析', '使用者痛點研究', '田野驗證與訪談', 'Figma / UI 設計', '競品分析'],
-  techSkills: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python', 'Firebase', 'AWS (Amplify / Bedrock)', 'Prompt Engineering', 'LLM 應用開發', 'TensorFlow.js（Edge AI）', 'Web Speech API'],
+
+  about: {
+    zh: [
+      '我習慣先找到卡住的人，再自己把東西做出來。需求研究、埋點和數據分析、Figma 設計、寫程式做原型、測試、上架送審，這些我都做過。',
+      '在 CMoney，我用 Mixpanel 和 Firebase 找出使用者流失的地方，幫產品下半年的年增率由負轉正，最高單月成長 70.7%。',
+      '商管和心理學的背景，讓我看產品時同時想兩件事：這門生意算不算得過來，以及使用者心裡真正在意什麼。',
+    ],
+    en: [
+      'I start with the person who is stuck, then build what gets them unstuck. I have done every step of that loop: user research, event tracking and analysis, Figma design, coding prototypes, testing and app store release.',
+      'At CMoney I used Mixpanel and Firebase to find where users dropped off. The product\'s second-half year-over-year growth turned from negative to positive, peaking at +70.7% in one month.',
+      'A business degree and a psychology background mean I look at every product two ways: does the business work, and what does the user actually care about.',
+    ],
+  },
+
   experience: [
     {
-      role: '產品經理（PM）',
       org: 'CMoney',
-      period: '2026/09 – 至今（正職）',
+      role: { zh: 'AI 產品經理', en: 'AI Product Manager' },
+      period: { zh: '2026/09 – 現在', en: 'Sep 2026 – Present' },
       points: [
-        '實習期滿轉正，負責 VIP 作者事業「林恩如」作者產品線（iOS／Android／PC／Web 多平台並行）。',
-        '從需求規劃、埋點與數據分析、介面設計、開發協作、測試到上架送審，端到端負責產品線的版本推進。',
+        { zh: '負責 VIP 作者「林恩如」的產品線，iOS、Android、PC、Web 四個平台同時推版本。', en: 'Own a VIP creator\'s product line, shipping on iOS, Android, PC and web at the same time.' },
+        { zh: '從需求、埋點、介面設計、和工程協作、測試到上架送審，一路負責到底。', en: 'Run features end to end: requirements, event tracking, UI design, engineering hand-off, QA and store release.' },
       ],
     },
     {
-      role: '產品企劃實習（APM）',
       org: 'CMoney',
-      period: '2025/06 – 2026/08',
+      role: { zh: '產品企劃實習生', en: 'Associate Product Manager Intern' },
+      period: { zh: '2025/06 – 2026/08', en: 'Jun 2025 – Aug 2026' },
       points: [
-        '前期參與多項股票類產品；後期加入「權證小哥」作者產品線，協助資深 PM 進行功能規劃與落地。',
-        '實際參與功能的完整流程：使用者痛點研究 → 埋點與 Firebase 數據分析 → Figma 介面設計 → 功能發想與實作 → 功能測試 → 上架送審。',
-        '以 Mixpanel／Firebase 分析流失節點，協助產品下半年 YoY 由負轉正，最高單月成長 +70.7%。',
+        { zh: '前期參與多個股票類產品，後期加入「權證小哥」產品線，協助資深 PM 規劃功能。', en: 'Worked on several stock-investing apps, then joined a creator product line to help a senior PM plan and ship features.' },
+        { zh: '用 Mixpanel 和 Firebase 找出使用者流失的地方，幫產品下半年年增率由負轉正，最高單月成長 70.7%。', en: 'Found drop-off points with Mixpanel and Firebase. Second-half YoY growth turned positive, peaking at +70.7% in one month.' },
       ],
     },
     {
-      role: '夜班房務部經理',
-      org: '香港喜來登酒店',
-      period: '香港 · 2023–2024（合約制）',
+      org: 'TapAble',
+      role: { zh: '共同創辦人、產品負責人', en: 'Co-founder & Product Lead' },
+      period: { zh: '2026/04 – 現在', en: 'Apr 2026 – Present' },
+      to: '/projects/tapable-buildmode',
       points: [
-        '負責夜間突發狀況與危機管理，跨部門協調營運資源，確保服務流程之穩定性。',
-      ],
-    },
-    {
-      role: '青少年空間共享計劃經理',
-      org: '香港東華三院（社福機構）',
-      period: '香港 · 2022–2023（合約制）',
-      points: [
-        '主導專案從 0 到 1 落地執行，對準內外部利害關係人需求，推動目標客群之社群參與。',
-      ],
-    },
-    {
-      role: '採購部文員（兼職）',
-      org: 'Compass Group（英國富時 100 指數成分）',
-      period: '香港 · 2019–2022',
-      points: [
-        '熟悉 SAP 系統，以 Excel（VBA）開發自動化數據處理工具，優化常規採購流程。',
-        '將複雜採購數據轉化為視覺化報表，提升團隊決策效率。',
+        { zh: '題目是我想的。我定義產品、寫大部分的原型程式，團隊共五人。', en: 'The idea is mine. I define the product and write most of the prototype code. Team of five.' },
+        { zh: '做出 LINE 官方帳號版：碰一下 NFC 貼紙就有語音引導，餐點好了，號碼直接推到手機。', en: 'Built a LINE Official Account version: tap an NFC sticker for voice guidance, and the order number is pushed to your phone when food is ready.' },
+        { zh: '訪談 3 位視障者，並請 2 位視障按摩師實際試用點餐流程。', en: 'Interviewed three blind users and had two visually impaired massage therapists try the ordering flow.' },
       ],
     },
   ],
+
+  // 香港經歷：不寫年份
+  earlier: {
+    label: { zh: '來台灣之前，在香港', en: 'Before Taiwan, in Hong Kong' },
+    items: [
+      { org: { zh: '香港喜來登酒店', en: 'Sheraton Hong Kong Hotel & Towers' }, role: { zh: '夜班房務部經理', en: 'Night Duty Manager, Housekeeping' }, text: { zh: '處理夜間突發狀況，協調各部門讓服務不中斷。', en: 'Handled overnight incidents and coordinated departments to keep service running.' } },
+      { org: { zh: '東華三院', en: 'Tung Wah Group of Hospitals' }, role: { zh: '青少年空間共享計劃經理', en: 'Youth Space Programme Manager' }, text: { zh: '從零推動計劃落地，帶動青少年參與社區。', en: 'Launched a youth programme from scratch and grew participation.' } },
+      { org: 'Compass Group', role: { zh: '採購部文員（兼職）', en: 'Purchasing Clerk (part-time)' }, text: { zh: '用 Excel VBA 寫自動化工具，縮短例行採購作業。', en: 'Built Excel VBA tools that automated routine purchasing work.' } },
+    ],
+  },
+
   education: [
-    {
-      school: '國立臺北科技大學',
-      dept: '經營管理系',
-      period: '2024–2026 畢業 · CGPA 3.7',
-    },
-    {
-      school: '香港大學專業進修學院（HKU SPACE）',
-      dept: '心理學副學士',
-      period: 'CGPA 3.5',
-    },
+    { school: { zh: '國立臺北科技大學', en: 'National Taipei University of Technology' }, dept: { zh: '經營管理系 學士', en: 'BBA, Business Management' }, note: { zh: 'CGPA 3.7', en: 'CGPA 3.7' } },
+    { school: { zh: '香港大學專業進修學院（HKU SPACE）', en: 'HKU SPACE, The University of Hong Kong' }, dept: { zh: '心理學副學士', en: 'Associate of Arts, Psychology' }, note: { zh: 'CGPA 3.5', en: 'CGPA 3.5' } },
+  ],
+
+  skills: [
+    { label: { zh: '產品', en: 'Product' }, items: [{ zh: 'PRD 撰寫', en: 'PRDs' }, { zh: '使用者研究與訪談', en: 'User research & interviews' }, { zh: '埋點規劃', en: 'Event tracking' }, { zh: '競品分析', en: 'Competitive analysis' }, 'Figma'] },
+    { label: { zh: '數據', en: 'Data' }, items: ['Mixpanel', 'Firebase', 'GA4', 'SQL', 'SAP'] },
+    { label: 'AI', items: [{ zh: 'LLM 產品設計（RAG／Agent）', en: 'LLM product design (RAG, agents)' }, 'Prompt engineering', 'Edge AI (TensorFlow.js)', 'Amazon Bedrock'] },
+    { label: { zh: '開發', en: 'Build' }, items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python', 'LINE LIFF'] },
+  ],
+  certs: ['Google Analytics 4', 'Google Ads (Apps)', 'Google Ads (AI)', 'Google Ads (Measurement)'],
+  languages: [
+    { zh: '粵語（母語）', en: 'Cantonese (native)' },
+    { zh: '國語（精通）', en: 'Mandarin (full professional)' },
+    { zh: '英語（精通）', en: 'English (full professional)' },
   ],
 }
 
-// 作品卡的可點擊規則（Home / CV 共用）：
-//   ongoing: true  → 比賽進行中，卡片不可點、顯示「賽後公開完整內容」
-//   noPage:  true  → 已結束但沒有獨立 case study 頁，卡片不可點
-//   其他           → 連到 /projects/:slug（App.jsx 必須有對應 route）
+// 13 項獲獎，日期照獎狀（C:\2026\m\獎）。to＝站內作品頁；href＝外部連結。
+export const awards = [
+  { date: '2026/10', comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名', en: '3rd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '實作組決賽', en: 'Finalist, build track' }, work: { zh: '警示找眼睛', en: 'Eyes-first exit alert' } },
+  { date: '2026/10', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '決賽', en: 'Finalist' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽（233 組取 10）', en: 'Finalist, top 10 of 233' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/09', comp: { zh: 'BUILDMODE 2026 GEN-AI 黑客松（FUTUREMODE 台灣未來祭）', en: 'BUILDMODE 2026 GEN-AI Hackathon (FUTUREMODE)' }, result: { zh: '第二名（160 隊）', en: '2nd of 160 teams' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/08', comp: { zh: 'AI Monster 未來生存挑戰賽（大專組）', en: 'AI Monster: Future Survival Challenge' }, result: { zh: '第四名', en: '4th place' }, work: '—' },
+  { date: '2026/08', comp: { zh: '第十屆 3S 創客競賽', en: '10th 3S Maker Competition' }, result: { zh: '入圍獎', en: 'Finalist award' }, work: { zh: 'TapAble 導航版', en: 'TapAble, navigation version' }, href: '/yao-3s-demo/index.html' },
+  { date: '2026/07', comp: { zh: 'AWS Summit Taipei 百工百業瘋 AI 黑客松', en: 'AI Everywhere Hackathon, AWS Summit Taipei' }, result: { zh: '數位學習組第二名', en: '2nd place, EdTech track' }, work: { zh: 'PressPlay AI 學習助教', en: 'PressPlay AI tutor' }, to: '/projects/ppa-hackathon' },
+  { date: '2026/07', comp: { zh: '中原大學 第四屆解決未來問題能力競賽', en: '4th Future Problem Solving Competition (CYCU)' }, result: { zh: '佳作', en: 'Honorable mention' }, work: { zh: '親盈翻譯機', en: 'Photo postcards for elders on LINE' } },
+  { date: '2026/06', comp: { zh: '全國商管暨跨域創新實務專題競賽（德明科大）', en: 'National Business & Cross-disciplinary Project Competition' }, result: { zh: '跨域組第三名', en: '3rd place, cross-disciplinary' }, work: { zh: 'TapAble 第一版', en: 'TapAble, first version' }, to: '/projects/yaoguang-whale' },
+  { date: '2026/05', comp: { zh: '第 23 屆 ATCC 全國大專院校商業個案大賽', en: '23rd ATCC Case Competition' }, result: { zh: '全國 26 強', en: 'Top 26 nationwide' }, work: 'BEACON', to: '/projects/atcc-beacon' },
+  { date: '2026/01', comp: { zh: '第三屆法國巴黎人壽 Cardif InsurHack', en: '3rd Cardif InsurHack, BNP Paribas Cardif' }, result: { zh: '第二名（銀獎）', en: '2nd place (Silver)' }, work: { zh: '保包巴士', en: 'Baobao Bus' }, to: '/projects/bnp-insurhack' },
+  { date: '2024/12', comp: { zh: '2024 全球品牌策劃與設計大賽 台灣總決賽', en: '2024 Global Brand Planning & Design Competition, Taiwan final' }, result: { zh: '銀質獎（196 隊）', en: 'Silver award (196 teams)' }, work: { zh: '金孕獎推廣策略', en: 'Golden Pregnancy Award strategy' }, to: '/projects/jinyun-branding' },
+]
+
+// 作品頁資料（首頁精選、作品頁標題共用）
 export const projects = [
-  // ============================================================
-  // TapAble — BUILDMODE GEN-AI HACKATHON 2026（FUTUREMODE 台灣未來祭）
-  // 對外一律只講「做到什麼」，不講實施細節；demo 網址固定用 tapable-demo 主機
-  // ============================================================
   {
     slug: 'tapable-buildmode',
     featured: true,
-    host: 'FUTUREMODE 台灣未來祭 2026',
-    title: 'TapAble · 讓視障者用自己的手機接管公共觸控機台',
-    event: 'BUILDMODE GEN-AI HACKATHON 2026（SITCON 協辦）· Track 05 AI for Taiwan / Social Impact',
-    award: '🥈 第二名 · 160 隊',
-    period: '2026/09 · 3 天黑客松',
-    role: '隊長 · 原創題目 · 產品定義 · 95% 程式開發 · 田野驗證統籌',
-    startup: true,
-    coverImg: '/tapable/deck-solution.jpg',
-    hook: '同一個無障礙題目推了一年：從簡報、到 Figma、到 3 天做出能跑的開源雛形，160 隊中拿下第二名。',
-    stat: { big: '160 隊 → 第 2', label: '賽道不分開評，全場排名' },
-    timeline: [
-      { t: '瑤光深鯨', s: '🥉 第三名', d: '2026 春 · 商管跨域競賽' },
-      { t: '空間資訊版', s: '🏅 入圍獎', d: '2026/08 · 3S 創客競賽' },
-      { t: 'TapAble', s: '🥈 160 隊第二', d: '2026/09 · BUILDMODE 黑客松' },
-      { t: 'AI 輔助迭代', s: '決賽 9/12', d: '2026/09 · 台灣尤努斯創新獎' },
-    ],
-    summary: '觸控螢幕對視障者是一面摸不到按鍵的玻璃：ATM 是唯一有主管機關盯著的機台，視障語音機型花了八年仍不足全台四分之一，校園列印機、醫院批價機、點餐機連這條慢車道都沒有。TapAble 讓視障者用自己的手機接管機台——鏡頭端側辨識走完最後十公尺、碰一下 NFC 貼紙即知面前是哪台機器、大型語言模型聽懂口語並轉成機台選項、語音逐步引導，全程螢幕全黑防窺，機台零硬體改造。3 天內做出可玩的開源雛形，在真實機台完成戴眼罩實測、訪談三位視障者驗證需求，自 160 隊中拿下第二名。',
-    tags: ['生成式 AI', 'Edge AI（TensorFlow.js）', 'NFC', 'Web Speech API', '無障礙 a11y', 'PWA / 離線', '社會創新'],
-    cover: 'gradient-g',
-    hasDemo: true,
+    cover: '/tapable/stage-completed.png',
+    title: { zh: 'TapAble：讓視障者用自己的手機操作觸控機台', en: 'TapAble: blind users run touchscreen kiosks from their own phones' },
+    org: { zh: 'BUILDMODE 2026 GEN-AI 黑客松，之後持續創業', en: 'BUILDMODE 2026 GEN-AI Hackathon, now an early-stage startup' },
+    result: { zh: '160 隊第二名 · LINE AI 競賽第三名', en: '2nd of 160 teams · 3rd at LINE AI Competition' },
+    period: { zh: '2026/04 – 現在', en: 'Apr 2026 – Present' },
+    hook: {
+      zh: '點餐機、醫院批價機、列印機大多沒有語音。視障者碰一下貼紙，就能用自己的手機和 LINE 一步一步完成操作，機台不用換硬體。',
+      en: 'Most food kiosks, hospital payment machines and printers have no voice output. A blind user taps a sticker and finishes the task step by step on their own phone through LINE, with no hardware change to the kiosk.',
+    },
+    mine: { zh: '原創題目、產品定義、大部分程式、田野驗證', en: 'Original idea, product definition, most of the code, field testing' },
     demoUrl: 'https://a96020183.github.io/tapable-demo/start/',
     demoOpUrl: 'https://a96020183.github.io/tapable-demo/?machine=campus-document-kiosk&demo=1',
     demoVisionUrl: 'https://a96020183.github.io/tapable-demo/vision/',
-    repo: 'https://github.com/a96020183/tapable_sep',
     video: 'https://youtu.be/AtMjXhrwr38',
     videoEmbed: 'https://www.youtube.com/embed/AtMjXhrwr38',
   },
   {
     slug: 'ppa-hackathon',
     featured: true,
-    host: 'AWS Summit Taipei 2026',
-    title: 'PressPlay AI 智慧學習生態系',
-    event: '百工百業瘋 AI Hackathon · Amazon Web Services 主辦',
-    award: '🥈 第二名',
-    period: '2026 · 3 天黑客松',
-    role: '全端 + 產品策略 + 資料分析（獨立完成）',
-    coverImg: '/ppa/cover.jpg',
-    hook: '一個晚上，從官方資料集挖出斷點、設計機制、寫完 9 個畫面的可互動原型並部署上 AWS。',
-    stat: { big: '1 人 · 1 晚', label: '策略到部署獨立完成' },
-    summary: 'PressPlay Academy 是台灣最大的線上學習平台。這個專案重新設計它的 AI 學習助教，讓助教從被動等待提問，進化為能主動診斷、跨場景陪伴的學習夥伴。從商業洞察、資料分析、產品設計，到前端開發與雲端部署，皆由我獨立完成。',
-    tags: ['React', 'Vite', 'Tailwind', 'AWS Amplify', 'Amazon Bedrock', '產品設計'],
-    cover: 'gradient-a',
-    hasDemo: true,
+    cover: '/ppa/cover.jpg',
+    title: { zh: 'PressPlay AI 學習助教', en: 'PressPlay AI tutor' },
+    org: { zh: 'AWS Summit Taipei 2026 · 百工百業瘋 AI 黑客松', en: 'AWS Summit Taipei 2026 · AI Everywhere Hackathon' },
+    result: { zh: '數位學習組第二名', en: '2nd place, EdTech track' },
+    period: { zh: '2026/07', en: 'Jul 2026' },
+    hook: {
+      zh: '一個人、一個晚上：從官方資料找出學員卡關的地方，重新設計 AI 助教，做出 9 個畫面的原型並部署到 AWS。',
+      en: 'Solo and overnight: found where learners stall in the official data, redesigned the AI tutor, and shipped a 9-screen prototype on AWS.',
+    },
+    mine: { zh: '策略、資料分析、設計、前端開發、部署', en: 'Strategy, data analysis, design, front-end, deployment' },
     demoPath: '/ppa-demo/index.html',
     repo: 'https://github.com/a96020183/ppa-ai-hackathon-fish',
   },
   {
     slug: 'bnp-insurhack',
     featured: true,
-    host: '法國巴黎人壽 BNP Paribas Cardif',
-    title: '保包巴士 · Z 世代訂閱制智慧保險',
-    event: 'Cardif InsurHack 第三屆法國巴黎人壽校園黑客松商業競賽',
-    award: '🥈 第二名',
-    period: '2025 · 商業企劃競賽',
-    role: '提案發想 · 商業模式 · 財務模型 · 技術可行性',
-    coverImg: '/bnp/business-model.png',
-    hook: '把保險從一年繳一次的年繳決策，改成 Z 世代每月 99 元起的生活訂閱——商模、財務、技術可行性由我論證。',
-    stat: { big: '42 頁', label: '完整商業企劃書' },
-    summary: '針對 Z 世代「不想買、看不懂、沒感覺」的保險痛點，提出以「生活情境觸發 × 訂閱制養成 × 點數回饋」為核心的智慧保險系統，透過 LINE 生態把保險變成負擔得起的生活服務。我負責提案核心：商業模式、財務模型與技術可行性。',
-    tags: ['商業模式', '財務模型', '技術可行性', '訂閱經濟', 'LINE 生態', 'Data Clean Room'],
-    cover: 'gradient-b',
-    hasDemo: false,
+    cover: '/bnp/business-model.png',
+    title: { zh: '保包巴士：給 Z 世代的訂閱制保險', en: 'Baobao Bus: subscription insurance for Gen Z' },
+    org: { zh: '法國巴黎人壽 · 第三屆 Cardif InsurHack', en: 'BNP Paribas Cardif · 3rd Cardif InsurHack' },
+    result: { zh: '第二名（銀獎）', en: '2nd place (Silver)' },
+    period: { zh: '2026/01', en: 'Jan 2026' },
+    hook: {
+      zh: '把一年繳一次的保險，改成每月 99 元起的生活訂閱。42 頁企劃裡，商業模式、財務模型和技術可行性由我負責。',
+      en: 'Turned a once-a-year insurance purchase into a monthly subscription from NT$99. In a 42-page plan, I owned the business model, financial model and technical feasibility.',
+    },
+    mine: { zh: '商業模式、財務模型、技術可行性', en: 'Business model, financial model, technical feasibility' },
     pdf: '/bnp/baobao-bus-proposal.pdf',
   },
   {
     slug: 'yaoguang-whale',
-    host: '2026 全國商管暨跨域創新實務專題競賽',
-    title: '瑤光深鯨 · 零硬體改造的無障礙操作系統',
-    event: '跨域專題組 · 國立臺北科技大學（指導：陳擎文教授）',
-    award: '🥉 第三名',
-    period: '2026 · 跨域創新競賽',
-    role: '原創發想 · 系統設計 · 商業模式 · 財務規劃 · Figma 原型',
-    summary: '全觸控化的公共機台（ATM、醫院批價機、自助點餐機）把視障者擋在數位服務門外，形成「數位玻璃牆」。這個由我原創發想的專題，提出一套不需更換現有硬體設備的無障礙解決方案，讓視障者透過自己的手機即可操作公共觸控機台。這是 TapAble 的前身——同一題目後續在 3S 創客競賽獲入圍獎、晉級台灣尤努斯創新獎決賽，並在 BUILDMODE 黑客松以開源雛形拿下 160 隊第二名。目前正進行專利申請與創業籌備，技術實施細節不公開。',
-    tags: ['社會創新', '無障礙 a11y', '系統設計', 'B2B SaaS', 'Figma', 'TapAble 前身'],
-    series: 'TapAble 系列 · 起點',
-    cover: 'gradient-c',
-    hasDemo: false,
+    cover: '/yao/cover.png',
+    title: { zh: '瑤光深鯨：TapAble 的第一版', en: 'Yaoguang: the first version of TapAble' },
+    org: { zh: '全國商管暨跨域創新實務專題競賽 · 跨域專題組', en: 'National Business & Cross-disciplinary Project Competition' },
+    result: { zh: '跨域組第三名', en: '3rd place, cross-disciplinary track' },
+    period: { zh: '2026/06', en: 'Jun 2026' },
+    hook: {
+      zh: '不換機台硬體，讓視障者用自己的手機操作公共觸控機台。題目由我原創，有可以點的 Figma 原型。',
+      en: 'Let blind people operate public touchscreen kiosks from their own phones, without replacing the hardware. My original idea, with a clickable Figma prototype.',
+    },
     figma: 'https://www.figma.com/proto/UNB6G7wMXIzs8sDZh799IP/ALL?node-id=2103-4468&t=6OJriSNleSLe47ZQ-0&scaling=scale-down&content-scaling=fixed&page-id=2103%3A4467&starting-point-node-id=2103%3A4468',
-    // 原始競賽簡報 PDF 已於 2026-09-08 下架（含定價結構、介接方式、地域佈局），只留功能層次的截圖
-  },
-  {
-    slug: 'jinyun-branding',
-    host: '2024 全球品牌策劃與設計大賽',
-    title: '金孕獎 · 母嬰榮耀獎項推廣策略',
-    event: '議題三：母嬰榮耀獎項推廣策略（代表企業：金孕獎）',
-    award: '🥈 銀質獎',
-    period: '2024 · 品牌行銷競賽',
-    role: '受眾/通路/社群分析 · 網站升級與遊戲化 · 口碑行銷 5T · 成效與成本',
-    summary: '為台灣母嬰產業獎項「金孕獎」設計品牌推廣策略：從 SWOT 與受眾分析出發，提出網站升級（討論區＋點數遊戲化＋專家互動）與軟性推廣＋口碑行銷 5T，並以 UGC 擴散與成長模型推估成效。受眾分析、網站遊戲化、口碑行銷、成效與成本規劃皆為我負責。',
-    tags: ['品牌行銷', '受眾/通路分析', '遊戲化', '口碑行銷 5T', '成長模型', 'UGC'],
-    cover: 'gradient-d',
-    hasDemo: false,
-    pdf: '/jinyun/jinyun-deck.pdf',
   },
   {
     slug: 'atcc-beacon',
-    host: 'ATCC 全國大專院校商業個案大賽',
-    title: 'BEACON · 兒少主動式心理支持系統',
-    event: '議題夥伴：林堉璘宏泰教育基金會 × 張老師基金會',
-    award: '全國 26 強',
-    period: '2026 · 商業個案競賽',
-    role: '系統機制設計 · OMO 數據漏斗（Mixpanel）· 商業模式與財務 · Roblox 場景',
-    summary: '面對台灣兒少自殺通報創新高、45% 高風險個案從未接觸心理資源的困境，提出「主動發現」的心理支持系統 BEACON：把心理初篩藏進 Roblox、LINE ARG 校園怪談與實體工作坊，用 Mixpanel 數據做綠/黃/紅三級預警與轉介，讓孩子「自然被接住」而非「被輔導」。',
-    tags: ['社會創新', 'Roblox', 'LINE ARG', 'OMO 數據漏斗', '兒少心理', '商業模式'],
-    cover: 'gradient-e',
-    hasDemo: false,
+    cover: '/atcc/cover.png',
+    title: { zh: 'BEACON：藏在 Roblox 裡的兒少心理支持', en: 'BEACON: youth mental-health support inside Roblox' },
+    org: { zh: '第 23 屆 ATCC 全國大專院校商業個案大賽', en: '23rd ATCC Case Competition' },
+    result: { zh: '全國 26 強', en: 'Top 26 nationwide' },
+    period: { zh: '2026/05', en: 'May 2026' },
+    hook: {
+      zh: '把心理初篩藏進孩子本來就在玩的 Roblox，用數據分出綠、黃、紅三級，讓需要幫忙的孩子被主動發現。',
+      en: 'Hide mental-health screening inside Roblox, where kids already play, and use data to flag green, amber and red so children who need help are found early.',
+    },
     pdf: '/atcc/beacon-deck.pdf',
   },
-  // ============================================================
-  // 解決未來問題能力競賽 — 佳作（無獨立頁）
-  // ============================================================
   {
-    slug: 'fps-2026',
-    noPage: true,
-    host: '2026 第四屆解決未來問題能力競賽',
-    title: '翻譯蒟蒻 · 親盈翻譯機',
-    event: '決賽主題：AI 協助高齡者數位溝通',
-    award: '🏅 佳作',
-    period: '2026 · 解決未來問題競賽',
-    role: '企劃撰寫 · 系統架構設計 · Prompt Engineering · 決賽簡報',
-    summary: '台灣邁入超高齡社會，長輩想傳達關心卻受限於打字能力，只能轉傳長輩圖，形成「已讀不回」的溝通斷層。我們設計「親盈翻譯機」——以 LINE 官方帳號為入口，結合 Google Gemini 多模態模型與雅婷語音辨識，讓長輩用照片＋語音就能產出有溫度的生活明信片，一鍵分享給家人。另提供流行語字典、防詐提醒、數位小幫手等功能，讓科技適應長輩，而非長輩適應科技。',
-    tags: ['生成式 AI', 'LINE Bot', 'Prompt Engineering', 'Google Gemini', '語音辨識', '高齡友善', 'LIFF', 'FastAPI'],
-    cover: 'gradient-f',
-    hasDemo: false,
+    slug: 'jinyun-branding',
+    cover: '/jinyun/cover.png',
+    title: { zh: '金孕獎推廣策略', en: 'Brand strategy for the Golden Pregnancy Award' },
+    org: { zh: '2024 全球品牌策劃與設計大賽 台灣總決賽', en: '2024 Global Brand Planning & Design Competition, Taiwan final' },
+    result: { zh: '銀質獎（196 隊）', en: 'Silver award (196 teams)' },
+    period: { zh: '2024/12', en: 'Dec 2024' },
+    hook: {
+      zh: '幫台灣母嬰產業獎項「金孕獎」設計推廣策略：網站加上討論區和點數，再用口碑擴散。',
+      en: 'A promotion plan for Taiwan\'s maternal and baby industry award: a community and points system on the website, then word of mouth.',
+    },
+    pdf: '/jinyun/jinyun-deck.pdf',
   },
-  // ============================================================
-  // 3S 創客競賽 — 入圍獎（無獨立頁）
-  // ============================================================
+]
+
+// 沒有獨立頁、但有東西可以看的作品
+export const moreWork = [
   {
-    slug: '3s-2026',
-    noPage: true,
-    host: '第 44 屆測量及空間資訊研討會 · 3S 創客競賽',
-    title: '瑤光深鯨 · 空間資訊應用版',
-    event: '大專生組 · 國立政治大學 · 決賽 2026/08/21',
-    award: '🏅 入圍獎',
-    period: '2026 · 3S 創客競賽',
-    summary: '同一無障礙核心概念延伸至 3S（RS / GNSS / GIS）空間資訊領域：以 GIS 圖層做「平權缺口」熱點分析（視障人口 ÷ 服務觸點）、以 GNSS 定位與路徑規劃把視障者帶到可用機台前，並串接手機端操作流程。晉級決賽並獲入圍獎。互動 WebGIS Demo 可直接開啟（iPad 亦可用）；技術實施細節不公開。',
-    tags: ['無障礙 a11y', 'GIS', 'GNSS', '空間資訊', 'WebGIS Demo', 'TapAble 系列'],
-    series: 'TapAble 系列',
-    hasDemo: true,
-    demoPath: '/yao-3s-demo/index.html',
+    title: { zh: '知更守護 RobinSave：詐騙電話模擬器', en: 'RobinSave: a scam-call simulator' },
+    text: { zh: '讓長輩在社區活動先接一通假的詐騙電話，練習怎麼拒絕。AI 在本機判斷對話意圖。ASUS UGen AI League 參賽中。', en: 'Older adults take a fake scam call at a community event and practise saying no. AI reads the caller\'s intent on-device. Entered in the ASUS UGen AI League.' },
+    period: { zh: '2026/10', en: 'Oct 2026' },
+    href: 'https://github.com/a96020183/RobinSave',
+    linkLabel: 'GitHub',
   },
   {
-    slug: 'yunus-2026',
-    ongoing: true,
-    host: '第六屆台灣尤努斯創新獎',
-    title: '瑤光深鯨（TapAble）· AI 輔助迭代（決賽中）',
-    event: '233 組團隊報名 · 晉級決賽 · 決賽 2026/09/12',
-    award: '🏆 決賽進行中',
-    period: '2026 · 進行中',
-    summary: '以原始無障礙系統為基礎的進化版本，導入生成式 AI 意圖理解與鏡頭端側導引——首版已於 BUILDMODE 黑客松實作並開源。此版本為後續所有競賽與創業的主力迭代方向。自 233 組團隊中晉級決賽，技術實施細節不公開。',
-    tags: ['無障礙 a11y', '生成式 AI', '社會企業', 'TapAble 系列'],
-    series: 'TapAble 系列',
+    title: { zh: '警示找眼睛：AI 座艙下車警示', en: 'Eyes-first exit alert for car cabins' },
+    text: { zh: '乘客下車時眼睛多半在看手機或付款螢幕。系統把開門警示送到他正在看的那塊螢幕，窗框燈條同時提醒車外騎士。AI 座艙 Hackathon 實作組決賽。', en: 'Passengers getting out usually look at a phone or the payment screen. The system sends the door warning to whichever screen they are looking at, while a window light strip warns cyclists outside. Finalist, AI Cockpit Hackathon build track.' },
+    period: { zh: '2026/10', en: 'Oct 2026' },
+  },
+  {
+    title: { zh: 'TapAble 導航版：互動地圖 Demo', en: 'TapAble navigation: interactive map demo' },
+    text: { zh: '用 GIS 找出視障者附近最缺無障礙服務的地方，再把人導到可用的機台前。3S 創客競賽入圍獎。', en: 'Uses GIS to find where accessible service is most lacking, then guides users to a kiosk they can use. Finalist award, 3S Maker Competition.' },
+    period: { zh: '2026/08', en: 'Aug 2026' },
+    href: '/yao-3s-demo/index.html',
+    linkLabel: { zh: '開啟 Demo', en: 'Open demo' },
   },
 ]

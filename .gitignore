@@ -29,3 +29,8 @@ cv_thumb.jpg
 
 # stray source doc that got copied into the demo folder (not used by the site)
 public/ppa-demo/pets/*.docx
+
+# 設計工作檔只留本機
+PRODUCT.md
+DESIGN.md
+.impeccable/

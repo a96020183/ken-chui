@@ -4,21 +4,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        ink: '#070B14',
-        ink2: '#0C1220',
-        card: '#121A2C',
-        line: '#20304D',
-        brand: '#F7A81B',
-        cyan: '#25D0EE',
-        mint: '#3DDC97',
-        mute: '#8A99B5',
+        paper: '#FFFFFF',
+        paper2: '#F5F6F7',
+        ink: '#0E1116',
+        ink2: '#3B414C',
+        mute: '#646B77',
+        line: '#E3E5E9',
+        line2: '#CDD1D7',
+        accent: '#2B4FD8',
+        accentSoft: '#EEF2FF',
       },
       fontFamily: {
-        sans: ['"Microsoft JhengHei"', '"PingFang TC"', 'system-ui', 'sans-serif'],
+        sans: ['"Schibsted Grotesk"', '"Noto Sans TC"', '"PingFang TC"', '"Microsoft JhengHei"', 'system-ui', 'sans-serif'],
+      },
+      maxWidth: {
+        page: '72rem',
+        prose: '42rem',
       },
       boxShadow: {
-        card: '0 10px 40px -12px rgba(0,0,0,0.6)',
-        glow: '0 0 30px -6px rgba(247,168,27,0.5)',
+        lift: '0 1px 2px rgba(14,17,22,0.04), 0 12px 32px -12px rgba(14,17,22,0.18)',
       },
     },
   },

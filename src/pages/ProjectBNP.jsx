@@ -1,182 +1,247 @@
 import React from 'react'
-import { projects, profile } from '../data/profile.js'
+import { projects } from '../data/profile.js'
+import { useT, useTitle } from '../i18n.jsx'
+import { Button, CaseHeader, Section, Prose, Roles, Items, List, Note, Gallery, CaseFooter } from '../components/ui.jsx'
 
 const p = projects.find((x) => x.slug === 'bnp-insurhack')
 
-const shots = [
-  { src: '/bnp/cover.png', cap: '提案封面：保包巴士' },
-  { src: '/bnp/business-model.png', cap: '商業模式重塑：從「賣保單」到「訂閱生活」' },
-  { src: '/bnp/pricing.png', cap: '三層級訂閱方案（月費 99 / 199 / 299 起）' },
-  { src: '/bnp/tech.png', cap: '技術可行性：SHA-256 資料脫敏對接（Data Clean Room）' },
-  { src: '/bnp/funnel.png', cap: '第一年用戶獲取漏斗：5 萬好友 → 1,000 訂閱' },
-  { src: '/bnp/economics.png', cap: '經濟模型：單位經濟、CAC 回收、情境測試' },
-]
-
-function Stat({ big, label }) {
-  return (
-    <div className="rounded-2xl border border-line bg-card p-4 text-center">
-      <div className="text-2xl font-black text-brand md:text-3xl">{big}</div>
-      <div className="mt-1 text-[12px] text-mute">{label}</div>
-    </div>
-  )
-}
-function Section({ kicker, title, children }) {
-  return (
-    <section className="mx-auto max-w-4xl px-5 py-10">
-      {kicker && <div className="mb-1 text-[13px] font-bold text-cyan">{kicker}</div>}
-      <h2 className="text-2xl font-black md:text-3xl">{title}</h2>
-      <div className="mt-5">{children}</div>
-    </section>
-  )
-}
-function Card({ title, children, tone = 'brand' }) {
-  const c = tone === 'cyan' ? 'text-cyan' : tone === 'mint' ? 'text-mint' : tone === 'red' ? 'text-[#F26D6D]' : 'text-brand'
-  return (
-    <div className="rounded-2xl border border-line bg-card p-5">
-      <div className={`mb-2 font-bold ${c}`}>{title}</div>
-      <div className="text-[14px] leading-relaxed text-white/85">{children}</div>
-    </div>
-  )
-}
-
 export default function ProjectBNP() {
+  const t = useT()
+  useTitle('保包巴士 · 徐浩華', 'Baobao Bus · Ken Chui')
+
+  // 封面 cover.png 含隊友 email，不放
+  const shots = [
+    {
+      src: '/bnp/business-model.png',
+      caption: t('商業模式：從賣保單改成訂閱生活', 'Business model: from selling policies to a lifestyle subscription'),
+    },
+    {
+      src: '/bnp/pricing.png',
+      caption: t('三種訂閱方案，月費 99、199、299 元起', 'Three subscription tiers, from NT$99, 199 and 299 a month'),
+    },
+    {
+      src: '/bnp/tech.png',
+      caption: t('技術可行性：資料先用 SHA-256 脫敏，再在 Data Clean Room 比對', 'Technical feasibility: data hashed with SHA-256, then matched in a data clean room'),
+    },
+    {
+      src: '/bnp/funnel.png',
+      caption: t('第一年獲客漏斗：5 萬名 LINE 好友，轉成 1,000 位訂閱會員', 'Year-one funnel: 50,000 LINE friends to 1,000 subscribers'),
+    },
+    {
+      src: '/bnp/economics.png',
+      caption: t('經濟模型：單位經濟、CAC 回收、三種情境測試', 'Economics: unit economics, CAC payback and three scenarios'),
+    },
+  ]
+
   return (
     <main>
-      {/* HERO */}
-      <section className="pp-ring border-b border-line/60">
-        <div className="mx-auto max-w-4xl px-5 py-14">
-          <div className="mb-3 flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-brand/15 px-3 py-1 text-[13px] font-bold text-brand">{p.award}</span>
-            <span className="text-[13px] text-mute">{p.period}</span>
-          </div>
-          <h1 className="text-3xl font-black leading-tight md:text-5xl">{p.title}</h1>
-          <p className="mt-3 text-[15px] font-semibold text-cyan">{p.host}</p>
-          <p className="mt-0.5 text-[13px] text-mute">{p.event}</p>
-          <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-white/85">{p.summary}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            {p.figma && (
-              <a href={p.figma} target="_blank" rel="noreferrer"
-                className="rounded-xl bg-brand px-5 py-2.5 font-bold text-[#231600] shadow-glow transition hover:brightness-110">▶ 開啟 Figma 互動原型</a>
+      <CaseHeader
+        result={t(p.result)}
+        period={t(p.period)}
+        title={t(p.title)}
+        org={t('法國巴黎人壽', 'BNP Paribas Cardif Taiwan')}
+        event={t('第三屆 Cardif InsurHack', '3rd Cardif InsurHack')}
+        summary={t(
+          '年輕人不是不想買保險，是覺得太貴。我們把一年繳一次的保險，改成每月 99 元起的生活訂閱，透過 LINE 在對的時刻推薦。這份 42 頁企劃裡，商業模式、財務模型和技術可行性由我負責。',
+          'Young people in Taiwan want insurance but find it too expensive. We turned a once-a-year purchase into a monthly subscription from NT$99, offered through LINE at the moment it is relevant. In the 42-page plan, I owned the business model, financial model and technical feasibility.'
+        )}
+        actions={<Button primary href={p.pdf}>{t('看完整企劃書 PDF', 'Read the full plan (PDF)')}</Button>}
+        facts={[
+          { label: t('成績', 'Result'), value: t('第二名（銀獎）', '2nd place (Silver)') },
+          { label: t('時間', 'Date'), value: t(p.period) },
+          { label: t('團隊', 'Team'), value: t('5 人', '5 people') },
+          { label: t('企劃書', 'Plan'), value: t('42 頁', '42 pages') },
+        ]}
+      />
+
+      <Section title={t('我做了什麼', 'What I did')}>
+        <Roles
+          mine={t(
+            <>參與提案發想，並負責<b>商業模式</b>、<b>財務模型</b>和<b>技術可行性</b>。也就是回答三件事：這門生意成不成立，錢怎麼算，技術做不做得到。</>,
+            <>I helped shape the idea and owned the <b>business model</b>, <b>financial model</b> and <b>technical feasibility</b>. In short, I answered three questions. Does the business work, do the numbers add up, and can it be built?</>
+          )}
+          team={t(
+            '五人團隊，組長由隊友擔任。心理測驗的設計和 UI 由其他隊員負責。',
+            'A team of five, led by a teammate. Other members designed the personality quiz and its UI.'
+          )}
+        />
+      </Section>
+
+      <Section title={t('要解決的問題', 'The problem')}>
+        <Prose>
+          <p>
+            {t(
+              '台灣壽險市場已經飽和。投保率 70.9%，平均每人 2.6 張保單，成長停住了。',
+              'Taiwan’s life insurance market is saturated. Coverage is 70.9%, with 2.6 policies per person, and growth has stalled.'
             )}
-            <a href={p.pdf} target="_blank" rel="noreferrer"
-              className="rounded-xl border border-line px-5 py-2.5 font-semibold text-white/90 transition hover:bg-white/5">下載完整企劃書 PDF</a>
+          </p>
+          <p>
+            {t(
+              <>但 18 到 29 歲的人，<b>82%</b> 願意再買保險。卡住他們的是預算，他們覺得保費太貴。</>,
+              <>Yet <b>82%</b> of people aged 18 to 29 are willing to buy more cover. What stops them is budget. Premiums feel too high.</>
+            )}
+          </p>
+        </Prose>
+        <div className="mt-10">
+          <Items
+            cols={3}
+            items={[
+              {
+                title: t('不想買', 'Not interested'),
+                body: t(
+                  '業務推銷讓年輕人有防備心。一年的保費，他們會拿去跟 iPhone 比。',
+                  'Sales pitches put young people on guard. They compare a year’s premium with the price of an iPhone.'
+                ),
+              },
+              {
+                title: t('看不懂', 'Hard to understand'),
+                body: t(
+                  '條款難懂，流程繁瑣，資訊不透明。光是開始投保就很難。',
+                  'Terms are dense, the process is slow and pricing is opaque. Just getting started is hard.'
+                ),
+              },
+              {
+                title: t('沒感覺', 'Out of sight'),
+                body: t(
+                  '一年只在繳費時碰到一次。保險和日常生活沒有關係。',
+                  'People think about insurance once a year, when the bill arrives. It has no place in daily life.'
+                ),
+              },
+            ]}
+          />
+        </div>
+      </Section>
+
+      <Section title={t('保包巴士：把保險變成生活服務', 'Baobao Bus: insurance as an everyday service')}>
+        <Items
+          cols={3}
+          items={[
+            {
+              title: t('在對的時刻出現', 'Show up at the right moment'),
+              body: t(
+                '訂機票或辦健身卡時，系統透過 LINE 推送個人化的保障建議。保險在需要的當下才出現。',
+                'When someone books a flight or joins a gym, LINE sends a personal cover suggestion. Insurance appears when it matters.'
+              ),
+            },
+            {
+              title: t('改成月訂閱', 'Monthly subscription'),
+              body: t(
+                '每月 99 元起，取代一年一次的大筆決定。門檻變低，也慢慢養成保障的習慣。',
+                'From NT$99 a month instead of one big yearly decision. It lowers the barrier and builds a habit.'
+              ),
+            },
+            {
+              title: t('用點數折抵', 'Points that lower the price'),
+              body: t(
+                '健康行為、續訂和分享都能累積點數，折抵保費。越健康就越便宜，也就越想續訂。',
+                'Healthy habits, renewals and referrals earn points that reduce the premium. Healthier means cheaper, which makes people stay.'
+              ),
+            },
+          ]}
+        />
+      </Section>
+
+      <Section title={t('商業模式：從賣保單到經營會員', 'Business model: from selling policies to keeping members')}>
+        <Items
+          items={[
+            {
+              title: t('三個階段', 'Three phases'),
+              body: t(
+                <>先用低毛利的意外險訂閱<b>圈住客群</b>。再靠高頻互動和點數<b>留住人</b>。之後再轉向高毛利的壽險<b>變現</b>。前期讓利，換來數據和長期關係。</>,
+                <>First, <b>win customers</b> with a low-margin accident-cover subscription. Then <b>keep them</b> with frequent touchpoints and points. Later, <b>monetize</b> through higher-margin life insurance. Early margin is traded for data and long-term relationships.</>
+              ),
+            },
+            {
+              title: t('為什麼做低毛利訂閱', 'Why a low-margin subscription'),
+              body: t(
+                '傳統獲客成本高，客戶在投保前的樣貌也看不到。訂閱讓公司一年接觸客戶 12 次以上，累積投保前的生活情境和風險偏好。這是壽險業很缺的第一方數據。',
+                'Traditional acquisition is expensive, and insurers know little about customers before they buy. A subscription means 12 or more touchpoints a year, building first-party data on lifestyle and risk preferences before a policy is sold. Life insurers rarely have this data.'
+              ),
+            },
+          ]}
+        />
+      </Section>
+
+      <Section title={t('財務模型：這門生意算得過來', 'Financial model: the numbers work')}>
+        <Items
+          items={[
+            {
+              title: t('單位經濟', 'Unit economics'),
+              body: t(
+                <>月費 199 元，扣掉變動成本 11 元，<b>每位會員每月貢獻約 188 元</b>。每一位訂閱會員都是正貢獻，訂閱本身不虧錢。</>,
+                <>A NT$199 monthly fee minus NT$11 in variable cost leaves <b>about NT$188 per member per month</b>. Every subscriber contributes positively, so the subscription itself does not lose money.</>
+              ),
+            },
+            {
+              title: t('獲客成本回收', 'CAC payback'),
+              body: t(
+                <>獲客成本 200 到 500 元。會員留超過 <b>3 個月</b>就能回收。1,000 位會員一年的經常性收入約 <b>240 萬元</b>。</>,
+                <>Customer acquisition costs NT$200 to 500. A member who stays <b>3 months</b> pays that back. 1,000 members bring about <b>NT$2.4 million</b> in annual recurring revenue.</>
+              ),
+            },
+          ]}
+        />
+        <div className="mt-10">
+          <h3 className="text-[15px] font-semibold text-ink">{t('三種情境的壓力測試', 'Stress test across three scenarios')}</h3>
+          <div className="mt-4">
+            <List
+              items={[
+                t(<><b>保守</b>情境回收 564 元，不虧損。</>, <><b>Conservative</b>: NT$564 recovered, no loss.</>),
+                t(<><b>基準</b>情境回收 1,128 元，現金流健康。</>, <><b>Base</b>: NT$1,128 recovered, healthy cash flow.</>),
+                t(<><b>樂觀</b>情境回收 2,256 元，LTV 高。</>, <><b>Optimistic</b>: NT$2,256 recovered, high LTV.</>),
+              ]}
+            />
           </div>
-          <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
-            <Stat big="🥈 第二名" label="競賽成績" />
-            <Stat big="5 人團隊" label="我負責商業／財務／技術可行性" />
-            <Stat big="42 頁" label="完整商業企劃書" />
-          </div>
         </div>
-      </section>
-
-      {/* 我的角色 */}
-      <Section kicker="MY ROLE" title="我的角色">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="我負責的部分" tone="brand">
-            提案發想（idea）、<b className="text-white">商業模式</b>、<b className="text-white">財務模型</b>與<b className="text-white">技術可行性</b>——
-            也就是整個提案的策略與商業論證核心。
-          </Card>
-          <Card title="團隊分工" tone="cyan">
-            五人團隊、由林亭汝擔任組長；心理測驗設計與 UI 由其他成員負責。
-            <span className="text-mute"> 我聚焦在「這門生意成不成立、錢怎麼算、技術做不做得到」。</span>
-          </Card>
+        <div className="mt-8">
+          <Note>
+            {t(
+              '就算不算壽險轉換，模型也成立。另外設了三道防線，分別是自動化抵銷成本、防止逆選擇，以及退訂的財務門檻。',
+              'The model holds even without any life-insurance conversion. Three safeguards back it up. Automation offsets cost, a guard blocks adverse selection, and a financial threshold applies to cancellations.'
+            )}
+          </Note>
         </div>
       </Section>
 
-      {/* 問題 */}
-      <Section kicker="THE PROBLEM" title="要解決的問題">
-        <p className="mb-4 text-[15px] leading-relaxed text-white/85">
-          台灣壽險市場已高度飽和（投保率 70.9%、人均 2.6 張），成長停滯；
-          但 18–29 歲再投保意願高達 <b className="text-white">82%</b>，卡關的是「沒預算、保費太貴」。
-        </p>
-        <div className="grid gap-4 md:grid-cols-3">
-          <Card title="不想買" tone="red">傳統業務推銷讓年輕人有防備心，年繳保費拿去跟 iPhone 比價。</Card>
-          <Card title="看不懂" tone="brand">條款艱澀、流程繁瑣、資訊不透明，投保門檻高。</Card>
-          <Card title="沒感覺" tone="cyan">一年只接觸一次（繳費時），保險與日常生活脫節。</Card>
-        </div>
+      <Section title={t('技術可行性：合規，也做得出來', 'Technical feasibility: compliant and buildable')}>
+        <Items
+          items={[
+            {
+              title: t('全部在 LINE 裡完成', 'All inside LINE'),
+              body: t(
+                '用 LINE 官方帳號、LIFF 和 LINE Pay，完成身分驗證、試算和付款。不用另外下載 App，成本和棄單率都更低。',
+                'A LINE Official Account, LIFF and LINE Pay handle identity checks, quotes and payment. No separate app to download, which cuts cost and drop-off.'
+              ),
+            },
+            {
+              title: t('精準推薦，不外洩個資', 'Targeting without exposing personal data'),
+              body: t(
+                <>Klook、KKday 等合作夥伴的資料先用 <b>SHA-256</b> 雜湊，再放進 Data Clean Room，只比對雙方共同的用戶。個資用到最少，也能做情境推薦。</>,
+                <>Partner data from Klook and KKday is hashed with <b>SHA-256</b> and matched in a data clean room, which only finds users both sides share. Personal data stays minimal, and moment-based offers still work.</>
+              ),
+            },
+          ]}
+        />
+        <Prose className="mt-8">
+          <p>
+            {t(
+              '後端用 Make.com 串流程，加上雲端伺服器和資料庫。MVP 每月營運成本只要幾千元，之後可以快速擴大。',
+              'The back end runs on Make.com workflows plus a cloud server and database. The MVP costs only a few thousand NT dollars a month to run and can scale quickly.'
+            )}
+          </p>
+        </Prose>
       </Section>
 
-      {/* 解法 idea */}
-      <Section kicker="THE IDEA" title="保包巴士：把保險變成生活服務">
-        <div className="grid gap-4 md:grid-cols-3">
-          <Card title="① 情境觸發" tone="brand">訂機票、辦健身卡等生活時刻，系統經 LINE 主動推播個人化保障建議，讓保險「即時有感」。</Card>
-          <Card title="② 訂閱制" tone="cyan">以每月 99 元起的小額月費取代一次性年繳決策，降低門檻、養成長期保障習慣。</Card>
-          <Card title="③ 點數制" tone="mint">健康行為、續訂、分享累積點數折抵保費，形成「越健康 → 越便宜 → 越想續訂」的飛輪。</Card>
-        </div>
+      <Section
+        title={t('企劃書節錄', 'Pages from the plan')}
+        aside={t('點圖片可以看大圖。', 'Click an image to view it full size.')}
+      >
+        <Gallery shots={shots} />
       </Section>
 
-      {/* 商業模式 */}
-      <Section kicker="BUSINESS MODEL" title="商業模式：從賣保單到經營會員">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="三階段策略" tone="brand">
-            <b className="text-white">圈地</b>（低毛利訂閱意外險網羅客群）→
-            <b className="text-white"> 留存</b>（高頻互動 + 點數養成）→
-            <b className="text-white"> 變現</b>（未來轉化高毛利壽險）。用戰略性讓利換取數據資產與長期關係。
-          </Card>
-          <Card title="為何做低毛利訂閱？" tone="cyan">
-            傳統獲客成本高、且中間是數據黑盒子。訂閱制讓一年接觸 12 次以上，
-            累積「未投保前」的生活情境與風險偏好——這是壽險業稀缺的第一方數據資產。
-          </Card>
-        </div>
-      </Section>
-
-      {/* 財務模型 */}
-      <Section kicker="FINANCIALS" title="財務模型：這門生意算得過來">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="單位經濟" tone="brand">
-            月費 199 − 變動成本 11 = <b className="text-white">每人每月貢獻約 188 元</b>，每位訂閱會員皆為正向單位貢獻，訂閱本身不虧損。
-          </Card>
-          <Card title="CAC 回收" tone="cyan">
-            CAC 200–500 元，留存超過 <b className="text-white">3 個月即可回收</b>；1,000 位會員年化經常性收入約 <b className="text-white">240 萬元</b>。
-          </Card>
-        </div>
-        <div className="mt-4">
-          <Card title="三情境壓力測試（風險控管）" tone="mint">
-            保守（回收 564 元，不虧）／基準（1,128 元，現金流健康）／樂觀（2,256 元，高 LTV）——
-            即使不計壽險轉換，模型仍成立。並設計了自動化抵銷成本、逆選擇防火牆、退訂財務門檻三道防線。
-          </Card>
-        </div>
-      </Section>
-
-      {/* 技術可行性 */}
-      <Section kicker="FEASIBILITY" title="技術可行性：合規又可落地">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="LINE 原生體驗" tone="brand">
-            LINE 官方帳號 + LIFF + LINE Pay，完成 KYC、試算、付款全流程，無需下載獨立 App，大幅降低成本與棄單率。
-          </Card>
-          <Card title="零個資外洩的精準行銷" tone="cyan">
-            異業（Klook/KKday）資料先經 <b className="text-white">SHA-256 雜湊</b>，於 Data Clean Room 只比對「雙方共同用戶」，
-            落實個資最小化——合規地做到場景觸發。
-          </Card>
-        </div>
-        <p className="mt-4 text-[13px] text-mute">後端以 Make.com 流程自動化 + 雲端 Server/DB 組成，MVP 每月營運成本僅數千元，屬輕量、可快速擴張的模式。</p>
-      </Section>
-
-      {/* 截圖 */}
-      <Section kicker="DECK" title="提案畫面精選">
-        <div id="shots" className="grid gap-5 md:grid-cols-2">
-          {shots.map((s) => (
-            <a key={s.src} href={s.src} target="_blank" rel="noreferrer" className="group block overflow-hidden rounded-2xl border border-line bg-ink2">
-              <img src={s.src} alt={s.cap} loading="lazy" className="w-full transition group-hover:opacity-90" />
-              <div className="px-4 py-3 text-[13px] text-white/80">{s.cap}</div>
-            </a>
-          ))}
-        </div>
-        <div className="mt-6 text-center">
-          <a href={p.pdf} target="_blank" rel="noreferrer" className="inline-block rounded-xl bg-brand px-6 py-3 font-bold text-[#231600] transition hover:brightness-110">下載完整企劃書（PDF）</a>
-        </div>
-      </Section>
-
-      {/* CTA */}
-      <section className="mx-auto max-w-4xl px-5 pb-16">
-        <div className="rounded-2xl border border-line bg-gradient-to-br from-card to-ink2 p-8 text-center">
-          <div className="text-lg font-bold">想聊聊產品或合作？</div>
-          <div className="mt-4 flex flex-wrap justify-center gap-3">
-            <a href={`mailto:${profile.email}`} className="rounded-xl bg-brand px-5 py-2.5 font-bold text-[#231600] transition hover:brightness-110">聯絡我</a>
-            <a href={p.pdf} target="_blank" rel="noreferrer" className="rounded-xl border border-line px-5 py-2.5 font-semibold text-white/90 transition hover:bg-white/5">下載企劃書</a>
-          </div>
-        </div>
-      </section>
+      <CaseFooter>
+        <Button href={p.pdf}>{t('看完整企劃書 PDF', 'Read the full plan (PDF)')}</Button>
+      </CaseFooter>
     </main>
   )
 }

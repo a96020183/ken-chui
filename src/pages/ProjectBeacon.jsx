@@ -1,164 +1,196 @@
 import React from 'react'
-import { projects, profile } from '../data/profile.js'
+import { projects } from '../data/profile.js'
+import { useT, useTitle } from '../i18n.jsx'
+import { Button, CaseHeader, CaseFooter, Section, Prose, Roles, Items, List, Note, Gallery } from '../components/ui.jsx'
 
 const p = projects.find((x) => x.slug === 'atcc-beacon')
 
-const shots = [
-  { src: '/atcc/cover.png', cap: 'BEACON 計畫：主動發現的心理支持系統' },
-  { src: '/atcc/problem.png', cap: '孩子需要的不是「被輔導」，而是「自然被接住」' },
-  { src: '/atcc/funnel.png', cap: '核心機制：數據驅動 OMO 三層預警漏斗' },
-  { src: '/atcc/roblox.png', cap: 'Roblox 遊玩場景：家 → 學校 → 防空洞' },
-  { src: '/atcc/channels.png', cap: '校園防線：LINE ARG 校園怪談 + 實體工作坊' },
-  { src: '/atcc/impact.png', cap: '從被動熱線到主動預警的社會影響力' },
-]
-
-function Stat({ big, label }) {
-  return (
-    <div className="rounded-2xl border border-line bg-card p-4 text-center">
-      <div className="text-2xl font-black text-brand md:text-3xl">{big}</div>
-      <div className="mt-1 text-[12px] text-mute">{label}</div>
-    </div>
-  )
-}
-function Section({ kicker, title, children }) {
-  return (
-    <section className="mx-auto max-w-4xl px-5 py-10">
-      {kicker && <div className="mb-1 text-[13px] font-bold text-cyan">{kicker}</div>}
-      <h2 className="text-2xl font-black md:text-3xl">{title}</h2>
-      <div className="mt-5">{children}</div>
-    </section>
-  )
-}
-function Card({ title, children, tone = 'brand' }) {
-  const c = tone === 'cyan' ? 'text-cyan' : tone === 'mint' ? 'text-mint' : tone === 'red' ? 'text-[#F26D6D]' : 'text-brand'
-  return (
-    <div className="rounded-2xl border border-line bg-card p-5">
-      <div className={`mb-2 font-bold ${c}`}>{title}</div>
-      <div className="text-[14px] leading-relaxed text-white/85">{children}</div>
-    </div>
-  )
-}
-
 export default function ProjectBeacon() {
+  const t = useT()
+  useTitle('BEACON 兒少心理支持 · 徐浩華', 'BEACON youth mental-health support · Ken Chui')
+
+  const shots = [
+    { src: '/atcc/cover.png', caption: t('BEACON 計畫，一套主動發現孩子狀況的心理支持系統。', 'BEACON, a support system that finds children who need help before they ask.') },
+    { src: '/atcc/problem.png', caption: t('孩子需要的不是被輔導，而是自然被接住。', 'Children do not need to be counselled. They need to be caught gently.') },
+    { src: '/atcc/funnel.png', caption: t('核心機制，用數據驅動的 OMO 三層預警漏斗。', 'The core mechanism, a three-layer OMO alert funnel driven by data.') },
+    { src: '/atcc/roblox.png', caption: t('Roblox 場景，從家到學校，再到防空洞。', 'Roblox scenes: home, school, then the shelter.') },
+    { src: '/atcc/channels.png', caption: t('校園端由隊友設計，包含 LINE ARG 校園怪談和實體工作坊。', 'The school-side channels, designed by teammates: a LINE ARG mystery and an in-person workshop.') },
+    { src: '/atcc/impact.png', caption: t('從被動等待來電的熱線，轉成主動預警。', 'From a hotline that waits for calls to early, active alerts.') },
+  ]
+
   return (
     <main>
-      {/* HERO */}
-      <section className="pp-ring border-b border-line/60">
-        <div className="mx-auto max-w-4xl px-5 py-14">
-          <div className="mb-3 flex flex-wrap items-center gap-2">
-            <span className="rounded-full bg-brand/15 px-3 py-1 text-[13px] font-bold text-brand">{p.award}</span>
-            <span className="text-[13px] text-mute">{p.period}</span>
-          </div>
-          <h1 className="text-3xl font-black leading-tight md:text-5xl">{p.title}</h1>
-          <p className="mt-3 text-[15px] font-semibold text-cyan">{p.host}</p>
-          <p className="mt-0.5 text-[13px] text-mute">{p.event}</p>
-          <p className="mt-5 max-w-2xl text-[16px] leading-relaxed text-white/85">{p.summary}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
-            <a href={p.pdf} target="_blank" rel="noreferrer"
-              className="rounded-xl bg-brand px-5 py-2.5 font-bold text-[#231600] shadow-glow transition hover:brightness-110">下載提案簡報 PDF</a>
-            <a href="#shots" className="rounded-xl border border-line px-5 py-2.5 font-semibold text-white/90 transition hover:bg-white/5">看提案畫面 ↓</a>
-          </div>
-          <div className="mt-8 grid grid-cols-2 gap-3 md:grid-cols-4">
-            <Stat big="全國 26 強" label="ATCC 初賽決選" />
-            <Stat big="45%" label="高風險個案從未接觸資源" />
-            <Stat big="三位一體" label="Roblox × ARG × 工作坊" />
-            <Stat big="綠黃紅" label="三級預警自動分流" />
-          </div>
-        </div>
-      </section>
+      <CaseHeader
+        result={t(p.result)}
+        period={t(p.period)}
+        title={t(p.title)}
+        org={t(p.org)}
+        event={t('林堉璘宏泰教育基金會 × 張老師基金會 出題', 'Case set by the Lin Yu-Lin Hung Tai Education Foundation and the Teacher Chang Foundation')}
+        summary={t(
+          '台灣兒少自殺通報創十年新高，但現有輔導多半要等孩子自己開口。BEACON 把心理初篩放進孩子本來就在玩的 Roblox，用行為數據分出綠、黃、紅三級，讓需要幫忙的孩子早一點被發現。',
+          'Youth suicide reports in Taiwan are at a ten-year high, yet most support still waits for a child to ask for help. BEACON puts light mental-health screening inside Roblox, a game kids already play, and uses behaviour data to sort them into green, amber and red, so children who need help are found sooner.'
+        )}
+        actions={
+          <>
+            <Button primary href={p.pdf}>{t('下載提案簡報 PDF', 'Download the deck (PDF)')}</Button>
+            <Button href="#deck">{t('看提案畫面', 'See the slides')}</Button>
+          </>
+        }
+        facts={[
+          { label: t('成績', 'Result'), value: t('全國 26 強', 'Top 26 nationwide') },
+          { label: t('階段', 'Stage'), value: t('初賽決選', 'Quarter-final') },
+          { label: t('主要平台', 'Platform'), value: 'Roblox' },
+          { label: t('預警分級', 'Alert levels'), value: t('綠、黃、紅', 'Green, amber, red') },
+        ]}
+      />
 
-      {/* 我的角色 */}
-      <Section kicker="MY ROLE" title="我的角色">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="我負責的部分" tone="brand">
-            <b className="text-white">系統機制設計</b>、<b className="text-white">OMO 三層數據漏斗</b>
-            （含 Mixpanel 行為數據分析與綠／黃／紅三級預警分流）、<b className="text-white">商業模式與三年財務</b>，
-            以及 <b className="text-white">Roblox 場景設計</b>（以 AI 工具快速產出概念視覺）——整個案子的系統與商業骨架。
-          </Card>
-          <Card title="團隊分工" tone="cyan">
-            團隊 E12 / KTV Lab。LINE ARG 校園怪談與實體工作坊由其他成員設計；
-            <span className="text-mute"> 其餘（機制、數據、商業、Roblox）基本由我負責。</span>
-          </Card>
+      <Section title={t('我的分工', 'My role')}>
+        <Roles
+          mine={
+            <>
+              <b>{t('系統機制設計', 'System mechanism design')}</b>
+              {t('。', '. ')}
+              <b>{t('OMO 數據漏斗', 'The OMO data funnel')}</b>
+              {t('，包含 Mixpanel 行為分析和綠黃紅三級分流。', ', including Mixpanel behaviour analysis and the green, amber and red triage. ')}
+              <b>{t('商業模式和三年財務', 'The business model and three-year financials')}</b>
+              {t('。', '. ')}
+              <b>{t('Roblox 場景', 'The Roblox scenes')}</b>
+              {t('，用 AI 工具做出概念畫面。', ', with concept visuals made using AI tools.')}
+            </>
+          }
+          team={t(
+            '團隊 E12 / KTV Lab。LINE ARG 校園怪談和實體工作坊由隊友設計。',
+            'Team E12 / KTV Lab. Teammates designed the LINE ARG mystery game and the in-person workshop.'
+          )}
+        />
+      </Section>
+
+      <Section title={t('要解決的問題', 'The problem')}>
+        <Prose>
+          <p>
+            {t(
+              '現有的輔導機制靠孩子主動求助。可是情緒越低落的孩子，越開不了口。',
+              'Current school support relies on children asking for help. The children struggling most are often the least able to ask.'
+            )}
+          </p>
+          <p>
+            <b>{t('45% 的高風險個案', '45% of high-risk cases')}</b>
+            {t(
+              '，在危機發生前從未接觸過任何心理資源。等到孩子開口，往往已經很晚了。',
+              ' had never had contact with any mental-health resource before the crisis. By the time a child speaks up, it is often late.'
+            )}
+          </p>
+          <p>
+            {t(
+              '我們的出發點是，孩子不想被當成需要輔導的人。比較好的做法，是在他們本來就在的地方，自然地接住他們。',
+              'Our starting point: children resist being treated as someone who needs counselling. It works better to reach them, quietly, where they already are.'
+            )}
+          </p>
+        </Prose>
+      </Section>
+
+      <Section
+        title={t('以 Roblox 為主場', 'Built on Roblox')}
+        aside={t('這是比賽提案。Roblox 場景是概念設計，沒有上線。', 'This is a competition proposal. The Roblox scenes are concept designs, not a live game.')}
+      >
+        <Prose>
+          <p>
+            {t(
+              '孩子在 Roblox 裡佈置自己的家，順手記錄心情。行為出現異常時，遊戲用任務引導他進入「防空洞」，做第二次篩檢。',
+              'In Roblox, a child decorates their own home and logs their mood along the way. When their behaviour shifts, a quest leads them into a "shelter" for a second screening.'
+            )}
+          </p>
+          <p>
+            {t(
+              '遊戲裡不開放文字和語音，情緒用雲朵和花朵的畫面表達。這樣可以避免霸凌。',
+              'Text and voice chat are turned off. Feelings show up as clouds and flowers instead, which keeps bullying out.'
+            )}
+          </p>
+        </Prose>
+        <div className="mt-10">
+          <Items
+            cols={2}
+            items={[
+              {
+                title: t('LINE ARG 校園怪談（隊友設計）', 'LINE ARG mystery (teammates)'),
+                body: t(
+                  '免安裝的文字解謎《尋找失蹤的 K 學姊》，把心理投射測驗藏在劇情裡，掃 QR code 就能玩。用來在校園做大規模、低門檻的初篩。',
+                  'A no-install text mystery, "Finding the missing senior K", with a projective test woven into the story. Students scan a QR code to play. It allows wide, low-effort screening at schools.'
+                ),
+              },
+              {
+                title: t('喵汪偵探社工作坊（隊友設計）', 'Detective workshop (teammates)'),
+                body: t(
+                  '實體解謎加上藝術治療，例如「雨中的我」投射繪畫。用 iPad 機台減輕志工負擔，補上數位工具看不到的情緒。',
+                  'An in-person puzzle session with art therapy, such as the "me in the rain" drawing exercise. iPad stations lighten the volunteers\' load and catch what digital tools miss.'
+                ),
+              },
+            ]}
+          />
         </div>
       </Section>
 
-      {/* 問題 */}
-      <Section kicker="THE PROBLEM" title="要解決的問題">
-        <p className="mb-4 text-[15px] leading-relaxed text-white/85">
-          台灣兒少自殺通報創 10 年新高，但現有輔導機制<b className="text-white">依賴「主動求助」</b>——
-          情緒深淵中的孩子往往開不了口，成為系統看不見的「隱形個案」。
+      <Section title={t('三層預警漏斗', 'The three-layer alert funnel')} aside={t('這一段是我設計的。', 'I designed this part.')}>
+        <List
+          items={[
+            <>
+              <b>{t('第一層，數據捕捉。', 'Layer 1, capture. ')}</b>
+              {t('匿名記錄孩子在遊戲裡的行為。', 'Record in-game behaviour anonymously.')}
+            </>,
+            <>
+              <b>{t('第二層，Mixpanel 預警。', 'Layer 2, Mixpanel alerts. ')}</b>
+              {t('把壓力訊號量化，自動分成綠、黃、紅三級。', 'Turn stress signals into scores and sort each child into green, amber or red.')}
+            </>,
+            <>
+              <b>{t('第三層，分級接手。', 'Layer 3, hand-off. ')}</b>
+              {t('綠燈由系統陪伴，黃燈由張老師志工介入，紅燈轉介 1980 專業諮商。', 'Green stays with the system. Amber goes to Teacher Chang volunteers. Red is referred to professional counselling through the 1980 hotline.')}
+            </>,
+          ]}
+        />
+        <p className="mt-6 max-w-prose text-[15px] leading-[1.7] text-ink2">
+          {t(
+            '全程去識別化，孩子不會被貼上標籤。',
+            'Data is de-identified throughout, and no child is labelled.'
+          )}
         </p>
-        <div className="grid gap-4 md:grid-cols-3">
-          <Card title="求助門檻高" tone="red">越需要幫助，越不敢開口；孩子抗拒被「定義為求助」的嚴肅情境。</Card>
-          <Card title="隱形黑數" tone="brand">45% 高風險個案，在危機發生前從未接觸任何心理資源。</Card>
-          <Card title="機制失效" tone="cyan">等孩子主動開口時，往往已經太晚——需要「主動發現」。</Card>
-        </div>
-        <div className="mt-4 rounded-2xl border border-line bg-gradient-to-br from-card to-ink2 p-5 text-[15px] leading-relaxed text-white/85">
-          核心洞察：孩子需要的，不是「<b className="text-white">被輔導</b>」，而是「<b className="text-brand">自然被接住</b>」。
+      </Section>
+
+      <Section title={t('商業模式', 'Business model')} aside={t('原則是不從弱勢身上賺錢。', 'The rule: never profit from the children it serves.')}>
+        <Items
+          items={[
+            {
+              title: t('三個收入來源', 'Three revenue sources'),
+              body: t(
+                '企業以 ESG 名義採購給學校，每校每年 5 萬元，學校免費拿到教材。另有 Roblox 品牌贊助，以及數發部、衛福部、教育部的政府補助。三年推估總營收約 350 萬元。',
+                'Companies fund schools through ESG budgets at NT$50,000 per school per year, so schools get the materials free. Brand sponsorship on Roblox and government grants from the digital, health and education ministries add the rest. Projected revenue is about NT$3.5 million over three years.'
+              ),
+            },
+            {
+              title: t('專業和技術分工', 'Who does what'),
+              body: t(
+                '張老師專心做專業輔導，團隊負責技術架構。紅燈個案的諮商費用由補助池支應，回饋弱勢家庭。',
+                'Teacher Chang focuses on counselling. The team owns the technology. A subsidy pool pays for red-level counselling for disadvantaged families.'
+              ),
+            },
+          ]}
+        />
+      </Section>
+
+      <Section id="deck" title={t('提案畫面', 'From the deck')} aside={t('點圖片可看大圖。', 'Click an image to open it full size.')}>
+        <Gallery shots={shots} />
+        <div className="mt-12 max-w-prose">
+          <Note>
+            {t(
+              '如果你或身邊的人正感到難以承受，可以撥 1925 安心專線（24 小時）或 1980 張老師專線。',
+              'If you or someone near you in Taiwan is struggling, call the 1925 Mental Health Hotline (24 hours) or the 1980 Teacher Chang line.'
+            )}
+          </Note>
         </div>
       </Section>
 
-      {/* 解法 */}
-      <Section kicker="THE SOLUTION" title="BEACON：三位一體的主動式心理支持網">
-        <div className="grid gap-4 md:grid-cols-3">
-          <Card title="Roblox 數位防空洞" tone="brand">
-            孩子熟悉的遊戲場域：佈置自己的家、記錄心情；異常行為時以任務引導進入「防空洞」二次篩檢。全程禁用文字/語音，用雲朵花朵視效表達情緒，杜絕霸凌。
-          </Card>
-          <Card title="LINE ARG 校園怪談" tone="cyan">
-            免安裝文字解謎《尋找失蹤的 K 學姊》，把心理投射測驗藏進懸疑劇情，掃 QR 即玩；「沒有鬼，只有受傷的心」。可大規模、低門檻入校初篩。
-          </Card>
-          <Card title="喵汪偵探社工作坊" tone="mint">
-            實體解謎 + 藝術治療（「雨中的我」投射繪畫），iPad 機台減輕志工負擔，補足數位偵測不到的深層情緒。
-          </Card>
-        </div>
-        <div className="mt-4">
-          <Card title="核心機制：數據驅動 OMO 三層預警漏斗" tone="brand">
-            第一層<b className="text-white">數據捕捉</b>（匿名記錄行為）→ 第二層 <b className="text-white">Mixpanel AI 預警</b>（量化壓力、自動分級）→
-            第三層<b className="text-white">分級接待</b>：綠燈由系統陪伴、黃燈由張老師志工介入、紅燈轉介 1980 專業諮商。
-            全程去標籤化、去識別化，讓防護網無痛落實於兒少生活圈。
-          </Card>
-        </div>
-      </Section>
-
-      {/* 商業模式 */}
-      <Section kicker="MODEL" title="永續商業模式：不以弱勢獲利">
-        <div className="grid gap-4 md:grid-cols-2">
-          <Card title="三大收入來源" tone="brand">
-            企業 ESG 校園採用（5 萬/校/年，校方獲免費教材）＋ Roblox 品牌贊助 ＋ 政府補助（數發部/衛福部/教育部），
-            三年推估總營收約 350 萬。
-          </Card>
-          <Card title="技術與專業分流" tone="cyan">
-            「張老師」專注專業輔導，團隊當「技術架構師」；紅燈諮詢補助池回饋弱勢家庭，
-            推動被動熱線轉型為可複製的主動預警防護網。
-          </Card>
-        </div>
-      </Section>
-
-      {/* 截圖 */}
-      <Section kicker="DECK" title="提案畫面精選">
-        <div id="shots" className="grid gap-5 md:grid-cols-2">
-          {shots.map((s) => (
-            <a key={s.src} href={s.src} target="_blank" rel="noreferrer" className="group block overflow-hidden rounded-2xl border border-line bg-ink2">
-              <img src={s.src} alt={s.cap} loading="lazy" className="w-full transition group-hover:opacity-90" />
-              <div className="px-4 py-3 text-[13px] text-white/80">{s.cap}</div>
-            </a>
-          ))}
-        </div>
-        <div className="mt-6 text-center">
-          <a href={p.pdf} target="_blank" rel="noreferrer" className="inline-block rounded-xl bg-brand px-6 py-3 font-bold text-[#231600] transition hover:brightness-110">下載完整提案簡報（PDF）</a>
-        </div>
-      </Section>
-
-      {/* CTA */}
-      <section className="mx-auto max-w-4xl px-5 pb-16">
-        <div className="rounded-2xl border border-line bg-gradient-to-br from-card to-ink2 p-8 text-center">
-          <div className="text-lg font-bold">想聊聊產品或社會創新？</div>
-          <div className="mt-4 flex flex-wrap justify-center gap-3">
-            <a href={`mailto:${profile.email}`} className="rounded-xl bg-brand px-5 py-2.5 font-bold text-[#231600] transition hover:brightness-110">聯絡我</a>
-            <a href={p.pdf} target="_blank" rel="noreferrer" className="rounded-xl border border-line px-5 py-2.5 font-semibold text-white/90 transition hover:bg-white/5">下載簡報</a>
-          </div>
-        </div>
-      </section>
+      <CaseFooter>
+        <Button href={p.pdf}>{t('下載提案簡報', 'Download the deck')}</Button>
+      </CaseFooter>
     </main>
   )
 }
