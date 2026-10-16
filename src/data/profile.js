@@ -83,7 +83,7 @@ export const profile = {
 
   education: [
     { school: { zh: '國立臺北科技大學', en: 'National Taipei University of Technology' }, dept: { zh: '經營管理系 學士', en: 'BBA, Business Management' }, note: { zh: 'CGPA 3.7', en: 'CGPA 3.7' } },
-    { school: { zh: '香港大學專業進修學院（HKU SPACE）', en: 'HKU SPACE, The University of Hong Kong' }, dept: { zh: '心理學副學士', en: 'Associate of Arts, Psychology' }, note: { zh: 'CGPA 3.5', en: 'CGPA 3.5' } },
+    { school: { zh: '香港大學專業進修學院（HKU SPACE）', en: 'HKU SPACE, The University of Hong Kong' }, dept: { zh: '心理學副學士', en: 'Associate of Arts, Psychology' }, note: { zh: 'CGPA 3.7', en: 'CGPA 3.7' } },
   ],
 
   skills: [
