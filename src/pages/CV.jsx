@@ -95,7 +95,7 @@ export default function CV() {
             <Block title={t('學歷', 'Education')}>
               <ul className="space-y-4">
                 {profile.education.map((ed) => (
-                  <li key={ed.school.en}>
+                  <li key={t(ed.school)}>
                     <div className="text-[14.5px] font-semibold text-ink">{t(ed.school)}</div>
                     <div className="text-[14px] text-ink2">{t(ed.dept)}</div>
                     <div className="text-[13px] text-mute">{t(ed.note)}</div>

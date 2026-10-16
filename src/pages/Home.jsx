@@ -154,7 +154,7 @@ function Experience() {
                 <h3 className="text-[15px] font-semibold text-ink">{t('學歷', 'Education')}</h3>
                 <ul className="mt-4 space-y-4">
                   {profile.education.map((ed) => (
-                    <li key={ed.school.en}>
+                    <li key={t(ed.school)}>
                       <div className="text-[15px] font-medium text-ink">{t(ed.school)}</div>
                       <div className="text-[14.5px] text-ink2">{t(ed.dept)}</div>
                       <div className="text-[13.5px] text-mute">{t(ed.note)}</div>
