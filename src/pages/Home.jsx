@@ -114,7 +114,7 @@ function Experience() {
       <Container className="py-16 sm:py-24">
         <SectionHead title={t('經歷', 'Experience')} />
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <div className="space-y-4 self-start text-[16px] leading-[1.75] text-ink2 lg:sticky lg:top-24 lg:col-span-4">
+          <div className="space-y-4 text-[16px] leading-[1.75] text-ink2 lg:col-span-4">
             <p>{t(profile.about)[0]}</p>
             <p>{t(profile.about)[2]}</p>
           </div>
