@@ -123,10 +123,9 @@ export default function ProjectTapAble() {
         period={t(p.period)}
         title={t(p.title)}
         org={t(p.org)}
-        event={t('隊名 ChatKTV', 'Team ChatKTV')}
         summary={t(
-          '點餐機、批價機、列印機大多沒有語音。TapAble 讓視障者碰一下貼紙，就能用自己的手機一步一步完成操作，機台不用換硬體。這個題目是我想的。在 BUILDMODE 黑客松，它第一次變成能跑的程式。',
-          'Most food kiosks, hospital payment machines and printers have no voice output. With TapAble, a blind user taps a sticker and finishes the task step by step on their own phone, with no hardware change to the kiosk. The idea is mine. At the BUILDMODE hackathon it became working software for the first time.'
+          '觸控螢幕沒有按鍵可以摸，視障者很難自己用點餐機、醫院批價機或列印機。TapAble 讓他們碰一下貼紙，就能用自己的手機一步一步完成操作，機台不用換硬體。這個專案由我發起，在 BUILDMODE 黑客松第一次做成能跑的程式。',
+          'A touchscreen has no buttons to feel, so blind people struggle to use food kiosks, hospital payment machines or printers on their own. With TapAble they tap a sticker and finish the task step by step on their own phone, with no hardware change to the kiosk. I started the project, and at the BUILDMODE hackathon it became working software for the first time.'
         )}
         actions={
           <>

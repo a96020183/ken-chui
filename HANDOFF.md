@@ -12,6 +12,7 @@
 - **中英雙語**：中文在 `/`，英文在 `/en`（`/en/cv`、`/en/projects/...`）。寄英文就給 `ken-chui.vercel.app/en`。
   文字都在 `src/data/profile.js`（`{ zh, en }`）與各作品頁的 `t('中文', 'English')`。工具在 `src/i18n.jsx`，共用版面元件在 `src/components/ui.jsx`。
 - **學歷與香港經歷不寫年份**（使用者要求）。之後加內容也照這個規則。
+- CMoney 經歷**不寫作者名**（2026-10-16 使用者：林恩如、權證小哥都不提），只寫「一位 VIP 作者／一條作者產品線」。
 - 職稱：**CMoney AI 產品經理**；TapAble 寫「共同創辦人、產品負責人」，2026/04 起。
 - `tapable_sep` repo 已請使用者刪除，全站不再連到它，也不再寫 MIT 開源。
 - 獎項 13 項集中在 `profile.js` 的 `awards[]`（首頁表格與 `/cv` 共用，不用再兩邊改）。日期以獎狀為準。
