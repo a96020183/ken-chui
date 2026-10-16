@@ -50,7 +50,7 @@ export const profile = {
     },
     {
       org: 'CMoney',
-      role: { zh: 'Associate Product Manager（實習）', en: 'Associate Product Manager (Intern)' },
+      role: { zh: '助理產品經理（實習）', en: 'Associate Product Manager (Intern)' },
       period: { zh: '2025/06 – 2026/08', en: 'Jun 2025 – Aug 2026' },
       points: [
         { zh: '前期參與多個股票類產品，後期加入一條作者產品線，協助資深 PM 規劃功能。', en: 'Worked on several stock-investing apps, then joined a creator product line to help a senior PM plan and ship features.' },
