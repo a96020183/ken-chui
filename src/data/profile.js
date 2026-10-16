@@ -43,7 +43,7 @@ export const profile = {
       role: { zh: 'AI 產品經理', en: 'AI Product Manager' },
       period: { zh: '2026/09 – 現在', en: 'Sep 2026 – Present' },
       points: [
-        { zh: '上線「權證小哥」的權證小幫手 Web 版。', en: 'Launched the web version of 權證小幫手, a warrant-trading helper for one of CMoney\'s top investing creators.' },
+        { zh: '上線一款權證交易輔助工具的 Web 版，服務公司旗下的投資作者。', en: 'Launched the web version of a warrant-trading helper tool for one of CMoney\'s top investing creators.' },
         { zh: '上線公司作者組產品的 LINE Bot。', en: 'Launched a LINE bot for the company\'s creator products.' },
         { zh: '負責一位 VIP 作者的產品線，iOS、Android、PC、Web 四個平台同時推版本；從需求、埋點、介面設計、和工程協作、測試到上架送審，一路負責到底。', en: 'Own a VIP creator\'s product line on iOS, Android, PC and web, end to end: requirements, event tracking, UI design, engineering hand-off, QA and store release.' },
       ],
