@@ -200,11 +200,19 @@ function AwardsBand() {
   return (
     <section aria-label={t('重點獎項', 'Key awards')} className="bg-ink text-white">
       <Container className="py-10 sm:py-12">
+        <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-white/15 pb-5">
+          <h2 className="text-[18px] font-semibold tracking-[-0.01em] text-white sm:text-[20px]">{t('重點獎項', 'Top awards')}</h2>
+          <LLink to="/#awards" className="inline-flex items-center gap-1.5 text-[14px] text-white/75 transition duration-150 ease-out hover:text-white">
+            {t(`全部 ${awards.length} 項獎項`, `All ${awards.length} awards`)} <Arrow />
+          </LLink>
+        </div>
         <div className="grid gap-px overflow-hidden bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((a) => (
             <div key={a.date + a.headline.en} className="flex flex-col bg-ink py-6 sm:px-6 sm:py-4 lg:first:pl-0">
               <div className="text-[22px] font-semibold leading-snug tracking-[-0.015em] text-white sm:text-[24px]">{t(a.headline)}</div>
-              <div className="mt-2 text-[14px] leading-relaxed text-white/70">{t(a.comp)}{a.note ? ` · ${t(a.note)}` : ''}</div>
+              {!t(a.headline).includes(t(a.comp)) && (
+                <div className="mt-2 text-[14px] leading-relaxed text-white/70">{t(a.comp)}{a.note ? ` · ${t(a.note)}` : ''}</div>
+              )}
               <div className="mt-auto flex items-baseline justify-between gap-4 pt-5 text-[13.5px]">
                 {a.to ? (
                   <LLink to={a.to} className="text-white underline decoration-white/40 underline-offset-[3px] transition duration-150 ease-out hover:decoration-white">{t(a.work)}</LLink>
