@@ -240,6 +240,7 @@ function Contact() {
         </p>
         <div className="no-print mt-9 flex flex-wrap items-center gap-3">
           <Button primary href={`mailto:${profile.email}`}>{profile.email}</Button>
+          <Button href={profile.linkedin}>LinkedIn</Button>
           <Button to="/cv">{t('看履歷', 'View CV')}</Button>
         </div>
       </Container>

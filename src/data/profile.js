@@ -17,6 +17,7 @@ export const profile = {
   location: { zh: '台北', en: 'Taipei' },
   email: 'a96020183@gmail.com',
   github: 'https://github.com/a96020183',
+  linkedin: 'https://www.linkedin.com/in/kenchuihw',
   photo: '/icon.png',
 
   now: [

@@ -11,6 +11,7 @@ export default function Footer() {
         <div>{profile.nameZh} {profile.name} · {t('台北', 'Taipei')}</div>
         <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
           <a href={`mailto:${profile.email}`} className={a}>{profile.email}</a>
+          <a href={profile.linkedin} target="_blank" rel="noreferrer" className={a}>LinkedIn</a>
           <a href={profile.github} target="_blank" rel="noreferrer" className={a}>GitHub</a>
           <LLink to="/cv" className={a}>{t('履歷', 'CV')}</LLink>
         </div>

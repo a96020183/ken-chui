@@ -40,6 +40,7 @@ export default function CV() {
           </div>
           <ul className="space-y-1 text-[14px] text-ink2 sm:text-right">
             <li><a href={`mailto:${profile.email}`} className="hover:text-accent">{profile.email}</a></li>
+            <li><a href={profile.linkedin} className="hover:text-accent">linkedin.com/in/kenchuihw</a></li>
             <li>{t(profile.location)} · <a href={profile.github} className="hover:text-accent">github.com/a96020183</a></li>
             <li>ken-chui.vercel.app{t('', '/en')}</li>
           </ul>
