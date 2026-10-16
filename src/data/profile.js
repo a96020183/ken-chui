@@ -63,8 +63,9 @@ export const profile = {
       period: { zh: '2026/04 – 現在', en: 'Apr 2026 – Present' },
       to: '/projects/tapable-buildmode',
       points: [
-        { zh: '我發起這個專案，負責定義產品，也寫了大部分的原型程式。團隊共五人。', en: 'I started the project, define the product and wrote most of the prototype code. Team of five.' },
-        { zh: '做出 LINE 官方帳號版：碰一下 NFC 貼紙就有語音引導，餐點好了，號碼直接推到手機。', en: 'Built a LINE Official Account version: tap an NFC sticker for voice guidance, and the order number is pushed to your phone when food is ready.' },
+        { zh: '發起並帶領五人團隊，讓視障者用自己的手機操作點餐機這類觸控機台。', en: 'Started and lead a team of five building a way for blind people to use touchscreen kiosks, such as food ordering machines, from their own phones.' },
+        { zh: '負責產品定義，原型程式大部分由我撰寫。', en: 'Define the product and write most of the prototype code.' },
+        { zh: '做出 LINE 版的點餐流程：碰一下貼紙，語音一步一步引導；餐點好了，號碼會推播到手機。', en: 'Built the LINE version of the ordering flow: tap a sticker for step-by-step voice guidance, and get your order number on your phone when the food is ready.' },
         { zh: '訪談 3 位視障者，並請 2 位視障按摩師實際試用點餐流程。', en: 'Interviewed three blind users and had two visually impaired massage therapists try the ordering flow.' },
       ],
     },
