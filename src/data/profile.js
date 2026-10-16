@@ -89,8 +89,10 @@ export const profile = {
   skills: [
     { label: { zh: '產品', en: 'Product' }, items: [{ zh: 'PRD 撰寫', en: 'PRDs' }, { zh: '使用者研究與訪談', en: 'User research & interviews' }, { zh: '埋點規劃', en: 'Event tracking' }, { zh: '競品分析', en: 'Competitive analysis' }, 'Figma'] },
     { label: { zh: '數據', en: 'Data' }, items: ['Mixpanel', 'Firebase', 'GA4', 'SQL', 'SAP'] },
-    { label: 'AI', items: [{ zh: 'LLM 產品設計（RAG／Agent）', en: 'LLM product design (RAG, agents)' }, 'Prompt engineering', 'Edge AI (TensorFlow.js)', 'Amazon Bedrock'] },
-    { label: { zh: '開發', en: 'Build' }, items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python', 'LINE LIFF'] },
+    { label: 'AI', items: [{ zh: 'LLM 產品設計（RAG／Agent）', en: 'LLM product design (RAG, agents)' }, 'Prompt engineering', 'Edge AI (TensorFlow.js)'] },
+    { label: { zh: 'AI 開發工具', en: 'AI coding' }, items: ['Claude Code', 'Codex', 'Kiro', 'Antigravity'] },
+    { label: { zh: '開發', en: 'Build' }, items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python'] },
+    { label: { zh: '平台', en: 'Platforms' }, items: [{ zh: 'AWS（Amplify、Bedrock）', en: 'AWS (Amplify, Bedrock)' }, 'Firebase', { zh: 'LINE 官方帳號與 LINE 內開啟的網頁應用（LIFF）', en: 'LINE Official Account and in-LINE web apps (LIFF)' }] },
   ],
   certs: ['Google Analytics 4', 'Google Ads (Apps)', 'Google Ads (AI)', 'Google Ads (Measurement)'],
   languages: [
@@ -102,14 +104,14 @@ export const profile = {
 
 // 13 項獲獎，日期照獎狀（C:\2026\m\獎）。to＝站內作品頁；href＝外部連結。
 export const awards = [
+  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '實作組決賽中', en: 'In the finals, build track' }, work: { zh: '警示找眼睛', en: 'Eyes-first exit alert' } },
+  { date: '2026/10', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '決賽中', en: 'In the finals' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/10', comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名', en: '3rd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
-  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '實作組決賽', en: 'Finalist, build track' }, work: { zh: '警示找眼睛', en: 'Eyes-first exit alert' } },
-  { date: '2026/10', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '決賽', en: 'Finalist' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽（233 組取 10）', en: 'Finalist, top 10 of 233' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/09', comp: { zh: 'BUILDMODE 2026 GEN-AI 黑客松（FUTUREMODE 台灣未來祭）', en: 'BUILDMODE 2026 GEN-AI Hackathon (FUTUREMODE)' }, result: { zh: '第二名（160 隊）', en: '2nd of 160 teams' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/08', comp: { zh: 'AI Monster 未來生存挑戰賽（大專組）', en: 'AI Monster: Future Survival Challenge' }, result: { zh: '第四名', en: '4th place' }, work: '—' },
   { date: '2026/08', comp: { zh: '第十屆 3S 創客競賽', en: '10th 3S Maker Competition' }, result: { zh: '入圍獎', en: 'Finalist award' }, work: { zh: 'TapAble 導航版', en: 'TapAble, navigation version' }, href: '/yao-3s-demo/index.html' },
-  { date: '2026/07', comp: { zh: 'AWS Summit Taipei 百工百業瘋 AI 黑客松', en: 'AI Everywhere Hackathon, AWS Summit Taipei' }, result: { zh: '數位學習組第二名', en: '2nd place, EdTech track' }, work: { zh: 'PressPlay AI 學習助教', en: 'PressPlay AI tutor' }, to: '/projects/ppa-hackathon' },
+  { date: '2026/07', comp: { zh: 'AWS Summit Taipei 百工百業瘋 AI 黑客松', en: 'AWS Summit Taipei 2026 AI Hackathon (AI Everywhere)' }, result: { zh: '數位學習組第二名', en: '2nd place, EdTech track' }, work: { zh: 'PressPlay AI 學習助教', en: 'PressPlay AI tutor' }, to: '/projects/ppa-hackathon' },
   { date: '2026/07', comp: { zh: '中原大學 第四屆解決未來問題能力競賽', en: '4th Future Problem Solving Competition (CYCU)' }, result: { zh: '佳作', en: 'Honorable mention' }, work: { zh: '親盈翻譯機', en: 'Photo postcards for elders on LINE' } },
   { date: '2026/06', comp: { zh: '全國商管暨跨域創新實務專題競賽（德明科大）', en: 'National Business & Cross-disciplinary Project Competition' }, result: { zh: '跨域組第三名', en: '3rd place, cross-disciplinary' }, work: { zh: 'TapAble 第一版', en: 'TapAble, first version' }, to: '/projects/yaoguang-whale' },
   { date: '2026/05', comp: { zh: '第 23 屆 ATCC 全國大專院校商業個案大賽', en: '23rd ATCC Case Competition' }, result: { zh: '全國 26 強', en: 'Top 26 nationwide' }, work: 'BEACON', to: '/projects/atcc-beacon' },
@@ -221,7 +223,7 @@ export const moreWork = [
   },
   {
     title: { zh: '警示找眼睛：AI 座艙下車警示', en: 'Eyes-first exit alert for car cabins' },
-    text: { zh: '乘客下車時眼睛多半在看手機或付款螢幕。系統把開門警示送到他正在看的那塊螢幕，窗框燈條同時提醒車外騎士。AI 座艙 Hackathon 實作組決賽。', en: 'Passengers getting out usually look at a phone or the payment screen. The system sends the door warning to whichever screen they are looking at, while a window light strip warns cyclists outside. Finalist, AI Cockpit Hackathon build track.' },
+    text: { zh: '乘客下車時眼睛多半在看手機或付款螢幕。系統把開門警示送到他正在看的那塊螢幕，窗框燈條同時提醒車外騎士。AI 座艙 Hackathon 實作組決賽中。', en: 'Passengers getting out usually look at a phone or the payment screen. The system sends the door warning to whichever screen they are looking at, while a window light strip warns cyclists outside. In the finals of the AI Cockpit Hackathon build track.' },
     period: { zh: '2026/10', en: 'Oct 2026' },
   },
   {

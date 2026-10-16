@@ -166,12 +166,12 @@ function Experience() {
                 <h3 className="text-[15px] font-semibold text-ink">{t('技能', 'Skills')}</h3>
                 <dl className="mt-4 space-y-3">
                   {profile.skills.map((g) => (
-                    <div key={t(g.label)} className="grid grid-cols-[4rem_1fr] gap-3">
+                    <div key={t(g.label)} className="grid grid-cols-[6.5rem_1fr] gap-3">
                       <dt className="text-[13.5px] text-mute">{t(g.label)}</dt>
                       <dd className="text-[14.5px] leading-relaxed text-ink2">{g.items.map((it) => t(it)).join(t('、', ', '))}</dd>
                     </div>
                   ))}
-                  <div className="grid grid-cols-[4rem_1fr] gap-3">
+                  <div className="grid grid-cols-[6.5rem_1fr] gap-3">
                     <dt className="text-[13.5px] text-mute">{t('語言', 'Languages')}</dt>
                     <dd className="text-[14.5px] leading-relaxed text-ink2">{profile.languages.map((l) => t(l)).join(t('、', ', '))}</dd>
                   </div>
