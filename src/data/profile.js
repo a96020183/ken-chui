@@ -16,7 +16,6 @@ export const profile = {
   },
   location: { zh: '台北', en: 'Taipei' },
   email: 'a96020183@gmail.com',
-  phone: '0901-404-044',
   github: 'https://github.com/a96020183',
   photo: '/icon.png',
 
@@ -28,12 +27,12 @@ export const profile = {
   about: {
     zh: [
       '我習慣先找到卡住的人，再自己把東西做出來。需求研究、埋點和數據分析、Figma 設計、寫程式做原型、測試、上架送審，這些我都做過。',
-      '在 CMoney，我用 Mixpanel 和 Firebase 找出使用者流失的地方，幫產品下半年的年增率由負轉正，最高單月成長 70.7%。',
+      '在 CMoney 實習時，我用 Mixpanel 和 Firebase 找出使用者流失的地方，協助產品下半年的年增率由負轉正，最高單月成長 70.7%。',
       '商管和心理學的背景，讓我看產品時同時想兩件事：這門生意算不算得過來，以及使用者心裡真正在意什麼。',
     ],
     en: [
       'I start with the person who is stuck, then build what gets them unstuck. I have done every step of that loop: user research, event tracking and analysis, Figma design, coding prototypes, testing and app store release.',
-      'At CMoney I used Mixpanel and Firebase to find where users dropped off. The product\'s second-half year-over-year growth turned from negative to positive, peaking at +70.7% in one month.',
+      'As an intern at CMoney, I used Mixpanel and Firebase to find where users dropped off, and helped turn the product\'s second-half year-over-year growth from negative to positive, peaking at +70.7% in one month.',
       'A business degree and a psychology background mean I look at every product two ways: does the business work, and what does the user actually care about.',
     ],
   },
@@ -44,17 +43,18 @@ export const profile = {
       role: { zh: 'AI 產品經理', en: 'AI Product Manager' },
       period: { zh: '2026/09 – 現在', en: 'Sep 2026 – Present' },
       points: [
-        { zh: '負責一位 VIP 作者的產品線，iOS、Android、PC、Web 四個平台同時推版本。', en: 'Own a VIP creator\'s product line, shipping on iOS, Android, PC and web at the same time.' },
-        { zh: '從需求、埋點、介面設計、和工程協作、測試到上架送審，一路負責到底。', en: 'Run features end to end: requirements, event tracking, UI design, engineering hand-off, QA and store release.' },
+        { zh: '上線「權證小哥」的權證小幫手 Web 版。', en: 'Launched the web version of 權證小幫手, a warrant-trading helper for one of CMoney\'s top investing creators.' },
+        { zh: '上線公司作者組產品的 LINE Bot。', en: 'Launched a LINE bot for the company\'s creator products.' },
+        { zh: '負責一位 VIP 作者的產品線，iOS、Android、PC、Web 四個平台同時推版本；從需求、埋點、介面設計、和工程協作、測試到上架送審，一路負責到底。', en: 'Own a VIP creator\'s product line on iOS, Android, PC and web, end to end: requirements, event tracking, UI design, engineering hand-off, QA and store release.' },
       ],
     },
     {
       org: 'CMoney',
-      role: { zh: '產品企劃實習生', en: 'Associate Product Manager Intern' },
+      role: { zh: 'Associate Product Manager（實習）', en: 'Associate Product Manager (Intern)' },
       period: { zh: '2025/06 – 2026/08', en: 'Jun 2025 – Aug 2026' },
       points: [
         { zh: '前期參與多個股票類產品，後期加入一條作者產品線，協助資深 PM 規劃功能。', en: 'Worked on several stock-investing apps, then joined a creator product line to help a senior PM plan and ship features.' },
-        { zh: '用 Mixpanel 和 Firebase 找出使用者流失的地方，幫產品下半年年增率由負轉正，最高單月成長 70.7%。', en: 'Found drop-off points with Mixpanel and Firebase. Second-half YoY growth turned positive, peaking at +70.7% in one month.' },
+        { zh: '用 Mixpanel 和 Firebase 找出使用者流失的地方，幫產品下半年年增率由負轉正，最高單月成長 70.7%。', en: 'Found drop-off points with Mixpanel and Firebase and helped turn second-half YoY growth positive, peaking at +70.7% in one month.' },
       ],
     },
     {
@@ -76,7 +76,7 @@ export const profile = {
     items: [
       { org: { zh: '香港喜來登酒店', en: 'Sheraton Hong Kong Hotel & Towers' }, role: { zh: '夜班房務部經理', en: 'Night Duty Manager, Housekeeping' }, text: { zh: '處理夜間突發狀況，協調各部門讓服務不中斷。', en: 'Handled overnight incidents and coordinated departments to keep service running.' } },
       { org: { zh: '東華三院', en: 'Tung Wah Group of Hospitals' }, role: { zh: '青少年空間共享計劃經理', en: 'Youth Space Programme Manager' }, text: { zh: '從零推動計劃落地，帶動青少年參與社區。', en: 'Launched a youth programme from scratch and grew participation.' } },
-      { org: 'Compass Group', role: { zh: '採購部文員（兼職）', en: 'Purchasing Clerk (part-time)' }, text: { zh: '用 Excel VBA 寫自動化工具，縮短例行採購作業。', en: 'Built Excel VBA tools that automated routine purchasing work.' } },
+      { org: 'Compass Group', role: { zh: '採購部文員（兼職）', en: 'Purchasing Clerk (part-time)' }, text: { zh: '使用 SAP 處理採購，並用 Excel VBA 寫自動化工具，縮短例行作業。', en: 'Used SAP for purchasing and built Excel VBA tools that automated routine work.' } },
     ],
   },
 
@@ -87,13 +87,13 @@ export const profile = {
 
   skills: [
     { label: { zh: '產品', en: 'Product' }, items: [{ zh: 'PRD 撰寫', en: 'PRDs' }, { zh: '使用者研究與訪談', en: 'User research & interviews' }, { zh: '埋點規劃', en: 'Event tracking' }, { zh: '競品分析', en: 'Competitive analysis' }, 'Figma'] },
-    { label: { zh: '數據', en: 'Data' }, items: ['Mixpanel', 'Firebase', 'GA4', 'SQL', 'SAP'] },
+    { label: { zh: '數據', en: 'Data' }, items: ['Mixpanel', 'Firebase', 'GA4', 'SQL', 'Excel (VBA)'] },
     { label: 'AI', items: [{ zh: 'LLM 產品設計（RAG／Agent）', en: 'LLM product design (RAG, agents)' }, 'Prompt engineering', 'Edge AI (TensorFlow.js)'] },
-    { label: { zh: 'AI 開發工具', en: 'AI coding' }, items: ['Claude Code', 'Codex', 'Kiro', 'Antigravity'] },
+    { label: { zh: 'AI 開發', en: 'AI coding' }, items: [{ zh: '用 Claude Code、Codex、Kiro、Antigravity 寫程式，並用單元測試和回歸案例把關品質', en: 'Build with Claude Code, Codex, Kiro and Antigravity, and check quality with unit and regression tests' }] },
     { label: { zh: '開發', en: 'Build' }, items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python'] },
     { label: { zh: '平台', en: 'Platforms' }, items: [{ zh: 'AWS（Amplify、Bedrock）', en: 'AWS (Amplify, Bedrock)' }, 'Firebase', { zh: 'LINE 平台：官方帳號聊天機器人與推播（Messaging API）、圖文選單、LINE Login、LIFF 網頁', en: 'LINE platform: Official Account bots and push (Messaging API), rich menus, LINE Login, LIFF web apps' }] },
   ],
-  certs: ['Google Analytics 4', 'Google Ads (Apps)', 'Google Ads (AI)', 'Google Ads (Measurement)'],
+  certs: ['Google Analytics 4', 'Google Ads (Apps, AI, Measurement)'],
   languages: [
     { zh: '粵語（母語）', en: 'Cantonese (native)' },
     { zh: '國語（精通）', en: 'Mandarin (full professional)' },
@@ -103,19 +103,19 @@ export const profile = {
 
 // 13 項獲獎，日期照獎狀（C:\2026\m\獎）。to＝站內作品頁；href＝外部連結。
 export const awards = [
-  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '實作組決賽中', en: 'In the finals, build track' }, work: { zh: '警示找眼睛', en: 'Eyes-first exit alert' } },
+  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '實作組 16 強，決賽中', en: 'In the finals, top 16, build track' }, work: { zh: '警示找眼睛', en: 'Eyes-first exit alert' } },
   { date: '2026/10', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '決賽中', en: 'In the finals' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
-  { date: '2026/10', major: true, headline: { zh: 'LINE AI 創新創業競賽第三名', en: '3rd place, LINE AI competition' }, comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名', en: '3rd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
-  { date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽', en: 'Finalist' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
-  { date: '2026/09', major: true, headline: { zh: 'BUILDMODE 黑客松第二名', en: '2nd place, BUILDMODE GEN-AI hackathon' }, comp: { zh: 'BUILDMODE 2026 GEN-AI 黑客松（FUTUREMODE 台灣未來祭）', en: 'BUILDMODE 2026 GEN-AI Hackathon (FUTUREMODE)' }, result: { zh: '第二名', en: '2nd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/10', major: true, headline: { zh: 'LINE AI 創新創業競賽第三名', en: '3rd place, LINE AI competition' }, note: { zh: '決選 12 組', en: '12 finalists' }, comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名（決選 12 組）', en: '3rd of 12 finalists' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽（233 組參賽）', en: 'Finalist (233 entries)' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/09', major: true, headline: { zh: 'BUILDMODE 黑客松第二名', en: '2nd place, BUILDMODE GEN‑AI hackathon' }, note: { zh: '160 隊', en: '160 teams' }, comp: { zh: 'BUILDMODE 2026 GEN-AI 黑客松（FUTUREMODE 台灣未來祭）', en: 'BUILDMODE 2026 GEN-AI Hackathon (FUTUREMODE)' }, result: { zh: '第二名（160 隊）', en: '2nd of 160 teams' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/08', comp: { zh: 'AI Monster 未來生存挑戰賽（大專組）', en: 'AI Monster: Future Survival Challenge' }, result: { zh: '第四名', en: '4th place' }, work: { zh: '收藏從未停止，行動從未開始', en: 'Always saving, never doing' } },
   { date: '2026/08', comp: { zh: '第十屆 3S 創客競賽', en: '10th 3S Maker Competition' }, result: { zh: '入圍獎', en: 'Finalist award' }, work: { zh: 'TapAble 導航版', en: 'TapAble, navigation version' }, href: '/yao-3s-demo/index.html' },
   { date: '2026/07', major: true, headline: { zh: 'AWS 黑客松第二名', en: '2nd place, AWS hackathon' }, note: { zh: '數位學習組', en: 'EdTech track' }, comp: { zh: 'AWS Summit Taipei 百工百業瘋 AI 黑客松', en: 'AWS Summit Taipei 2026 AI Hackathon (AI Everywhere)' }, result: { zh: '數位學習組第二名', en: '2nd place, EdTech track' }, work: { zh: 'PressPlay AI 學習助教', en: 'PressPlay AI tutor' }, to: '/projects/ppa-hackathon' },
   { date: '2026/07', comp: { zh: '中原大學 第四屆解決未來問題能力競賽', en: '4th Future Problem Solving Competition (CYCU)' }, result: { zh: '佳作', en: 'Honorable mention' }, work: { zh: '親盈翻譯機', en: 'Photo postcards for elders on LINE' } },
-  { date: '2026/06', comp: { zh: '全國商管暨跨域創新實務專題競賽', en: 'National Business & Cross-disciplinary Project Competition' }, result: { zh: '跨域組第三名', en: '3rd place, cross-disciplinary' }, work: { zh: 'TapAble 第一版', en: 'TapAble, first version' }, to: '/projects/yaoguang-whale' },
-  { date: '2026/05', comp: { zh: '第 23 屆 ATCC 全國大專院校商業個案大賽', en: '23rd ATCC Case Competition' }, result: { zh: '全國 26 強', en: 'Top 26 nationwide' }, work: 'BEACON', to: '/projects/atcc-beacon' },
-  { date: '2026/01', major: true, headline: { zh: '法國巴黎人壽黑客松第二名', en: '2nd place, BNP Paribas Cardif hackathon' }, note: { zh: '銀獎', en: 'Silver award' }, comp: { zh: '第三屆法國巴黎人壽 Cardif InsurHack', en: '3rd Cardif InsurHack, BNP Paribas Cardif' }, result: { zh: '第二名（銀獎）', en: '2nd place (Silver)' }, work: { zh: '保包巴士', en: 'Baobao Bus' }, to: '/projects/bnp-insurhack' },
-  { date: '2024/12', comp: { zh: '2024 全球品牌策劃與設計大賽 台灣總決賽', en: '2024 Global Brand Planning & Design Competition, Taiwan final' }, result: { zh: '銀質獎', en: 'Silver award' }, work: { zh: '金孕獎推廣策略', en: 'Golden Pregnancy Award strategy' }, to: '/projects/jinyun-branding' },
+  { date: '2026/06', comp: { zh: '全國商管暨跨域創新實務專題競賽', en: 'National Business & Cross-disciplinary Project Competition' }, result: { zh: '跨域組第三名（28 隊）', en: '3rd of 28 teams, cross-disciplinary' }, work: { zh: 'TapAble 第一版', en: 'TapAble, first version' }, to: '/projects/yaoguang-whale' },
+  { date: '2026/05', comp: { zh: '第 23 屆 ATCC 全國大專院校商業個案大賽', en: '23rd ATCC Case Competition' }, result: { zh: '初賽決選（全國 38 強）', en: 'Quarter-final, top 38 nationwide' }, work: 'BEACON', to: '/projects/atcc-beacon' },
+  { date: '2026/01', major: true, headline: { zh: '法國巴黎人壽黑客松第二名', en: '2nd place, BNP Paribas Cardif hackathon' }, note: { zh: '銀獎・全台 50 校、450 多位學生參賽', en: 'Silver award · 450+ students from 50 schools' }, comp: { zh: '第三屆法國巴黎人壽 Cardif InsurHack', en: '3rd Cardif InsurHack, BNP Paribas Cardif' }, result: { zh: '第二名（銀獎，決選 8 組）', en: '2nd place (Silver), 8 finalists' }, work: { zh: '保包巴士', en: 'Baobao Bus' }, to: '/projects/bnp-insurhack' },
+  { date: '2024/12', comp: { zh: '2024 全球品牌策劃與設計大賽 台灣總決賽', en: '2024 Global Brand Planning & Design Competition, Taiwan final' }, result: { zh: '銀質獎（196 隊）', en: 'Silver award (196 teams)' }, work: { zh: '金孕獎推廣策略', en: 'Golden Pregnancy Award strategy' }, to: '/projects/jinyun-branding' },
 ]
 
 // 作品頁資料（首頁精選、作品頁標題共用）
@@ -126,7 +126,7 @@ export const projects = [
     cover: '/tapable/stage-completed.png',
     title: { zh: 'TapAble：讓視障者用自己的手機操作觸控機台', en: 'TapAble: blind users run touchscreen kiosks from their own phones' },
     org: { zh: '創業中', en: 'Early-stage startup' },
-    result: { zh: 'BUILDMODE 黑客松第二名、LINE AI 競賽第三名', en: '2nd at BUILDMODE Hackathon, 3rd at LINE AI Competition' },
+    result: { zh: 'BUILDMODE 黑客松第二名（160 隊）、LINE AI 競賽第三名', en: '2nd of 160 at BUILDMODE Hackathon, 3rd at LINE AI Competition' },
     period: { zh: '2026/04 – 現在', en: 'Apr 2026 – Present' },
     hook: {
       zh: '觸控螢幕沒有按鍵可以摸，視障者很難自己用點餐機、醫院批價機或列印機。TapAble 讓他們碰一下貼紙，就能用自己的手機和 LINE 一步一步完成操作，機台不用換硬體。',
@@ -142,7 +142,7 @@ export const projects = [
   {
     slug: 'ppa-hackathon',
     featured: true,
-    cover: '/ppa/cover.jpg',
+    cover: '/ppa/cover-ui.jpg',
     title: { zh: 'PressPlay AI 學習助教', en: 'PressPlay AI tutor' },
     org: { zh: 'AWS Summit Taipei 2026 · 百工百業瘋 AI 黑客松', en: 'AWS Summit Taipei 2026 · AI Everywhere Hackathon' },
     result: { zh: '數位學習組第二名', en: '2nd place, EdTech track' },
@@ -158,7 +158,7 @@ export const projects = [
   {
     slug: 'bnp-insurhack',
     featured: true,
-    cover: '/bnp/business-model.png',
+    cover: '/bnp/funnel.png',
     title: { zh: '保包巴士：給 Z 世代的訂閱制保險', en: 'Baobao Bus: subscription insurance for Gen Z' },
     org: { zh: '法國巴黎人壽 · 第三屆 Cardif InsurHack', en: 'BNP Paribas Cardif · 3rd Cardif InsurHack' },
     result: { zh: '第二名（銀獎）', en: '2nd place (Silver)' },
@@ -175,7 +175,7 @@ export const projects = [
     cover: '/yao/cover.png',
     title: { zh: '瑤光深鯨：TapAble 的第一版', en: 'Yaoguang: the first version of TapAble' },
     org: { zh: '全國商管暨跨域創新實務專題競賽 · 跨域專題組', en: 'National Business & Cross-disciplinary Project Competition' },
-    result: { zh: '跨域組第三名', en: '3rd place, cross-disciplinary track' },
+    result: { zh: '跨域組第三名（28 隊）', en: '3rd of 28 teams, cross-disciplinary track' },
     period: { zh: '2026/06', en: 'Jun 2026' },
     hook: {
       zh: '不換機台硬體，讓視障者用自己的手機操作公共觸控機台。題目由我原創，有可以點的 Figma 原型。',
@@ -188,7 +188,7 @@ export const projects = [
     cover: '/atcc/cover.png',
     title: { zh: 'BEACON：藏在 Roblox 裡的兒少心理支持', en: 'BEACON: youth mental-health support inside Roblox' },
     org: { zh: '第 23 屆 ATCC 全國大專院校商業個案大賽', en: '23rd ATCC Case Competition' },
-    result: { zh: '全國 26 強', en: 'Top 26 nationwide' },
+    result: { zh: '全國 38 強', en: 'Top 38 nationwide' },
     period: { zh: '2026/05', en: 'May 2026' },
     hook: {
       zh: '把心理初篩藏進孩子本來就在玩的 Roblox，用數據分出綠、黃、紅三級，讓需要幫忙的孩子被主動發現。',
@@ -201,7 +201,7 @@ export const projects = [
     cover: '/jinyun/cover.png',
     title: { zh: '金孕獎推廣策略', en: 'Brand strategy for the Golden Pregnancy Award' },
     org: { zh: '2024 全球品牌策劃與設計大賽 台灣總決賽', en: '2024 Global Brand Planning & Design Competition, Taiwan final' },
-    result: { zh: '銀質獎', en: 'Silver award' },
+    result: { zh: '銀質獎（196 隊）', en: 'Silver award (196 teams)' },
     period: { zh: '2024/12', en: 'Dec 2024' },
     hook: {
       zh: '幫台灣母嬰產業獎項「金孕獎」設計推廣策略：網站加上討論區和點數，再用口碑擴散。',

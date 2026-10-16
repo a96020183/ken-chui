@@ -1,12 +1,12 @@
 import React from 'react'
 import { profile, awards } from '../data/profile.js'
 import { LLink, useT, useTitle } from '../i18n.jsx'
-import { Container } from '../components/ui.jsx'
+import { Container, Arrow } from '../components/ui.jsx'
 
 // 履歷：畫面與列印（存 PDF）共用同一份版面；列印時隱藏導覽列與按鈕
-function Block({ title, children }) {
+function Block({ id, title, children }) {
   return (
-    <section className="break-inside-avoid">
+    <section id={id} className="scroll-mt-20 break-inside-avoid">
       <h2 className="border-b border-ink pb-2 text-[13px] font-semibold uppercase tracking-[0.06em] text-ink">{title}</h2>
       <div className="mt-4">{children}</div>
     </section>
@@ -21,7 +21,7 @@ export default function CV() {
       <style>{`@media print { @page { size: A4; margin: 14mm; } .cv-sheet { padding: 0 !important; } }`}</style>
       <Container className="cv-sheet py-10 sm:py-14">
         <div className="no-print mb-10 flex items-center justify-between gap-4">
-          <LLink to="/" className="text-[13px] text-mute transition hover:text-ink">← {t('回首頁', 'Home')}</LLink>
+          <LLink to="/" className="inline-flex items-center gap-1.5 text-[13px] text-mute transition hover:text-ink"><Arrow className="rotate-180" /> {t('回首頁', 'Home')}</LLink>
           <button
             type="button"
             onClick={() => window.print()}
@@ -40,7 +40,6 @@ export default function CV() {
           </div>
           <ul className="space-y-1 text-[14px] text-ink2 sm:text-right">
             <li><a href={`mailto:${profile.email}`} className="hover:text-accent">{profile.email}</a></li>
-            <li className="tnum">{profile.phone}</li>
             <li>{t(profile.location)} · <a href={profile.github} className="hover:text-accent">github.com/a96020183</a></li>
             <li>ken-chui.vercel.app{t('', '/en')}</li>
           </ul>
@@ -75,7 +74,7 @@ export default function CV() {
               </ol>
             </Block>
 
-            <Block title={t('得獎紀錄', 'Awards')}>
+            <Block id="awards" title={t('得獎紀錄', 'Awards')}>
               <ul className="divide-y divide-line">
                 {awards.map((a, i) => (
                   <li key={i} className="grid grid-cols-[4.5rem_1fr] gap-3 py-2.5 text-[14px] leading-snug">

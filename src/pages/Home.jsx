@@ -39,9 +39,9 @@ function Intro() {
           <img
             src={profile.photo}
             alt={t('徐浩華的照片', 'Photo of Ken Chui')}
-            className="h-36 w-28 rounded-xl object-cover object-top sm:h-44 sm:w-36"
+            className="hidden h-44 w-36 rounded-xl object-cover object-top lg:block"
           />
-          <dl className="mt-8 divide-y divide-line border-y border-line">
+          <dl className="divide-y divide-line border-y border-line lg:mt-8">
             {profile.now.map((n) => (
               <div key={n.text.en} className="grid grid-cols-[5.5rem_1fr] gap-3 py-3.5">
                 <dt className="text-[13.5px] text-mute">{t(n.label)}</dt>
@@ -114,7 +114,7 @@ function Experience() {
       <Container className="py-16 sm:py-24">
         <SectionHead title={t('經歷', 'Experience')} />
         <div className="grid gap-12 lg:grid-cols-12 lg:gap-10">
-          <div className="space-y-4 text-[16px] leading-[1.75] text-ink2 lg:col-span-4">
+          <div className="space-y-4 self-start text-[16px] leading-[1.75] text-ink2 lg:sticky lg:top-24 lg:col-span-4">
             <p>{t(profile.about)[0]}</p>
             <p>{t(profile.about)[2]}</p>
           </div>
@@ -129,7 +129,7 @@ function Experience() {
                       {e.to ? <LLink to={e.to} className="link font-semibold">{e.org}</LLink> : e.org}
                     </h3>
                     <ul className="mt-3 space-y-2">
-                      {e.points.map((pt) => (
+                      {e.points.slice(0, 2).map((pt) => (
                         <li key={pt.en} className="text-[15px] leading-[1.7] text-ink2">{t(pt)}</li>
                       ))}
                     </ul>
@@ -137,60 +137,21 @@ function Experience() {
                   <div className="tnum order-first text-[14px] text-mute sm:order-none sm:text-right">{t(e.period)}</div>
                 </li>
               ))}
+              <li className="py-6">
+                <h3 className="text-[15px] font-semibold text-ink">{t(profile.earlier.label)}</h3>
+                <p className="mt-2 text-[15px] leading-[1.7] text-ink2">
+                  {profile.earlier.items.map((e) => `${t(e.role)}（${t(e.org)}）`).join(t('、', '; ')).replace(/（/g, t('（', ' (')).replace(/）/g, t('）', ')'))}
+                </p>
+              </li>
             </ol>
-
-            <h3 className="mt-12 text-[15px] font-semibold text-ink">{t(profile.earlier.label)}</h3>
-            <ul className="mt-4 divide-y divide-line border-y border-line">
-              {profile.earlier.items.map((e) => (
-                <li key={t(e.org)} className="py-4">
-                  <div className="text-[15px] text-ink"><span className="font-semibold">{t(e.role)}</span><span className="text-mute"> · {t(e.org)}</span></div>
-                  <p className="mt-1 text-[14.5px] leading-relaxed text-ink2">{t(e.text)}</p>
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-12 grid gap-10 sm:grid-cols-2">
-              <div>
-                <h3 className="text-[15px] font-semibold text-ink">{t('學歷', 'Education')}</h3>
-                <ul className="mt-4 space-y-4">
-                  {profile.education.map((ed) => (
-                    <li key={t(ed.school)}>
-                      <div className="text-[15px] font-medium text-ink">{t(ed.school)}</div>
-                      <div className="text-[14.5px] text-ink2">{t(ed.dept)}</div>
-                      <div className="text-[13.5px] text-mute">{t(ed.note)}</div>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div>
-                <h3 className="text-[15px] font-semibold text-ink">{t('技能', 'Skills')}</h3>
-                <dl className="mt-4 space-y-3">
-                  {profile.skills.map((g) => (
-                    <div key={t(g.label)} className="grid grid-cols-[6.5rem_1fr] gap-3">
-                      <dt className="text-[13.5px] text-mute">{t(g.label)}</dt>
-                      <dd className="text-[14.5px] leading-relaxed text-ink2">{g.items.map((it) => t(it)).join(t('、', ', '))}</dd>
-                    </div>
-                  ))}
-                  <div className="grid grid-cols-[6.5rem_1fr] gap-3">
-                    <dt className="text-[13.5px] text-mute">{t('語言', 'Languages')}</dt>
-                    <dd className="text-[14.5px] leading-relaxed text-ink2">{profile.languages.map((l) => t(l)).join(t('、', ', '))}</dd>
-                  </div>
-                </dl>
-              </div>
+            <div className="no-print mt-8">
+              <Button to="/cv">{t('完整履歷：學歷、技能、全部獎項', 'Full CV: education, skills and all awards')}</Button>
             </div>
           </div>
         </div>
       </Container>
     </section>
   )
-}
-
-function AwardWork({ a }) {
-  const t = useT()
-  const label = t(a.work)
-  if (a.to) return <LLink to={a.to} className="link">{label}</LLink>
-  if (a.href) return <a href={a.href} target="_blank" rel="noreferrer" className="link">{label}</a>
-  return <span>{label}</span>
 }
 
 // 重點獎項：開場下方的黑底橫條，一進站就看得到
@@ -202,74 +163,35 @@ function AwardsBand() {
       <Container className="py-10 sm:py-12">
         <div className="mb-6 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2 border-b border-white/15 pb-5">
           <h2 className="text-[18px] font-semibold tracking-[-0.01em] text-white sm:text-[20px]">{t('重點獎項', 'Top awards')}</h2>
-          <LLink to="/#awards" className="inline-flex items-center gap-1.5 text-[14px] text-white/75 transition duration-150 ease-out hover:text-white">
+          <LLink to="/cv#awards" className="inline-flex items-center gap-1.5 text-[14px] text-white/75 transition duration-150 ease-out hover:text-white">
             {t(`全部 ${awards.length} 項獎項`, `All ${awards.length} awards`)} <Arrow />
           </LLink>
         </div>
-        <div className="grid gap-px overflow-hidden bg-white/15 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-px overflow-hidden bg-white/15 lg:grid-cols-4">
           {items.map((a) => (
-            <div key={a.date + a.headline.en} className="flex flex-col bg-ink py-6 sm:px-6 sm:py-4 lg:first:pl-0">
-              <div className="text-[22px] font-semibold leading-snug tracking-[-0.015em] text-white sm:text-[24px]">{t(a.headline)}</div>
-              {!t(a.headline).includes(t(a.comp)) && (
-                <div className="mt-2 text-[14px] leading-relaxed text-white/70">{t(a.comp)}{a.note ? ` · ${t(a.note)}` : ''}</div>
-              )}
-              <div className="mt-auto flex items-baseline justify-between gap-4 pt-5 text-[13.5px]">
+            <div key={a.date + a.headline.en} className="flex flex-col bg-ink py-4 pl-4 pr-3 [&:nth-child(odd)]:pl-0 sm:py-5 sm:pr-6 lg:px-6 lg:py-4 lg:[&:nth-child(odd)]:pl-6 lg:first:!pl-0">
+              <div className="text-[16px] font-semibold leading-snug tracking-[-0.01em] text-white sm:text-[22px] lg:text-[24px]">{t(a.headline)}</div>
+              {(() => {
+                // 大字已含比賽名稱時，小字只放補充（例如隊數）
+                // 手機只放補充（隊數、組別），桌機再加比賽全名
+                const showComp = !t(a.headline).includes(t(a.comp))
+                if (!showComp && !a.note) return null
+                return (
+                  <div className="mt-2 text-[13px] leading-relaxed text-white/70 sm:text-[14px]">
+                    {showComp && <span className="hidden sm:inline">{t(a.comp)}{a.note ? ' · ' : ''}</span>}
+                    {a.note && <span>{t(a.note)}</span>}
+                  </div>
+                )
+              })()}
+              <div className="mt-auto flex items-baseline justify-between gap-4 pt-3 text-[13px] sm:pt-5 sm:text-[13.5px]">
                 {a.to ? (
-                  <LLink to={a.to} className="text-white underline decoration-white/40 underline-offset-[3px] transition duration-150 ease-out hover:decoration-white">{t(a.work)}</LLink>
-                ) : <span className="text-white/80">{t(a.work)}</span>}
+                  <LLink to={a.to} className="hidden text-white underline sm:inline decoration-white/40 underline-offset-[3px] transition duration-150 ease-out hover:decoration-white">{t(a.work)}</LLink>
+                ) : <span className="hidden text-white/80 sm:inline">{t(a.work)}</span>}
                 <span className="tnum text-white/60">{a.date}</span>
               </div>
             </div>
           ))}
         </div>
-      </Container>
-    </section>
-  )
-}
-
-function Awards() {
-  const t = useT()
-  return (
-    <section id="awards" className="scroll-mt-14 border-b border-line">
-      <Container className="py-16 sm:py-24">
-        <SectionHead
-          title={t('得獎紀錄', 'Awards')}
-          aside={t(`${awards.length} 項，日期以獎狀為準。`, `${awards.length} awards, dated as on the certificates.`)}
-        />
-        {/* 桌機：表格 */}
-        <table className="hidden w-full border-collapse text-left md:table">
-          <thead>
-            <tr className="border-b border-ink text-[13px] text-mute">
-              <th className="w-[6.5rem] py-3 pr-4 font-medium">{t('時間', 'Date')}</th>
-              <th className="py-3 pr-6 font-medium">{t('比賽', 'Competition')}</th>
-              <th className="w-[13rem] py-3 pr-6 font-medium">{t('結果', 'Result')}</th>
-              <th className="w-[14rem] py-3 font-medium">{t('作品', 'Project')}</th>
-            </tr>
-          </thead>
-          <tbody>
-            {awards.map((a, i) => (
-              <tr key={i} className={`border-b border-line align-top text-[14.5px] ${a.major ? 'bg-paper2' : ''}`}>
-                <td className={`tnum py-3.5 pr-4 text-mute ${a.major ? 'pl-3' : ''}`}>{a.date}</td>
-                <td className={`py-3.5 pr-6 text-ink ${a.major ? 'font-semibold' : ''}`}>{t(a.comp)}</td>
-                <td className="py-3.5 pr-6 font-semibold text-ink">{t(a.result)}</td>
-                <td className="py-3.5 text-ink2"><AwardWork a={a} /></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-        {/* 手機：清單 */}
-        <ul className="divide-y divide-line border-y border-line md:hidden">
-          {awards.map((a, i) => (
-            <li key={i} className={`py-4 ${a.major ? '-mx-3 bg-paper2 px-3' : ''}`}>
-              <div className="flex items-baseline justify-between gap-3">
-                <span className="font-semibold text-ink">{t(a.result)}</span>
-                <span className="tnum text-[13px] text-mute">{a.date}</span>
-              </div>
-              <div className="mt-1 text-[14.5px] leading-snug text-ink2">{t(a.comp)}</div>
-              <div className="mt-1 text-[13.5px] text-mute"><AwardWork a={a} /></div>
-            </li>
-          ))}
-        </ul>
       </Container>
     </section>
   )
@@ -287,7 +209,7 @@ function MoreWork() {
         <SectionHead title={t('更多作品', 'More work')} />
         <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((it) => (
-            <article key={it.key} className="flex flex-col border-t border-line pt-5">
+            <article key={it.key} className="flex flex-col border-t border-line pt-5 transition-colors duration-150 ease-out hover:border-ink">
               <h3 className="text-[17px] font-semibold leading-snug text-ink">{it.title}</h3>
               <div className="mt-1.5 text-[13px] text-mute">{it.meta}</div>
               <p className="mt-2 flex-1 text-[14.5px] leading-[1.7] text-ink2">{it.text}</p>
@@ -333,7 +255,6 @@ export default function Home() {
       <AwardsBand />
       <Work />
       <Experience />
-      <Awards />
       <MoreWork />
       <Contact />
     </main>

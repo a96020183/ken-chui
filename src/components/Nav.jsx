@@ -44,7 +44,7 @@ export default function Nav() {
           <span className="hidden text-[13px] text-mute sm:inline">{profile.nameZh}</span>
         </LLink>
         <nav className="flex items-center gap-1 sm:gap-2">
-          <LLink to="/#work" className={`${link} hidden sm:inline-block`}>{t('作品', 'Work')}</LLink>
+          <LLink to="/#work" className={link}>{t('作品', 'Work')}</LLink>
           <LLink to="/#experience" className={`${link} hidden sm:inline-block`}>{t('經歷', 'Experience')}</LLink>
           <LLink to="/cv" className={link}>{t('履歷', 'CV')}</LLink>
           <LangSwitch />

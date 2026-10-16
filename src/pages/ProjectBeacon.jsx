@@ -37,7 +37,7 @@ export default function ProjectBeacon() {
           </>
         }
         facts={[
-          { label: t('成績', 'Result'), value: t('全國 26 強', 'Top 26 nationwide') },
+          { label: t('成績', 'Result'), value: t('全國 38 強', 'Top 38 nationwide') },
           { label: t('階段', 'Stage'), value: t('初賽決選', 'Quarter-final') },
           { label: t('主要平台', 'Platform'), value: 'Roblox' },
           { label: t('預警分級', 'Alert levels'), value: t('綠、黃、紅', 'Green, amber, red') },

@@ -22,14 +22,15 @@ export function Container({ className = '', children }) {
 
 // 按鈕：primary＝黑底白字；其他＝細框。href 外連、to 站內。
 export function Button({ href, to, primary = false, children, className = '' }) {
-  const base = `inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-[14px] font-medium transition duration-150 ease-out ${
+  const base = `inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-[14px] font-medium transition duration-150 ease-out active:translate-y-px ${
     primary ? 'bg-ink text-white hover:bg-[#262B33]' : 'border border-line2 text-ink hover:border-ink'
   } ${className}`
   if (to) return <LLink to={to} className={base}>{children}<Arrow /></LLink>
-  const ext = href && /^https?:/.test(href)
+  // 外部網址與站內靜態檔（Demo、PDF）都開新分頁並加箭頭；mailto 不加
+  const newTab = href && (/^https?:/.test(href) || href.startsWith('/'))
   return (
-    <a href={href} className={base} {...(ext ? { target: '_blank', rel: 'noreferrer' } : {})}>
-      {children}{ext ? <Arrow external /> : null}
+    <a href={href} className={base} {...(newTab ? { target: '_blank', rel: 'noreferrer' } : {})}>
+      {children}{newTab ? <Arrow external /> : null}
     </a>
   )
 }
@@ -40,8 +41,8 @@ export function CaseHeader({ result, period, title, org, event, summary, actions
   return (
     <header className="border-b border-line">
       <Container className="pb-12 pt-10 sm:pb-16 sm:pt-14">
-        <LLink to="/#work" className="no-print text-[13px] text-mute transition hover:text-ink">
-          ← {t('所有作品', 'All work')}
+        <LLink to="/#work" className="no-print inline-flex items-center gap-1.5 text-[13px] text-mute transition hover:text-ink">
+          <Arrow className="rotate-180" /> {t('所有作品', 'All work')}
         </LLink>
         <h1 className="mt-8 max-w-4xl text-[34px] font-semibold leading-[1.15] tracking-[-0.025em] text-ink sm:text-[48px]">{title}</h1>
         <p className="mt-4 text-[15px] leading-relaxed text-ink2">

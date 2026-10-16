@@ -25,11 +25,11 @@ export default function ProjectBNP() {
     },
     {
       src: '/bnp/funnel.png',
-      caption: t('第一年獲客漏斗：5 萬名 LINE 好友，轉成 1,000 位訂閱會員', 'Year-one funnel: 50,000 LINE friends to 1,000 subscribers'),
+      caption: t('第一年獲客漏斗的預估：5 萬名 LINE 好友，轉成 1,000 位訂閱會員', 'Projected year-one funnel: 50,000 LINE friends to 1,000 subscribers'),
     },
     {
       src: '/bnp/economics.png',
-      caption: t('經濟模型：單位經濟、CAC 回收、三種情境測試', 'Economics: unit economics, CAC payback and three scenarios'),
+      caption: t('經濟模型的預估：單位經濟、CAC 回收、三種情境測試', 'Projected economics: unit economics, CAC payback and three scenarios'),
     },
   ]
 
@@ -54,6 +54,35 @@ export default function ProjectBNP() {
         ]}
       />
 
+      <Section title={t('重點摘要', 'Summary')}>
+        <Items
+          cols={3}
+          items={[
+            {
+              title: t('關鍵問題', 'Key question'),
+              body: t(
+                '年輕人願意買保險，卻嫌保費太貴。壽險公司要怎麼用低門檻的方式接觸他們？',
+                'Young adults are willing to buy insurance but find it too expensive. How can a life insurer reach them with a low entry price?'
+              ),
+            },
+            {
+              title: t('我的分析', 'My analysis'),
+              body: t(
+                '我把年繳保單改成每月 199 元的訂閱來試算。在企劃的假設下，每位會員每月貢獻約 188 元，留超過 3 個月就能回收獲客成本。就算沒有人轉買壽險，模型也成立。',
+                'I modelled the yearly policy as a NT$199 monthly subscription. Under the plan’s assumptions, each member contributes about NT$188 a month and pays back acquisition cost after 3 months. The model holds even if nobody moves on to life insurance.'
+              ),
+            },
+            {
+              title: t('建議與結果', 'Recommendation and result'),
+              body: t(
+                '先用 LINE 上的低價意外險訂閱圈住客群，再轉向壽險。企劃拿到第三屆 Cardif InsurHack 第二名（銀獎）。這是比賽企劃，頁面上的數字都是企劃中的預估。',
+                'Start with a low-price accident-cover subscription on LINE, then move members to life insurance. The plan won 2nd place (Silver) at the 3rd Cardif InsurHack. This was a competition proposal, so every figure on this page is a projection in the plan.'
+              ),
+            },
+          ]}
+        />
+      </Section>
+
       <Section title={t('我做了什麼', 'What I did')}>
         <Roles
           mine={t(
@@ -77,11 +106,27 @@ export default function ProjectBNP() {
           </p>
           <p>
             {t(
-              <>但 18 到 29 歲的人，<b>82%</b> 願意再買保險。卡住他們的是預算，他們覺得保費太貴。</>,
-              <>Yet <b>82%</b> of people aged 18 to 29 are willing to buy more cover. What stops them is budget. Premiums feel too high.</>
+              <>但 18 到 29 歲的人，<b>82.2%</b> 願意再買保險。卡住他們的是預算，他們覺得保費太貴。</>,
+              <>Yet <b>82.2%</b> of people aged 18 to 29 are willing to buy more cover. What stops them is budget. Premiums feel too high.</>
             )}
           </p>
         </Prose>
+        <div className="mt-6">
+          <Note>
+            <p>
+              {t(
+                '出處：壽險投保率 70.9% 和每人 2.6 張保單，見企劃書第 2–3 頁，原始來源是保險事業發展中心 2024 年的統計。',
+                'Sources: 70.9% life insurance coverage and 2.6 policies per person are on pages 2–3 of the plan, originally from the Taiwan Insurance Institute’s 2024 statistics.'
+              )}
+            </p>
+            <p className="mt-1">
+              {t(
+                '82.2% 是 18 到 29 歲的再次投保意願，見企劃書第 2 頁，原始來源是《現代保險》2025 年的調查。',
+                '82.2% is the share of 18 to 29-year-olds willing to buy cover again, on page 2 of the plan, originally from a 2025 survey by Modern Insurance (現代保險) magazine.'
+              )}
+            </p>
+          </Note>
+        </div>
         <div className="mt-10">
           <Items
             cols={3}
@@ -162,21 +207,24 @@ export default function ProjectBNP() {
         />
       </Section>
 
-      <Section title={t('財務模型：這門生意算得過來', 'Financial model: the numbers work')}>
+      <Section
+        title={t('財務模型：企劃中的預估', 'Financial model: projections in the plan')}
+        aside={t('以下都是企劃書裡的預估，不是實際營運的結果。', 'Everything below is a projection from the plan, not an operating result.')}
+      >
         <Items
           items={[
             {
               title: t('單位經濟', 'Unit economics'),
               body: t(
-                <>月費 199 元，扣掉變動成本 11 元，<b>每位會員每月貢獻約 188 元</b>。每一位訂閱會員都是正貢獻，訂閱本身不虧錢。</>,
-                <>A NT$199 monthly fee minus NT$11 in variable cost leaves <b>about NT$188 per member per month</b>. Every subscriber contributes positively, so the subscription itself does not lose money.</>
+                <>月費 199 元，扣掉每人每月變動成本 11 元，<b>每位會員每月貢獻約 188 元</b>。在這個假設下，每一位訂閱會員都是正貢獻，訂閱本身不虧錢。</>,
+                <>A NT$199 monthly fee minus NT$11 in variable cost per member per month leaves <b>about NT$188 per member per month</b>. On these assumptions, every subscriber contributes positively, so the subscription itself does not lose money.</>
               ),
             },
             {
               title: t('獲客成本回收', 'CAC payback'),
               body: t(
-                <>獲客成本 200 到 500 元。會員留超過 <b>3 個月</b>就能回收。1,000 位會員一年的經常性收入約 <b>240 萬元</b>。</>,
-                <>Customer acquisition costs NT$200 to 500. A member who stays <b>3 months</b> pays that back. 1,000 members bring about <b>NT$2.4 million</b> in annual recurring revenue.</>
+                <>每位會員的獲客成本抓 200 到 500 元。會員留超過 <b>3 個月</b>就能回收。企劃預估第一年有 1,000 位會員，年經常性收入約 <b>240 萬元</b>，也就是 1,000 人 × 199 元 × 12 個月。</>,
+                <>Acquisition cost is assumed at NT$200 to 500 per member. A member who stays <b>3 months</b> pays that back. The plan projects 1,000 members in year one, or about <b>NT$2.4 million</b> in annual recurring revenue (1,000 × NT$199 × 12 months).</>
               ),
             },
           ]}
@@ -186,9 +234,18 @@ export default function ProjectBNP() {
           <div className="mt-4">
             <List
               items={[
-                t(<><b>保守</b>情境回收 564 元，不虧損。</>, <><b>Conservative</b>: NT$564 recovered, no loss.</>),
-                t(<><b>基準</b>情境回收 1,128 元，現金流健康。</>, <><b>Base</b>: NT$1,128 recovered, healthy cash flow.</>),
-                t(<><b>樂觀</b>情境回收 2,256 元，LTV 高。</>, <><b>Optimistic</b>: NT$2,256 recovered, high LTV.</>),
+                t(
+                  <><b>保守</b>：獲客成本 500 元，會員留 3 個月，每人累積貢獻 564 元。仍能回收獲客成本，不虧損。</>,
+                  <><b>Conservative</b>: NT$500 acquisition cost and 3 months’ retention give NT$564 contribution per member. Acquisition cost is still recovered, so no loss.</>
+                ),
+                t(
+                  <><b>基準</b>：獲客成本 300 元，會員留 6 個月，每人累積貢獻 1,128 元。回收快，現金流健康。</>,
+                  <><b>Base</b>: NT$300 acquisition cost and 6 months’ retention give NT$1,128 per member. Fast payback and healthy cash flow.</>
+                ),
+                t(
+                  <><b>樂觀</b>：獲客成本 200 元，會員留 12 個月，每人累積貢獻 2,256 元。LTV 高。</>,
+                  <><b>Optimistic</b>: NT$200 acquisition cost and 12 months’ retention give NT$2,256 per member. High LTV.</>
+                ),
               ]}
             />
           </div>
@@ -196,9 +253,25 @@ export default function ProjectBNP() {
         <div className="mt-8">
           <Note>
             {t(
-              '就算不算壽險轉換，模型也成立。另外設了三道防線，分別是自動化抵銷成本、防止逆選擇，以及退訂的財務門檻。',
-              'The model holds even without any life-insurance conversion. Three safeguards back it up. Automation offsets cost, a guard blocks adverse selection, and a financial threshold applies to cancellations.'
+              '在企劃的假設下，就算不算壽險轉換，模型也成立。另外設了三道防線，分別是自動化抵銷成本、防止逆選擇，以及退訂的財務門檻。',
+              'On the plan’s assumptions, the model holds even without any life-insurance conversion. Three safeguards back it up. Automation offsets cost, a guard blocks adverse selection, and a financial threshold applies to cancellations.'
             )}
+          </Note>
+        </div>
+        <div className="mt-4">
+          <Note title={t('數字出處', 'Where the numbers come from')}>
+            <p>
+              {t(
+                '月費 199 元、變動成本 11 元、每月貢獻 188 元、獲客成本 200 到 500 元和三種情境，見企劃書第 25 頁。這些是企劃書內的估計，沒有外部來源。',
+                'The NT$199 fee, NT$11 variable cost, NT$188 monthly contribution, NT$200–500 acquisition cost and the three scenarios are on page 25 of the plan. They are estimates in the proposal, with no outside source.'
+              )}
+            </p>
+            <p className="mt-1">
+              {t(
+                '第一年 1,000 位會員和 240 萬元年經常性收入，見企劃書第 25–26 頁，也是企劃書內的估計。',
+                'The 1,000 year-one members and NT$2.4 million in annual recurring revenue are on pages 25–26. They are also estimates in the proposal.'
+              )}
+            </p>
           </Note>
         </div>
       </Section>
@@ -216,8 +289,8 @@ export default function ProjectBNP() {
             {
               title: t('精準推薦，不外洩個資', 'Targeting without exposing personal data'),
               body: t(
-                <>Klook、KKday 等合作夥伴的資料先用 <b>SHA-256</b> 雜湊，再放進 Data Clean Room，只比對雙方共同的用戶。個資用到最少，也能做情境推薦。</>,
-                <>Partner data from Klook and KKday is hashed with <b>SHA-256</b> and matched in a data clean room, which only finds users both sides share. Personal data stays minimal, and moment-based offers still work.</>
+                <>資料來自提案中的合作對象，例如 Klook、KKday。這些資料先用 <b>SHA-256</b> 雜湊，再放進 Data Clean Room，只比對雙方共同的用戶。個資用到最少，也能做情境推薦。企劃書附錄一（第 31 頁）對照了這兩家平台的隱私權條款，評估這樣做的授權是否可行。</>,
+                <>Data from proposed partners such as Klook and KKday would be hashed with <b>SHA-256</b> and matched in a data clean room, which only finds users both sides share. Personal data stays minimal, and moment-based offers still work. Appendix 1 of the plan (page 31) checks both platforms’ privacy terms to see whether this use is permitted.</>
               ),
             },
           ]}
@@ -225,8 +298,8 @@ export default function ProjectBNP() {
         <Prose className="mt-8">
           <p>
             {t(
-              '後端用 Make.com 串流程，加上雲端伺服器和資料庫。MVP 每月營運成本只要幾千元，之後可以快速擴大。',
-              'The back end runs on Make.com workflows plus a cloud server and database. The MVP costs only a few thousand NT dollars a month to run and can scale quickly.'
+              '後端用 Make.com 串流程，加上雲端伺服器和資料庫。企劃估計 MVP 每月營運成本約 2,000 到 7,000 元，不含人力（企劃書第 23 頁的成本估計表）。之後可以快速擴大。',
+              'The back end runs on Make.com workflows plus a cloud server and database. The plan estimates MVP running costs at about NT$2,000 to 7,000 a month, excluding staff (cost table, page 23 of the plan). It can scale quickly from there.'
             )}
           </p>
         </Prose>

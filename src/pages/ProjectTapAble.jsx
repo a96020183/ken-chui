@@ -166,7 +166,12 @@ export default function ProjectTapAble() {
 
       <Section title={t('要解決的問題', 'The problem')}>
         <Prose className="mb-10">
-          <p>{t('全台視障者約 5.4 萬人，重度以上約 2.25 萬人。', 'Taiwan has about 54,000 blind and low-vision people, about 22,500 of them severe.')}</p>
+          <p>
+            {t(
+              '全台視障者約 5.4 萬人，重度以上約 2.25 萬人（衛福部統計處，2026 年 6 月）。',
+              'Taiwan has about 54,000 blind and low-vision people, about 22,500 of them severe (Ministry of Health and Welfare statistics, June 2026).'
+            )}
+          </p>
           <p>
             {t(
               <>公共服務全面改成觸控之後，問題不只是看不到螢幕。<b>從找到機台、確認機台到操作，每一步都可能卡住。</b></>,
@@ -194,6 +199,12 @@ export default function ProjectTapAble() {
               {t(
                 '校園列印機、醫院批價機、點餐機和售票機，連這條慢路都沒有。所以我們不改機器，改成讓使用者用自己的手機接手。',
                 'Campus printers, hospital payment kiosks, food kiosks and ticket machines don\'t even have that slow path. So instead of changing the machines, we let users take over with their own phones.'
+              )}
+            </p>
+            <p className="mt-2 text-[13px] text-mute">
+              {t(
+                '出處：金管會銀行局新聞稿，2025 年 10 月 2 日。總台數是用同一份新聞稿回推的：輪椅可用的 ATM 有 31,821 台，占總數 95%。',
+                'Source: Financial Supervisory Commission, Banking Bureau press release, 2 October 2025. The total is derived from the same release: 31,821 wheelchair-accessible ATMs make up 95% of all machines.'
               )}
             </p>
           </Note>
@@ -247,6 +258,27 @@ export default function ProjectTapAble() {
             ]}
           />
         </div>
+      </Section>
+
+      <Section title={t('考慮過、但沒選的做法', 'Options we considered')}>
+        <Items
+          items={[
+            {
+              title: t('把每台機器改成有語音', 'Add voice to every kiosk'),
+              body: t(
+                '上面 ATM 的例子說明這條路很慢。有主管機關盯著，八年下來還不到 1/4。其他種類的機台，連這樣的計畫都沒有。所以我們不等機器改，改用使用者自己的手機。',
+                'The ATM example above shows how slow this is. Even with a regulator watching, eight years got it to under a quarter. Other kinds of kiosks have no such programme at all. So we don\'t wait for the machines. We use the phone the user already has.'
+              ),
+            },
+            {
+              title: t('另外做一個要下載的 App', 'A separate app to download'),
+              body: t(
+                '要先下載 App，使用者在開始用之前就多了一道安裝的步驟。所以 Demo 直接在網頁上跑，語音用瀏覽器內建的功能，不綁 App 商店。後來的 LINE 版也不用安裝，碰一下 NFC 貼紙就開始。',
+                'A download adds an install step before anyone can start. So the demo runs in a web page, with speech from the browser\'s built-in features and no app store. The later LINE version needs no install either. A tap on the NFC sticker starts it.'
+              ),
+            },
+          ]}
+        />
       </Section>
 
       <Section
@@ -334,8 +366,8 @@ export default function ProjectTapAble() {
         <div className="mt-10">
           <Note>
             {t(
-              '「機台不用改」只對語音引導這一層成立。要真的替使用者按下機台按鍵，需要機台端配合。實施細節不公開。',
-              '"No change to the kiosk" holds for the voice guidance layer only. Actually pressing the kiosk\'s buttons for the user needs the kiosk side to cooperate. Implementation details are not public.'
+              '「機台不用改」只對語音引導這一層成立。要真的替使用者按下機台按鍵，需要機台營運方配合。',
+              '"No change to the kiosk" holds for the voice guidance layer only. Actually pressing the kiosk\'s buttons for the user needs the kiosk operator to cooperate.'
             )}
           </Note>
         </div>
