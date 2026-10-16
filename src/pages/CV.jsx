@@ -82,7 +82,7 @@ export default function CV() {
                     <span className="tnum text-mute">{a.date}</span>
                     <span>
                       <span className="font-semibold text-ink">{t(a.result)}</span>
-                      <span className="text-ink2"> · {t(a.comp)}</span>
+                      <span className={a.major ? 'font-semibold text-ink' : 'text-ink2'}> · {t(a.comp)}</span>
                       {a.work !== '—' && <span className="text-mute"> · {t(a.work)}</span>}
                     </span>
                   </li>

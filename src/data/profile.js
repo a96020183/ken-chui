@@ -92,7 +92,7 @@ export const profile = {
     { label: 'AI', items: [{ zh: 'LLM 產品設計（RAG／Agent）', en: 'LLM product design (RAG, agents)' }, 'Prompt engineering', 'Edge AI (TensorFlow.js)'] },
     { label: { zh: 'AI 開發工具', en: 'AI coding' }, items: ['Claude Code', 'Codex', 'Kiro', 'Antigravity'] },
     { label: { zh: '開發', en: 'Build' }, items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python'] },
-    { label: { zh: '平台', en: 'Platforms' }, items: [{ zh: 'AWS（Amplify、Bedrock）', en: 'AWS (Amplify, Bedrock)' }, 'Firebase', { zh: 'LINE 官方帳號與 LINE 內開啟的網頁應用（LIFF）', en: 'LINE Official Account and in-LINE web apps (LIFF)' }] },
+    { label: { zh: '平台', en: 'Platforms' }, items: [{ zh: 'AWS（Amplify、Bedrock）', en: 'AWS (Amplify, Bedrock)' }, 'Firebase', { zh: 'LINE 平台：官方帳號聊天機器人與推播（Messaging API）、圖文選單、LINE Login、LIFF 網頁', en: 'LINE platform: Official Account bots and push (Messaging API), rich menus, LINE Login, LIFF web apps' }] },
   ],
   certs: ['Google Analytics 4', 'Google Ads (Apps)', 'Google Ads (AI)', 'Google Ads (Measurement)'],
   languages: [
@@ -107,16 +107,16 @@ export const awards = [
   { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '實作組決賽中', en: 'In the finals, build track' }, work: { zh: '警示找眼睛', en: 'Eyes-first exit alert' } },
   { date: '2026/10', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '決賽中', en: 'In the finals' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/10', comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名', en: '3rd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
-  { date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽（233 組取 10）', en: 'Finalist, top 10 of 233' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
-  { date: '2026/09', comp: { zh: 'BUILDMODE 2026 GEN-AI 黑客松（FUTUREMODE 台灣未來祭）', en: 'BUILDMODE 2026 GEN-AI Hackathon (FUTUREMODE)' }, result: { zh: '第二名（160 隊）', en: '2nd of 160 teams' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
-  { date: '2026/08', comp: { zh: 'AI Monster 未來生存挑戰賽（大專組）', en: 'AI Monster: Future Survival Challenge' }, result: { zh: '第四名', en: '4th place' }, work: '—' },
+  { date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽', en: 'Finalist' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/09', comp: { zh: 'BUILDMODE 2026 GEN-AI 黑客松（FUTUREMODE 台灣未來祭）', en: 'BUILDMODE 2026 GEN-AI Hackathon (FUTUREMODE)' }, result: { zh: '第二名', en: '2nd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/08', comp: { zh: 'AI Monster 未來生存挑戰賽（大專組）', en: 'AI Monster: Future Survival Challenge' }, result: { zh: '第四名', en: '4th place' }, work: { zh: '收藏從未停止，行動從未開始', en: 'Always saving, never doing' } },
   { date: '2026/08', comp: { zh: '第十屆 3S 創客競賽', en: '10th 3S Maker Competition' }, result: { zh: '入圍獎', en: 'Finalist award' }, work: { zh: 'TapAble 導航版', en: 'TapAble, navigation version' }, href: '/yao-3s-demo/index.html' },
-  { date: '2026/07', comp: { zh: 'AWS Summit Taipei 百工百業瘋 AI 黑客松', en: 'AWS Summit Taipei 2026 AI Hackathon (AI Everywhere)' }, result: { zh: '數位學習組第二名', en: '2nd place, EdTech track' }, work: { zh: 'PressPlay AI 學習助教', en: 'PressPlay AI tutor' }, to: '/projects/ppa-hackathon' },
+  { date: '2026/07', major: true, comp: { zh: 'AWS Summit Taipei 百工百業瘋 AI 黑客松', en: 'AWS Summit Taipei 2026 AI Hackathon (AI Everywhere)' }, result: { zh: '數位學習組第二名', en: '2nd place, EdTech track' }, work: { zh: 'PressPlay AI 學習助教', en: 'PressPlay AI tutor' }, to: '/projects/ppa-hackathon' },
   { date: '2026/07', comp: { zh: '中原大學 第四屆解決未來問題能力競賽', en: '4th Future Problem Solving Competition (CYCU)' }, result: { zh: '佳作', en: 'Honorable mention' }, work: { zh: '親盈翻譯機', en: 'Photo postcards for elders on LINE' } },
   { date: '2026/06', comp: { zh: '全國商管暨跨域創新實務專題競賽（德明科大）', en: 'National Business & Cross-disciplinary Project Competition' }, result: { zh: '跨域組第三名', en: '3rd place, cross-disciplinary' }, work: { zh: 'TapAble 第一版', en: 'TapAble, first version' }, to: '/projects/yaoguang-whale' },
   { date: '2026/05', comp: { zh: '第 23 屆 ATCC 全國大專院校商業個案大賽', en: '23rd ATCC Case Competition' }, result: { zh: '全國 26 強', en: 'Top 26 nationwide' }, work: 'BEACON', to: '/projects/atcc-beacon' },
-  { date: '2026/01', comp: { zh: '第三屆法國巴黎人壽 Cardif InsurHack', en: '3rd Cardif InsurHack, BNP Paribas Cardif' }, result: { zh: '第二名（銀獎）', en: '2nd place (Silver)' }, work: { zh: '保包巴士', en: 'Baobao Bus' }, to: '/projects/bnp-insurhack' },
-  { date: '2024/12', comp: { zh: '2024 全球品牌策劃與設計大賽 台灣總決賽', en: '2024 Global Brand Planning & Design Competition, Taiwan final' }, result: { zh: '銀質獎（196 隊）', en: 'Silver award (196 teams)' }, work: { zh: '金孕獎推廣策略', en: 'Golden Pregnancy Award strategy' }, to: '/projects/jinyun-branding' },
+  { date: '2026/01', major: true, comp: { zh: '第三屆法國巴黎人壽 Cardif InsurHack', en: '3rd Cardif InsurHack, BNP Paribas Cardif' }, result: { zh: '第二名（銀獎）', en: '2nd place (Silver)' }, work: { zh: '保包巴士', en: 'Baobao Bus' }, to: '/projects/bnp-insurhack' },
+  { date: '2024/12', comp: { zh: '2024 全球品牌策劃與設計大賽 台灣總決賽', en: '2024 Global Brand Planning & Design Competition, Taiwan final' }, result: { zh: '銀質獎', en: 'Silver award' }, work: { zh: '金孕獎推廣策略', en: 'Golden Pregnancy Award strategy' }, to: '/projects/jinyun-branding' },
 ]
 
 // 作品頁資料（首頁精選、作品頁標題共用）
@@ -127,7 +127,7 @@ export const projects = [
     cover: '/tapable/stage-completed.png',
     title: { zh: 'TapAble：讓視障者用自己的手機操作觸控機台', en: 'TapAble: blind users run touchscreen kiosks from their own phones' },
     org: { zh: '創業中', en: 'Early-stage startup' },
-    result: { zh: 'BUILDMODE 黑客松第二名（160 隊）、LINE AI 競賽第三名', en: '2nd of 160 at BUILDMODE Hackathon, 3rd at LINE AI Competition' },
+    result: { zh: 'BUILDMODE 黑客松第二名、LINE AI 競賽第三名', en: '2nd at BUILDMODE Hackathon, 3rd at LINE AI Competition' },
     period: { zh: '2026/04 – 現在', en: 'Apr 2026 – Present' },
     hook: {
       zh: '觸控螢幕沒有按鍵可以摸，視障者很難自己用點餐機、醫院批價機或列印機。TapAble 讓他們碰一下貼紙，就能用自己的手機和 LINE 一步一步完成操作，機台不用換硬體。',
@@ -202,7 +202,7 @@ export const projects = [
     cover: '/jinyun/cover.png',
     title: { zh: '金孕獎推廣策略', en: 'Brand strategy for the Golden Pregnancy Award' },
     org: { zh: '2024 全球品牌策劃與設計大賽 台灣總決賽', en: '2024 Global Brand Planning & Design Competition, Taiwan final' },
-    result: { zh: '銀質獎（196 隊）', en: 'Silver award (196 teams)' },
+    result: { zh: '銀質獎', en: 'Silver award' },
     period: { zh: '2024/12', en: 'Dec 2024' },
     hook: {
       zh: '幫台灣母嬰產業獎項「金孕獎」設計推廣策略：網站加上討論區和點數，再用口碑擴散。',

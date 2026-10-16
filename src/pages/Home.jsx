@@ -193,6 +193,15 @@ function AwardWork({ a }) {
   return <span>{label}</span>
 }
 
+function MajorTag() {
+  const t = useT()
+  return (
+    <span className="ml-2 inline-block translate-y-[-1px] rounded-md bg-ink px-1.5 py-0.5 align-middle text-[11px] font-semibold leading-none text-white">
+      {t('大型賽事', 'Major event')}
+    </span>
+  )
+}
+
 function Awards() {
   const t = useT()
   return (
@@ -200,7 +209,7 @@ function Awards() {
       <Container className="py-16 sm:py-24">
         <SectionHead
           title={t('得獎紀錄', 'Awards')}
-          aside={t(`${awards.length} 項，日期以獎狀為準。`, `${awards.length} awards, dated as on the certificates.`)}
+          aside={t(`${awards.length} 項，日期以獎狀為準。標「大型賽事」的是 AWS、法國巴黎人壽這類企業主辦的大型比賽。`, `${awards.length} awards, dated as on the certificates. “Major event” marks large corporate-run competitions such as AWS and BNP Paribas Cardif.`)}
         />
         {/* 桌機：表格 */}
         <table className="hidden w-full border-collapse text-left md:table">
@@ -214,10 +223,10 @@ function Awards() {
           </thead>
           <tbody>
             {awards.map((a, i) => (
-              <tr key={i} className="border-b border-line align-top text-[14.5px]">
-                <td className="tnum py-3.5 pr-4 text-mute">{a.date}</td>
-                <td className="py-3.5 pr-6 text-ink">{t(a.comp)}</td>
-                <td className="py-3.5 pr-6 font-semibold text-ink">{t(a.result)}</td>
+              <tr key={i} className={`border-b border-line align-top text-[14.5px] ${a.major ? 'bg-paper2' : ''}`}>
+                <td className={`tnum py-3.5 pr-4 text-mute ${a.major ? 'pl-3' : ''}`}>{a.date}</td>
+                <td className={`py-3.5 pr-6 text-ink ${a.major ? 'font-semibold' : ''}`}>{t(a.comp)}</td>
+                <td className="py-3.5 pr-6 font-semibold text-ink">{t(a.result)}{a.major && <MajorTag />}</td>
                 <td className="py-3.5 text-ink2"><AwardWork a={a} /></td>
               </tr>
             ))}
@@ -226,9 +235,9 @@ function Awards() {
         {/* 手機：清單 */}
         <ul className="divide-y divide-line border-y border-line md:hidden">
           {awards.map((a, i) => (
-            <li key={i} className="py-4">
+            <li key={i} className={`py-4 ${a.major ? '-mx-3 bg-paper2 px-3' : ''}`}>
               <div className="flex items-baseline justify-between gap-3">
-                <span className="font-semibold text-ink">{t(a.result)}</span>
+                <span className="font-semibold text-ink">{t(a.result)}{a.major && <MajorTag />}</span>
                 <span className="tnum text-[13px] text-mute">{a.date}</span>
               </div>
               <div className="mt-1 text-[14.5px] leading-snug text-ink2">{t(a.comp)}</div>
