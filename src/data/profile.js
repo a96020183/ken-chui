@@ -105,19 +105,19 @@ export const profile = {
 
 // 14 項獲獎，日期照獎狀（C:\2026\m\獎）。to＝站內作品頁；href＝外部連結。
 export const awards = [
-  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '實作組 16 強，決賽中', en: 'In the finals, top 16, build track' }, work: { zh: '警示找眼睛', en: 'Eyes-first exit alert' } },
-  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '創意組 23 強，決賽中', en: 'In the finals, top 23, creative track' }, work: { zh: '共創世界窗', en: 'Shared World Window' } },
+  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '實作組決賽中', en: 'In the finals, build track' }, work: { zh: '警示找眼睛', en: 'Eyes-first exit alert' } },
+  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '創意組決賽中', en: 'In the finals, creative track' }, work: { zh: '共創世界窗', en: 'Shared World Window' } },
   { date: '2026/10', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '決賽中', en: 'In the finals' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
-  { date: '2026/10', major: true, headline: { zh: 'LINE AI 創新創業競賽第三名', en: '3rd place, LINE AI competition' }, note: { zh: '決選 12 組', en: '12 finalists' }, comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名（決選 12 組）', en: '3rd of 12 finalists' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/10', major: true, headline: { zh: 'LINE AI 創新創業競賽第三名', en: '3rd place, LINE AI competition' }, comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名', en: '3rd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽（233 組參賽）', en: 'Finalist (233 entries)' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/09', major: true, headline: { zh: 'BUILDMODE 黑客松第二名', en: '2nd place, BUILDMODE GEN‑AI hackathon' }, note: { zh: '160 隊', en: '160 teams' }, comp: { zh: 'BUILDMODE 2026 GEN-AI 黑客松（FUTUREMODE 台灣未來祭）', en: 'BUILDMODE 2026 GEN-AI Hackathon (FUTUREMODE)' }, result: { zh: '第二名（160 隊）', en: '2nd of 160 teams' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/08', comp: { zh: 'AI Monster 未來生存挑戰賽（大專組）', en: 'AI Monster: Future Survival Challenge' }, result: { zh: '第四名', en: '4th place' }, work: { zh: '收藏從未停止，行動從未開始', en: 'Always saving, never doing' } },
   { date: '2026/08', comp: { zh: '第十屆 3S 創客競賽', en: '10th 3S Maker Competition' }, result: { zh: '入圍獎', en: 'Finalist award' }, work: { zh: 'TapAble 導航版', en: 'TapAble, navigation version' }, href: '/yao-3s-demo/index.html' },
   { date: '2026/07', major: true, headline: { zh: 'AWS 黑客松第二名', en: '2nd place, AWS hackathon' }, note: { zh: '數位學習組', en: 'EdTech track' }, comp: { zh: 'AWS Summit Taipei 百工百業瘋 AI 黑客松', en: 'AWS Summit Taipei 2026 AI Hackathon (AI Everywhere)' }, result: { zh: '數位學習組第二名', en: '2nd place, EdTech track' }, work: { zh: 'PressPlay AI 學習助教', en: 'PressPlay AI tutor' }, to: '/projects/ppa-hackathon' },
   { date: '2026/07', comp: { zh: '中原大學 第四屆解決未來問題能力競賽', en: '4th Future Problem Solving Competition (CYCU)' }, result: { zh: '佳作', en: 'Honorable mention' }, work: { zh: '親盈翻譯機', en: 'Photo postcards for elders on LINE' } },
-  { date: '2026/06', comp: { zh: '全國商管暨跨域創新實務專題競賽', en: 'National Business & Cross-disciplinary Project Competition' }, result: { zh: '跨域組第三名（28 隊）', en: '3rd of 28 teams, cross-disciplinary' }, work: { zh: 'TapAble 第一版', en: 'TapAble, first version' }, to: '/projects/yaoguang-whale' },
+  { date: '2026/06', comp: { zh: '全國商管暨跨域創新實務專題競賽', en: 'National Business & Cross-disciplinary Project Competition' }, result: { zh: '跨域組第三名', en: '3rd place, cross-disciplinary' }, work: { zh: 'TapAble 第一版', en: 'TapAble, first version' }, to: '/projects/yaoguang-whale' },
   { date: '2026/05', comp: { zh: '第 23 屆 ATCC 全國大專院校商業個案大賽', en: '23rd ATCC Case Competition' }, result: { zh: '初賽決選（全國 38 強）', en: 'Quarter-final, top 38 nationwide' }, work: 'BEACON', to: '/projects/atcc-beacon' },
-  { date: '2026/01', major: true, headline: { zh: '法國巴黎人壽黑客松第二名', en: '2nd place, BNP Paribas Cardif hackathon' }, note: { zh: '銀獎・全台 50 校、450 多位學生參賽', en: 'Silver award · 450+ students from 50 schools' }, comp: { zh: '第三屆法國巴黎人壽 Cardif InsurHack', en: '3rd Cardif InsurHack, BNP Paribas Cardif' }, result: { zh: '第二名（銀獎，決選 8 組）', en: '2nd place (Silver), 8 finalists' }, work: { zh: '保包巴士', en: 'Baobao Bus' }, to: '/projects/bnp-insurhack' },
+  { date: '2026/01', major: true, headline: { zh: '法國巴黎人壽黑客松第二名', en: '2nd place, BNP Paribas Cardif hackathon' }, note: { zh: '銀獎・全台 50 校、450 多位學生參賽', en: 'Silver award · 450+ students from 50 schools' }, comp: { zh: '第三屆法國巴黎人壽 Cardif InsurHack', en: '3rd Cardif InsurHack, BNP Paribas Cardif' }, result: { zh: '第二名（銀獎）', en: '2nd place (Silver)' }, work: { zh: '保包巴士', en: 'Baobao Bus' }, to: '/projects/bnp-insurhack' },
   { date: '2024/12', comp: { zh: '2024 全球品牌策劃與設計大賽 台灣總決賽', en: '2024 Global Brand Planning & Design Competition, Taiwan final' }, result: { zh: '銀質獎（196 隊）', en: 'Silver award (196 teams)' }, work: { zh: '金孕獎推廣策略', en: 'Golden Pregnancy Award strategy' }, to: '/projects/jinyun-branding' },
 ]
 
@@ -178,7 +178,7 @@ export const projects = [
     cover: '/yao/cover.png',
     title: { zh: '瑤光深鯨：TapAble 的第一版', en: 'Yaoguang: the first version of TapAble' },
     org: { zh: '全國商管暨跨域創新實務專題競賽 · 跨域專題組', en: 'National Business & Cross-disciplinary Project Competition' },
-    result: { zh: '跨域組第三名（28 隊）', en: '3rd of 28 teams, cross-disciplinary track' },
+    result: { zh: '跨域組第三名', en: '3rd place, cross-disciplinary track' },
     period: { zh: '2026/06', en: 'Jun 2026' },
     hook: {
       zh: '不換機台硬體，讓視障者用自己的手機操作公共觸控機台。題目由我原創，有可以點的 Figma 原型。',
