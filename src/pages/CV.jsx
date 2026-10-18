@@ -78,15 +78,17 @@ export default function CV() {
             <Block id="awards" title={t('得獎紀錄', 'Awards')}>
               <ul className="divide-y divide-line">
                 {awards.map((a, i) => (
-                  <li key={i} className="grid grid-cols-[4.5rem_1fr] gap-3 py-2.5 text-[14px] leading-snug">
+                  <li key={i} className="grid grid-cols-[4.5rem_1fr_auto] items-start gap-3 py-2.5 text-[14px] leading-snug">
                     <span className="tnum text-mute">{a.date}</span>
                     <span>
                       <span className="font-semibold text-ink">{t(a.result)}</span>
-                      {a.tapable && (
-                        <span className="ml-2 inline-block translate-y-[-1px] rounded border border-line2 px-1.5 py-px align-middle text-[11px] font-medium leading-tight text-ink2">TapAble</span>
-                      )}
                       <span className={a.major ? 'font-semibold text-ink' : 'text-ink2'}> · {t(a.comp)}</span>
                       {a.work !== '—' && a.work !== 'TapAble' && <span className="text-mute"> · {t(a.work)}</span>}
+                    </span>
+                    <span className="text-right">
+                      {a.tapable && (
+                        <span className="inline-block rounded border border-line2 px-1.5 py-px text-[11px] font-medium leading-tight text-ink2">TapAble</span>
+                      )}
                     </span>
                   </li>
                 ))}
