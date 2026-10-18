@@ -103,9 +103,10 @@ export const profile = {
   ],
 }
 
-// 13 項獲獎，日期照獎狀（C:\2026\m\獎）。to＝站內作品頁；href＝外部連結。
+// 14 項獲獎，日期照獎狀（C:\2026\m\獎）。to＝站內作品頁；href＝外部連結。
 export const awards = [
   { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '實作組 16 強，決賽中', en: 'In the finals, top 16, build track' }, work: { zh: '警示找眼睛', en: 'Eyes-first exit alert' } },
+  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '創意組 23 強，決賽中', en: 'In the finals, top 23, creative track' }, work: { zh: '共創世界窗', en: 'Shared World Window' } },
   { date: '2026/10', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '決賽中', en: 'In the finals' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/10', major: true, headline: { zh: 'LINE AI 創新創業競賽第三名', en: '3rd place, LINE AI competition' }, note: { zh: '決選 12 組', en: '12 finalists' }, comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名（決選 12 組）', en: '3rd of 12 finalists' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽（233 組參賽）', en: 'Finalist (233 entries)' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
@@ -228,10 +229,8 @@ export const moreWork = [
     period: { zh: '2026/10', en: 'Oct 2026' },
   },
   {
-    title: { zh: 'TapAble 導航版：互動地圖 Demo', en: 'TapAble navigation: interactive map demo' },
-    text: { zh: '用 GIS 找出視障者附近最缺無障礙服務的地方，再把人導到可用的機台前。3S 創客競賽入圍獎。', en: 'Uses GIS to find where accessible service is most lacking, then guides users to a kiosk they can use. Finalist award, 3S Maker Competition.' },
-    period: { zh: '2026/08', en: 'Aug 2026' },
-    href: '/yao-3s-demo/index.html',
-    linkLabel: { zh: '開啟 Demo', en: 'Open demo' },
+    title: { zh: '共創世界窗：同一段路，一起創作', en: 'Shared World Window: one road, a story made together' },
+    text: { zh: '乘客輪流在車窗上造物、設定世界規則，再由另一位接力，把沿途風景變成同車一起創作的故事。AI 座艙 Hackathon 創意組決賽中。', en: 'Passengers take turns creating things on the car window and setting the world\'s rules, then someone else picks up from there, turning the road outside into a story the whole car makes together. In the finals of the AI Cockpit Hackathon creative track.' },
+    period: { zh: '2026/10', en: 'Oct 2026' },
   },
 ]
