@@ -82,8 +82,11 @@ export default function CV() {
                     <span className="tnum text-mute">{a.date}</span>
                     <span>
                       <span className="font-semibold text-ink">{t(a.result)}</span>
+                      {a.tapable && (
+                        <span className="ml-2 inline-block translate-y-[-1px] rounded border border-line2 px-1.5 py-px align-middle text-[11px] font-medium leading-tight text-ink2">TapAble</span>
+                      )}
                       <span className={a.major ? 'font-semibold text-ink' : 'text-ink2'}> · {t(a.comp)}</span>
-                      {a.work !== '—' && <span className="text-mute"> · {t(a.work)}</span>}
+                      {a.work !== '—' && a.work !== 'TapAble' && <span className="text-mute"> · {t(a.work)}</span>}
                     </span>
                   </li>
                 ))}
