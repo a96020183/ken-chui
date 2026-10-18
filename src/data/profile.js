@@ -103,10 +103,11 @@ export const profile = {
   ],
 }
 
-// 14 項獲獎，日期照獎狀（C:\2026\m\獎）。to＝站內作品頁；href＝外部連結。
+// 15 項獲獎，日期照獎狀（C:\2026\m\獎）。to＝站內作品頁；href＝外部連結。
 export const awards = [
   { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '實作組決賽中', en: 'In the finals, build track' }, work: { zh: '警示找眼睛', en: 'Eyes-first exit alert' } },
   { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '創意組決賽中', en: 'In the finals, creative track' }, work: { zh: '共創世界窗', en: 'Shared World Window' } },
+  { date: '2026/10', comp: { zh: '第 11 屆 Design For Taiwan 社會創新挑戰賽', en: '11th Design For Taiwan Social Innovation Challenge' }, result: { zh: '複賽中', en: 'In the semifinals' }, work: { zh: '慢一拍：班群風暴', en: 'One Beat Late: a class-chat storm game' }, href: 'https://a96020183.github.io/manyipai-demo/' },
   { date: '2026/10', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '決賽中', en: 'In the finals' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/10', major: true, headline: { zh: 'LINE AI 創新創業競賽第三名', en: '3rd place, LINE AI competition' }, comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名', en: '3rd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽（233 組參賽）', en: 'Finalist (233 entries)' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
