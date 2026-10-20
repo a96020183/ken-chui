@@ -167,10 +167,10 @@ function AwardsBand() {
             {t(`全部 ${awards.length} 項獎項`, `All ${awards.length} awards`)} <Arrow />
           </LLink>
         </div>
-        <div className="grid grid-cols-2 gap-px overflow-hidden bg-white/15 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-px overflow-hidden bg-white/15 lg:grid-cols-5">
           {items.map((a) => (
-            <div key={a.date + a.headline.en} className="flex flex-col bg-ink py-4 pl-4 pr-3 [&:nth-child(odd)]:pl-0 sm:py-5 sm:pr-6 lg:px-6 lg:py-4 lg:[&:nth-child(odd)]:pl-6 lg:first:!pl-0">
-              <div className="text-[16px] font-semibold leading-snug tracking-[-0.01em] text-white sm:text-[22px] lg:text-[24px]">{t(a.headline)}</div>
+            <div key={a.date + a.headline.en} className="flex flex-col bg-ink py-4 pl-0 pr-3 first:col-span-2 [&:nth-child(2n+3)]:pl-4 sm:py-5 sm:pr-6 lg:px-5 lg:py-4 lg:first:col-span-1 lg:[&:nth-child(2n+3)]:pl-5 lg:first:!pl-0">
+              <div className="text-[16px] font-semibold leading-snug tracking-[-0.01em] text-white sm:text-[22px] lg:text-[21px]">{t(a.headline)}</div>
               {(() => {
                 // 大字已含比賽名稱時，小字只放補充（例如隊數）
                 // 手機只放補充（隊數、組別），桌機再加比賽全名
@@ -186,7 +186,7 @@ function AwardsBand() {
               <div className="mt-auto flex items-baseline justify-between gap-4 pt-3 text-[13px] sm:pt-5 sm:text-[13.5px]">
                 {a.to ? (
                   <LLink to={a.to} className="hidden text-white underline sm:inline decoration-white/40 underline-offset-[3px] transition duration-150 ease-out hover:decoration-white">{t(a.work)}</LLink>
-                ) : <span className="hidden text-white/80 sm:inline">{t(a.work)}</span>}
+                ) : <span className="hidden text-white/80 sm:inline">{t(a.bandWork || a.work)}</span>}
                 <span className="tnum text-white/60">{a.date}</span>
               </div>
             </div>

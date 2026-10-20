@@ -103,12 +103,11 @@ export const profile = {
   ],
 }
 
-// 15 項獲獎，日期照獎狀（C:\2026\m\獎）。to＝站內作品頁；href＝外部連結。
+// 14 項獲獎，日期照獎狀（C:\2026\m\獎）。to＝站內作品頁；href＝外部連結。
 export const awards = [
   { tapable: true, date: '2026/11', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '決賽中', en: 'In the finals' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/11', comp: { zh: '第 11 屆 Design For Taiwan 社會創新挑戰賽', en: '11th Design For Taiwan Social Innovation Challenge' }, result: { zh: '複賽中', en: 'In the semifinals' }, work: { zh: '慢一拍：班群風暴（後真相時代的應對桌遊）', en: 'One Beat Late: a board game on handling post-truth class chats' }, href: 'https://a96020183.github.io/manyipai-demo/' },
-  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '實作組決賽中', en: 'In the finals, build track' }, work: { zh: '警示找眼睛', en: 'Eyes-first exit alert' } },
-  { date: '2026/10', comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '創意組決賽中', en: 'In the finals, creative track' }, work: { zh: '共創世界窗', en: 'Shared World Window' } },
+  { date: '2026/10', major: true, headline: { zh: 'AI 座艙 Hackathon 金獎', en: 'Gold award, AI Cockpit Hackathon' }, note: { zh: '創意組・唯一兩組都進決賽', en: 'creative track · only team in both finals' }, bandWork: { zh: '共創世界窗', en: 'Shared World Window' }, comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '創意組金獎、實作組潛力新星獎', en: 'Gold Award (creative track); Rising Star Award (build track)' }, work: { zh: '共創世界窗、警示找眼睛（唯一兩組都進決賽的隊伍）', en: 'Shared World Window; Eyes-first exit alert (only team in the finals of both tracks)' } },
   { tapable: true, date: '2026/10', major: true, headline: { zh: 'LINE AI 創新創業競賽第三名', en: '3rd place, LINE AI competition' }, comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名', en: '3rd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { tapable: true, date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽（233 組參賽）', en: 'Finalist (233 entries)' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { tapable: true, date: '2026/09', major: true, headline: { zh: 'BUILDMODE 黑客松第二名', en: '2nd place, BUILDMODE GEN‑AI hackathon' }, note: { zh: '160 隊', en: '160 teams' }, comp: { zh: 'BUILDMODE 2026 GEN-AI 黑客松（FUTUREMODE 台灣未來祭）', en: 'BUILDMODE 2026 GEN-AI Hackathon (FUTUREMODE)' }, result: { zh: '第二名（160 隊）', en: '2nd of 160 teams' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
@@ -226,12 +225,12 @@ export const moreWork = [
   },
   {
     title: { zh: '警示找眼睛：AI 座艙下車警示', en: 'Eyes-first exit alert for car cabins' },
-    text: { zh: '乘客下車時眼睛多半在看手機或付款螢幕。系統把開門警示送到他正在看的那塊螢幕，窗框燈條同時提醒車外騎士。AI 座艙 Hackathon 實作組決賽中。', en: 'Passengers getting out usually look at a phone or the payment screen. The system sends the door warning to whichever screen they are looking at, while a window light strip warns cyclists outside. In the finals of the AI Cockpit Hackathon build track.' },
+    text: { zh: '乘客下車時眼睛多半在看手機或付款螢幕。系統把開門警示送到他正在看的那塊螢幕，窗框燈條同時提醒車外騎士。AI 座艙 Hackathon 實作組潛力新星獎。', en: 'Passengers getting out usually look at a phone or the payment screen. The system sends the door warning to whichever screen they are looking at, while a window light strip warns cyclists outside. Rising Star Award, AI Cockpit Hackathon build track.' },
     period: { zh: '2026/10', en: 'Oct 2026' },
   },
   {
     title: { zh: '共創世界窗：同一段路，一起創作', en: 'Shared World Window: one road, a story made together' },
-    text: { zh: '乘客輪流在車窗上造物、設定世界規則，再由另一位接力，把沿途風景變成同車一起創作的故事。AI 座艙 Hackathon 創意組決賽中。', en: 'Passengers take turns creating things on the car window and setting the world\'s rules, then someone else picks up from there, turning the road outside into a story the whole car makes together. In the finals of the AI Cockpit Hackathon creative track.' },
+    text: { zh: '乘客輪流在車窗上造物、設定世界規則，再由另一位接力，把沿途風景變成同車一起創作的故事。AI 座艙 Hackathon 創意組金獎。', en: 'Passengers take turns creating things on the car window and setting the world\'s rules, then someone else picks up from there, turning the road outside into a story the whole car makes together. Gold award, AI Cockpit Hackathon creative track.' },
     period: { zh: '2026/10', en: 'Oct 2026' },
   },
 ]
