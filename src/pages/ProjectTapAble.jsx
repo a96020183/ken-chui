@@ -91,7 +91,7 @@ export default function ProjectTapAble() {
     },
     {
       date: '2026/09',
-      comp: t('BUILDMODE 2026 GEN-AI 黑客松', 'BUILDMODE 2026 GEN-AI Hackathon'),
+      comp: t('BUILDMODE 2026 黑客松', 'BUILDMODE 2026 Hackathon'),
       result: t('160 隊第二名', '2nd of 160 teams'),
       what: t('第一次寫成能跑的程式，也就是這一頁的版本。', 'The first working code. This is the version on this page.'),
     },

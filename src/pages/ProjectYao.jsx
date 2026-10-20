@@ -176,8 +176,8 @@ export default function ProjectYao() {
           </p>
           <p>
             {t(
-              <>同年 9 月，它在 BUILDMODE GEN-AI 黑客松第一次寫成能跑的程式，<b>160 隊拿下第二名</b>。同一個題目也拿到 3S 創客競賽入圍獎、台灣尤努斯創新獎入圍決賽（233 組取 10）、LINE AI 創新創業競賽第三名，也進了 AIDA 決賽。</>,
-              <>That September it became working code for the first time at the BUILDMODE GEN-AI Hackathon and <b>placed 2nd of 160 teams</b>. It also won a finalist award at the 3S Maker Competition, reached the Taiwan Yunus Innovation Award final (top 10 of 233), took 3rd at the LINE AI Innovation & Entrepreneurship Competition, and reached the AIDA final.</>
+              <>同年 9 月，它在 BUILDMODE 黑客松第一次寫成能跑的程式，<b>160 隊拿下第二名</b>。同一個題目也拿到 3S 創客競賽入圍獎、台灣尤努斯創新獎入圍決賽（233 組取 10）、LINE AI 創新創業競賽第三名，也進了 AIDA 決賽。</>,
+              <>That September it became working code for the first time at the BUILDMODE Hackathon and <b>placed 2nd of 160 teams</b>. It also won a finalist award at the 3S Maker Competition, reached the Taiwan Yunus Innovation Award final (top 10 of 233), took 3rd at the LINE AI Innovation & Entrepreneurship Competition, and reached the AIDA final.</>
             )}
           </p>
         </Prose>
