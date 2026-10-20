@@ -157,7 +157,8 @@ function Experience() {
 // 重點獎項：開場下方的黑底橫條，一進站就看得到
 function AwardsBand() {
   const t = useT()
-  const items = awards.filter((a) => a.major)
+  // 依名次排：金獎、第二名、第三名
+  const items = awards.filter((a) => a.major).sort((x, y) => x.bandOrder - y.bandOrder)
   return (
     <section aria-label={t('重點獎項', 'Key awards')} className="bg-ink text-white">
       <Container className="py-10 sm:py-12">
