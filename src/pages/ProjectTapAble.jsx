@@ -110,9 +110,9 @@ export default function ProjectTapAble() {
       ),
     },
     {
-      date: '2026/10',
+      date: '2026/11',
       comp: t('2026 AI 創意設計大賽 AIDA', 'AIDA 2026 AI Creative Design Award'),
-      result: t('決賽中', 'In the finals'),
+      result: t('特優獎', 'Excellence Award'),
     },
   ]
 

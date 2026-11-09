@@ -78,13 +78,14 @@ export const profile = {
     items: [
       { org: { zh: '香港喜來登酒店', en: 'Sheraton Hong Kong Hotel & Towers' }, role: { zh: '夜班房務部經理', en: 'Night Duty Manager, Housekeeping' }, text: { zh: '處理夜間突發狀況，協調各部門讓服務不中斷。', en: 'Handled overnight incidents and coordinated departments to keep service running.' } },
       { org: { zh: '東華三院', en: 'Tung Wah Group of Hospitals' }, role: { zh: '青少年空間共享計劃經理', en: 'Youth Space Programme Manager' }, text: { zh: '從零推動計劃落地，帶動青少年參與社區。', en: 'Launched a youth programme from scratch and grew participation.' } },
-      { org: 'Compass Group', role: { zh: '採購部文員（兼職）', en: 'Purchasing Clerk (part-time)' }, text: { zh: '使用 SAP 處理採購，並用 Excel VBA 寫自動化工具，縮短例行作業。', en: 'Used SAP for purchasing and built Excel VBA tools that automated routine work.' } },
+      { org: { zh: 'Compass Group（英國富時 100 成分股）', en: 'Compass Group (FTSE 100)' }, role: { zh: '採購部兼職文員', en: 'Purchasing Clerk (part-time)' }, text: { zh: '使用 SAP 處理採購，並用 Excel VBA 寫自動化工具，縮短例行作業。', en: 'Used SAP for purchasing and built Excel VBA tools that automated routine work.' } },
     ],
   },
 
   education: [
     { school: { zh: '國立臺北科技大學', en: 'National Taipei University of Technology' }, dept: { zh: '經營管理系 學士', en: 'BBA, Business Management' }, note: { zh: 'CGPA 3.7', en: 'CGPA 3.7' } },
-    { school: 'HKU SPACE', dept: 'Associate of Arts in Psychology', note: { zh: 'CGPA 3.7', en: 'CGPA 3.7' } },
+    // 中英文都用英文原名，不翻成「心理學副學士」（使用者 11-10）
+    { school: 'HKU SPACE', dept: 'Associate of Applied Social Sciences in Psychology', note: { zh: 'CGPA 3.7', en: 'CGPA 3.7' } },
   ],
 
   skills: [
@@ -103,10 +104,14 @@ export const profile = {
   ],
 }
 
-// 14 項獲獎，日期照獎狀（C:\2026\m\獎）。to＝站內作品頁；href＝外部連結。
+// 18 項，日期＝比賽日（結果照獎狀 C:\2026\m\獎）。還在比的放最上面。to＝站內作品頁；href＝外部連結。
 export const awards = [
-  { tapable: true, date: '2026/11', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '決賽中', en: 'In the finals' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/12', comp: { zh: 'ASUS UGen AI League 創新黑客松', en: 'ASUS UGen AI League Hackathon' }, result: { zh: '決賽中', en: 'In the finals' }, work: { zh: '知更守護（長輩防詐來電模擬）', en: 'RobinSave: scam-call drills for older adults' }, href: 'https://github.com/a96020183/RobinSave' },
+  { date: '2026/11', comp: { zh: '2026 和泰 AI 黑客松', en: 'Hotai AI Hackathon 2026' }, result: { zh: '決賽中', en: 'In the finals' }, work: { zh: 'yoxi 陪出門（長輩回診接送）', en: 'yoxi Jalan Bareng: rides to clinic visits for older adults' } },
+  { date: '2026/11', comp: { zh: '115 新竹政策黑客松（新竹市政府）', en: 'Hsinchu City Policy Hackathon 2026' }, result: { zh: '決賽中', en: 'In the finals' }, work: { zh: '車禍和解導航', en: 'Traffic-accident settlement guide' } },
   { date: '2026/11', comp: { zh: '第 11 屆 Design For Taiwan 社會創新挑戰賽', en: '11th Design For Taiwan Social Innovation Challenge' }, result: { zh: '複賽中', en: 'In the semifinals' }, work: { zh: '慢一拍：班群風暴（後真相時代的應對桌遊）', en: 'One Beat Late: a board game on handling post-truth class chats' }, href: 'https://a96020183.github.io/manyipai-demo/' },
+  { tapable: true, date: '2026/11', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '特優獎', en: 'Excellence Award' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
+  { date: '2026/11', comp: { zh: '臺北市青年局 2026 公共政策創意提案競賽', en: 'Taipei Youth Department 2026 Public Policy Proposal Competition' }, result: { zh: '評審特別獎', en: "Jury's Special Award" }, work: { zh: '影子工單（青年工作能力證明平台）', en: 'Shadow Task: proof of work for young job seekers' }, href: 'https://a96020183.github.io/shadow-task/' },
   { date: '2026/10', major: true, bandOrder: 1, headline: { zh: 'AI 座艙 Hackathon 金獎', en: 'Gold award, AI Cockpit Hackathon' }, bandWork: { zh: '共創世界窗', en: 'Shared World Window' }, comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '創意組金獎、實作組潛力新星獎', en: 'Gold Award (creative track); Rising Star Award (build track)' }, work: { zh: '共創世界窗、警示找眼睛', en: 'Shared World Window; Eyes-first exit alert' } },
   { tapable: true, date: '2026/10', major: true, bandOrder: 5, headline: { zh: 'LINE AI 創新創業競賽第三名', en: '3rd place, LINE AI competition' }, comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名', en: '3rd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { tapable: true, date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽（233 組參賽）', en: 'Finalist (233 entries)' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
