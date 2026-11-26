@@ -44,6 +44,7 @@ export const profile = {
       role: { zh: 'AI 產品經理', en: 'AI Product Manager' },
       period: { zh: '2026/09 – 現在', en: 'Sep 2026 – Present' },
       points: [
+        { zh: '一個人從零做出「武財神線上財神廟」3D 多人網頁遊戲，可以一起走動、上香、擲筊、點燈：接到需求第 4 天上線、第 6 天開始收費；舊電腦的內建顯示晶片上 54 人同場，仍維持每秒 30 格以上。', en: 'Built the Wu Caishen Online Temple, a 3D multiplayer web game where people walk around, burn incense, cast moon blocks and light lamps together, from scratch on my own: live on day 4 after the request and charging users from day 6. 54 players in one scene still run above 30 fps on an old integrated GPU.' },
         { zh: '上線一款權證交易輔助工具的 Web 版，服務公司旗下的投資作者。', en: 'Launched the web version of a warrant-trading helper tool for one of CMoney\'s top investing creators.' },
         { zh: '上線公司作者組產品的 LINE Bot。', en: 'Launched a LINE bot for the company\'s creator products.' },
         { zh: '負責一位 VIP 作者的產品線，iOS、Android、PC、Web 四個平台同時推版本；從需求、埋點、介面設計、和工程協作、測試到上架送審，一路負責到底。', en: 'Own a VIP creator\'s product line on iOS, Android, PC and web, end to end: requirements, event tracking, UI design, engineering hand-off, QA and store release.' },
