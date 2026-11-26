@@ -27,12 +27,12 @@ export const profile = {
 
   about: {
     zh: [
-      '我會先去找用不順的人問清楚，再自己把東西做出來。從需求研究、埋點和數據分析、Figma 設計，到寫程式做原型、測試和上架送審，我都做過。',
+      '從需求研究、埋點和數據分析、Figma 設計，到寫程式做原型、測試和上架送審，我都自己做過。',
       '在 CMoney 實習時，我用 Mixpanel 和 Firebase 找出使用者流失的地方，協助產品下半年的年增率由負轉正，最高單月成長 70.7%。',
       '商管和心理學的背景，讓我看產品時同時想兩件事：這門生意算不算得過來，以及使用者心裡真正在意什麼。',
     ],
     en: [
-      'I start by talking to the people who struggle with a product, then build the fix myself. I have done every part of the job: user research, event tracking and analysis, Figma design, coding prototypes, testing and app store release.',
+      'I have done every part of product work myself: user research, event tracking and analysis, Figma design, coding prototypes, testing and app store release.',
       'As an intern at CMoney, I used Mixpanel and Firebase to find where users dropped off, and helped turn the product\'s second-half year-over-year growth from negative to positive, peaking at +70.7% in one month.',
       'A business degree and a psychology background mean I look at every product two ways: does the business work, and what does the user actually care about.',
     ],
