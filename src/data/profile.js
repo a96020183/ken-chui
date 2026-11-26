@@ -104,7 +104,7 @@ export const profile = {
   ],
 }
 
-// 23 項，日期＝比賽日（結果照獎狀 C:\2026\m\獎）。還在比的放最上面。to＝站內作品頁；href＝外部連結。
+// 21 項，日期＝比賽日（結果照獎狀 C:\2026\m\獎）。還在比的放最上面。to＝站內作品頁；href＝外部連結。
 export const awards = [
   { date: '2026/12', comp: { zh: 'ASUS UGen AI League 創新黑客松', en: 'ASUS UGen AI League Hackathon' }, result: { zh: '決賽中', en: 'In the finals' }, work: { zh: '知更守護（長輩防詐來電模擬）', en: 'RobinSave: scam-call drills for older adults' }, href: 'https://github.com/a96020183/RobinSave' },
   { date: '2026/11', comp: { zh: '共融未來：跨文化便利商店創新設計競賽', en: 'Future Nexus: Cross-cultural Convenience Store Design Competition' }, result: { zh: '決賽中', en: 'In the finals' }, work: { zh: '兩個家，一間全家', en: 'Two homes, one FamilyMart' } },
@@ -115,8 +115,6 @@ export const awards = [
   { tapable: true, date: '2026/11', comp: { zh: '香港理工大學 PolyU Micro Fund', en: 'PolyU Micro Fund (The Hong Kong Polytechnic University)' }, result: { zh: 'Semi-winner', en: 'Semi-winner' }, work: { zh: 'TapAble 香港版', en: 'TapAble, Hong Kong version' }, to: '/projects/tapable-buildmode' },
   { tapable: true, date: '2026/11', comp: { zh: '2026 AI 創意設計大賽 AIDA（台灣人工智慧協會）', en: 'AIDA 2026 AI Creative Design Award (Taiwan AI Association)' }, result: { zh: '特優獎', en: 'Excellence Award' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { date: '2026/11', comp: { zh: '臺北市青年局 2026 公共政策創意提案競賽', en: 'Taipei Youth Department 2026 Public Policy Proposal Competition' }, result: { zh: '評審特別獎', en: "Jury's Special Award" }, work: { zh: '影子工單（青年工作能力證明平台）', en: 'Shadow Task: proof of work for young job seekers' }, href: 'https://a96020183.github.io/shadow-task/' },
-  { date: '2026/11', comp: { zh: '115 新竹政策黑客松（新竹市政府）', en: 'Hsinchu City Policy Hackathon 2026' }, result: { zh: '入圍決賽', en: 'Finalist' }, work: { zh: '車禍和解導航', en: 'Traffic-accident settlement guide' } },
-  { date: '2026/11', comp: { zh: '第 11 屆 Design For Taiwan 社會創新挑戰賽', en: '11th Design For Taiwan Social Innovation Challenge' }, result: { zh: '入圍複賽', en: 'Semifinalist' }, work: { zh: '慢一拍：班群風暴（後真相時代的應對桌遊）', en: 'One Beat Late: a board game on handling post-truth class chats' }, href: 'https://a96020183.github.io/manyipai-demo/' },
   { date: '2026/10', major: true, bandOrder: 1, headline: { zh: 'AI 座艙 Hackathon 金獎', en: 'Gold award, AI Cockpit Hackathon' }, bandWork: { zh: '共創世界窗', en: 'Shared World Window' }, comp: { zh: 'AI 座艙感知與視覺化 Hackathon（資策會 × 友達）', en: 'AI Cockpit Hackathon (III × AUO)' }, result: { zh: '創意組金獎、實作組潛力新星獎', en: 'Gold Award (creative track); Rising Star Award (build track)' }, work: { zh: '共創世界窗、警示找眼睛', en: 'Shared World Window; Eyes-first exit alert' } },
   { tapable: true, date: '2026/10', major: true, bandOrder: 5, headline: { zh: 'LINE AI 創新創業競賽第三名', en: '3rd place, LINE AI competition' }, comp: { zh: 'LINE AI 創新創業競賽', en: 'LINE AI Innovation & Entrepreneurship Competition' }, result: { zh: '第三名', en: '3rd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
   { tapable: true, date: '2026/09', comp: { zh: '第六屆台灣尤努斯創新獎', en: '6th Taiwan Yunus Innovation Award' }, result: { zh: '入圍決賽（233 組參賽）', en: 'Finalist (233 entries)' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
