@@ -59,7 +59,7 @@ export default function CV() {
                       <span className="tnum text-[13.5px] text-mute">{t(e.period)}</span>
                     </div>
                     <ul className="mt-2 list-disc space-y-1.5 pl-5 marker:text-line2">
-                      {e.points.map((pt) => <li key={pt.en} className="text-[14.5px] leading-[1.65] text-ink2">{t(pt)}</li>)}
+                      {e.points.map((pt) => <li key={pt.en} className="text-[14.5px] leading-[1.65] text-ink2">{t(pt)}{pt.href && <> <a href={pt.href} target="_blank" rel="noreferrer" className="link whitespace-nowrap">{t('看網站', 'Visit')} ↗</a></>}</li>)}
                     </ul>
                   </li>
                 ))}

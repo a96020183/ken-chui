@@ -130,7 +130,7 @@ function Experience() {
                     </h3>
                     <ul className="mt-3 space-y-2">
                       {e.points.slice(0, 2).map((pt) => (
-                        <li key={pt.en} className="text-[15px] leading-[1.7] text-ink2">{t(pt)}</li>
+                        <li key={pt.en} className="text-[15px] leading-[1.7] text-ink2">{t(pt)}{pt.href && <> <a href={pt.href} target="_blank" rel="noreferrer" className="link whitespace-nowrap">{t('看網站', 'Visit')} ↗</a></>}</li>
                       ))}
                     </ul>
                   </div>
