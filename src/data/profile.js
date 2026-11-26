@@ -27,12 +27,12 @@ export const profile = {
 
   about: {
     zh: [
-      '我習慣先找到卡住的人，再自己把東西做出來。需求研究、埋點和數據分析、Figma 設計、寫程式做原型、測試、上架送審，這些我都做過。',
+      '我會先去找用不順的人問清楚，再自己把東西做出來。從需求研究、埋點和數據分析、Figma 設計，到寫程式做原型、測試和上架送審，我都做過。',
       '在 CMoney 實習時，我用 Mixpanel 和 Firebase 找出使用者流失的地方，協助產品下半年的年增率由負轉正，最高單月成長 70.7%。',
       '商管和心理學的背景，讓我看產品時同時想兩件事：這門生意算不算得過來，以及使用者心裡真正在意什麼。',
     ],
     en: [
-      'I start with the person who is stuck, then build what gets them unstuck. I have done every step of that loop: user research, event tracking and analysis, Figma design, coding prototypes, testing and app store release.',
+      'I start by talking to the people who struggle with a product, then build the fix myself. I have done every part of the job: user research, event tracking and analysis, Figma design, coding prototypes, testing and app store release.',
       'As an intern at CMoney, I used Mixpanel and Firebase to find where users dropped off, and helped turn the product\'s second-half year-over-year growth from negative to positive, peaking at +70.7% in one month.',
       'A business degree and a psychology background mean I look at every product two ways: does the business work, and what does the user actually care about.',
     ],
@@ -44,10 +44,10 @@ export const profile = {
       role: { zh: 'AI 產品經理', en: 'AI Product Manager' },
       period: { zh: '2026/09 – 現在', en: 'Sep 2026 – Present' },
       points: [
-        { zh: '一個人從零做出「武財神線上財神廟」3D 多人網頁遊戲，可以一起走動、上香、擲筊、點燈：接到需求第 4 天上線、第 6 天開始收費；舊電腦的內建顯示晶片上 54 人同場，仍維持每秒 30 格以上。', en: 'Built the Wu Caishen Online Temple, a 3D multiplayer web game where people walk around, burn incense, cast moon blocks and light lamps together, from scratch on my own: live on day 4 after the request and charging users from day 6. 54 players in one scene still run above 30 fps on an old integrated GPU.', href: 'https://godofwealth.cmoney.tw/' },
+        { zh: '一個人從零做出「武財神線上財神廟」，大家可以一起上香、擲筊的 3D 網頁遊戲。接到需求第 4 天上線，第 6 天開始收費，舊電腦的內建顯示晶片上 54 人同場，仍有每秒 30 格以上。', en: 'Built the Wu Caishen Online Temple on my own from scratch, a 3D web game where people burn incense and cast moon blocks together. It went live on day 4 after the request and started charging on day 6. 54 players in one scene still run above 30 fps on an old integrated GPU.', href: 'https://godofwealth.cmoney.tw/' },
         { zh: '上線一款權證交易輔助工具的 Web 版，服務公司旗下的投資作者。', en: 'Launched the web version of a warrant-trading helper tool for one of CMoney\'s top investing creators.' },
         { zh: '上線公司作者組產品的 LINE Bot。', en: 'Launched a LINE bot for the company\'s creator products.' },
-        { zh: '負責多位 VIP 作者的產品線，iOS、Android、PC、Web 四個平台同時推版本；從需求、埋點、介面設計、和工程協作、測試到上架送審，一路負責到底。', en: 'Own several VIP creators\' product lines on iOS, Android, PC and web, end to end: requirements, event tracking, UI design, engineering hand-off, QA and store release.' },
+        { zh: '負責多位 VIP 作者的產品線，iOS、Android、PC、Web 四個平台同時推版本，需求、埋點、介面設計、和工程師協作、測試到上架送審都自己跟。', en: 'Own several VIP creators\' product lines and ship releases on iOS, Android, PC and web at the same time, from requirements, event tracking and UI design to engineering hand-off, QA and store release.' },
       ],
     },
     {
@@ -65,9 +65,9 @@ export const profile = {
       period: { zh: '2026/04 – 現在', en: 'Apr 2026 – Present' },
       to: '/projects/tapable-buildmode',
       points: [
-        { zh: '發起並帶領五人團隊，讓視障者用自己的手機操作點餐機這類觸控機台。', en: 'Started and lead a team of five building a way for blind people to use touchscreen kiosks, such as food ordering machines, from their own phones.' },
-        { zh: '負責產品定義，原型程式大部分由我撰寫。', en: 'Define the product and write most of the prototype code.' },
-        { zh: '做出 LINE 版的點餐流程：碰一下貼紙，語音一步一步引導；餐點好了，號碼會推播到手機。', en: 'Built the LINE version of the ordering flow: tap a sticker for step-by-step voice guidance, and get your order number on your phone when the food is ready.' },
+        { zh: '發起並帶領五人團隊，讓視障者用自己的手機操作點餐機這類觸控機台。', en: 'Started and lead a five-person team so blind people can use touchscreen kiosks, such as food ordering machines, from their own phones.' },
+        { zh: '負責產品定義，原型程式大多是我寫的。', en: 'Define the product and write most of the prototype code.' },
+        { zh: '做出 LINE 版點餐流程，碰一下貼紙就有語音一步步引導，餐點好了，號碼會推播到手機。', en: 'Built the LINE ordering flow. Tap a sticker and a voice guides you step by step, and your order number arrives on your phone when the food is ready.' },
         { zh: '訪談 3 位視障者，並請 2 位視障按摩師實際試用點餐流程。', en: 'Interviewed three blind users and had two visually impaired massage therapists try the ordering flow.' },
       ],
     },
@@ -78,8 +78,8 @@ export const profile = {
     label: { zh: '來台灣之前，在香港', en: 'Before Taiwan, in Hong Kong' },
     items: [
       { org: { zh: '香港喜來登酒店', en: 'Sheraton Hong Kong Hotel & Towers' }, role: { zh: '夜班房務部經理', en: 'Night Duty Manager, Housekeeping' }, text: { zh: '處理夜間突發狀況，協調各部門讓服務不中斷。', en: 'Handled overnight incidents and coordinated departments to keep service running.' } },
-      { org: { zh: '東華三院', en: 'Tung Wah Group of Hospitals' }, role: { zh: '青少年空間共享計劃經理', en: 'Youth Space Programme Manager' }, text: { zh: '從零推動計劃落地，帶動青少年參與社區。', en: 'Launched a youth programme from scratch and grew participation.' } },
-      { org: { zh: 'Compass Group（英國富時 100 成分股）', en: 'Compass Group (FTSE 100)' }, role: { zh: '採購部兼職文員', en: 'Purchasing Clerk (part-time)' }, text: { zh: '使用 SAP 處理採購，並用 Excel VBA 寫自動化工具，縮短例行作業。', en: 'Used SAP for purchasing and built Excel VBA tools that automated routine work.' } },
+      { org: { zh: '東華三院', en: 'Tung Wah Group of Hospitals' }, role: { zh: '青少年空間共享計劃經理', en: 'Youth Space Programme Manager' }, text: { zh: '從零開始辦這個計劃，帶青少年參與社區活動。', en: 'Set up a youth programme from scratch and got young people involved in the community.' } },
+      { org: { zh: 'Compass Group（英國富時 100 成分股）', en: 'Compass Group (FTSE 100)' }, role: { zh: '採購部兼職文員', en: 'Purchasing Clerk (part-time)' }, text: { zh: '用 SAP 處理採購，也用 Excel VBA 寫工具，把例行作業自動化。', en: 'Used SAP for purchasing and built Excel VBA tools that automated routine work.' } },
     ],
   },
 
@@ -93,7 +93,7 @@ export const profile = {
     { label: { zh: '產品', en: 'Product' }, items: [{ zh: 'PRD 撰寫', en: 'PRDs' }, { zh: '使用者研究與訪談', en: 'User research & interviews' }, { zh: '埋點規劃', en: 'Event tracking' }, { zh: '競品分析', en: 'Competitive analysis' }, 'Figma'] },
     { label: { zh: '數據', en: 'Data' }, items: ['Mixpanel', 'Firebase', 'GA4', 'SQL', 'Excel (VBA)'] },
     { label: 'AI', items: [{ zh: 'LLM 產品設計（RAG／Agent）', en: 'LLM product design (RAG, agents)' }, 'Prompt engineering', 'Edge AI (TensorFlow.js)'] },
-    { label: { zh: 'AI 開發', en: 'AI coding' }, items: [{ zh: '用 Claude Code、Codex、Kiro、Antigravity 寫程式，並用單元測試和回歸案例把關品質', en: 'Build with Claude Code, Codex, Kiro and Antigravity, and check quality with unit and regression tests' }] },
+    { label: { zh: 'AI 開發', en: 'AI coding' }, items: [{ zh: '用 Claude Code、Codex、Kiro、Antigravity 寫程式，再用單元測試和回歸測試檢查', en: 'Build with Claude Code, Codex, Kiro and Antigravity, then check the code with unit and regression tests' }] },
     { label: { zh: '開發', en: 'Build' }, items: ['React', 'Vite', 'Tailwind CSS', 'JavaScript', 'Python'] },
     { label: { zh: '平台', en: 'Platforms' }, items: [{ zh: 'AWS（Amplify、Bedrock）', en: 'AWS (Amplify, Bedrock)' }, 'Firebase', { zh: 'LINE 平台：官方帳號聊天機器人與推播（Messaging API）、圖文選單、LINE Login、LIFF 網頁', en: 'LINE platform: Official Account bots and push (Messaging API), rich menus, LINE Login, LIFF web apps' }] },
   ],
