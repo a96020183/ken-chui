@@ -108,8 +108,8 @@ export const profile = {
 // 21 項，日期＝比賽日（結果照獎狀 C:\2026\m\獎）。還在比的放最上面。to＝站內作品頁；href＝外部連結。
 export const awards = [
   { date: '2026/12', comp: { zh: 'ASUS UGen AI League 創新黑客松', en: 'ASUS UGen AI League Hackathon' }, result: { zh: '決賽中', en: 'In the finals' }, work: { zh: '知更守護（長輩防詐來電模擬）', en: 'RobinSave: scam-call drills for older adults' }, href: 'https://github.com/a96020183/RobinSave' },
-  { date: '2026/11', comp: { zh: '共融未來：跨文化便利商店創新設計競賽', en: 'Future Nexus: Cross-cultural Convenience Store Design Competition' }, result: { zh: '決賽中', en: 'In the finals' }, work: { zh: '兩個家，一間全家', en: 'Two homes, one FamilyMart' } },
-  { date: '2026/11', comp: { zh: '嘉大業大耐斯品牌創意行銷競賽', en: 'NICE Brand Creative Marketing Competition (NCYU)' }, result: { zh: '決賽中', en: 'In the finals' }, work: { zh: 'RE:SET 一包洗回主場（耐斯洗髮粉）', en: 'RE:SET: bringing NICE shampoo powder back' } },
+  { date: '2026/11', comp: { zh: '共融未來：跨文化便利商店創新設計競賽', en: 'Future Nexus: Cross-cultural Convenience Store Design Competition' }, result: { zh: '第一名', en: '1st place' }, work: { zh: '兩個家，一間全家', en: 'Two homes, one FamilyMart' } },
+  { date: '2026/11', comp: { zh: '嘉大業大耐斯品牌創意行銷競賽', en: 'NICE Brand Creative Marketing Competition (NCYU)' }, result: { zh: '第一名', en: '1st place' }, work: { zh: 'RE:SET 一包洗回主場（耐斯洗髮粉）', en: 'RE:SET: bringing NICE shampoo powder back' } },
   { date: '2026/11', comp: { zh: 'NASA Space Apps Challenge 2026（臺中場）', en: 'NASA Space Apps Challenge 2026 (Taichung)' }, result: { zh: '金獎', en: 'Gold award' }, work: { zh: 'Still Answering（阿波羅月球反射鏡互動網站）', en: 'Still Answering: an interactive site on the Apollo Moon mirrors' }, href: 'https://still-answering.pages.dev/' },
   { date: '2026/11', comp: { zh: '2026 和泰 AI 黑客松', en: 'Hotai AI Hackathon 2026' }, result: { zh: '第三名', en: '3rd place' }, work: { zh: 'yoxi 陪出門（長輩回診接送）', en: 'yoxi Jalan Bareng: rides to clinic visits for older adults' } },
   { tapable: true, date: '2026/11', comp: { zh: '115 年新竹縣青春靚點子：創業挑戰賽', en: 'Hsinchu County Youth Ideas: Startup Challenge 2026' }, result: { zh: '第三名', en: '3rd place' }, work: 'TapAble', to: '/projects/tapable-buildmode' },
